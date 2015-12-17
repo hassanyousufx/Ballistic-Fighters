@@ -1,6 +1,6 @@
 # Ignore these files
-.SFML
-.Debug
+SFML
+Debug
 *.opensdf
 
 
