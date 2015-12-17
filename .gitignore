@@ -1,5 +1,7 @@
-
-# Created by https://www.gitignore.io/api/c++
+# Ignore these files
+.SFML
+.Debug
+*.opensdf
 
 ### C++ ###
 # Compiled Object files
