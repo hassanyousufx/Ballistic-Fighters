@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
-#include <SFML\Window.hpp>
-#include <SFML\Audio.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <string>
 #include <Windows.h>
@@ -512,7 +512,7 @@ class Level1 :public Levels
 	Text txt[4];
 	Iori iori;
 public:
-	Level1(string adress = "Assests/insbg.gif", string name = "Level 1") :Levels(adress, name)
+	Level1(string adress = "Assests/level1bg.jpg", string name = "Level 1") :Levels(adress, name)
 	{
 		font.loadFromFile("Assests/SouthernAire.ttf");
 	}
