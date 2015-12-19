@@ -353,6 +353,206 @@ public:
 		sprite[14].setTexture(texture[14]);
 		texture[15].loadFromFile("Assests/Iori/Idle9.png");
 		sprite[15].setTexture(texture[15]);
+		texture[16].loadFromFile("Assests/Iori/Duck1.png");
+		sprite[16].setTexture(texture[16]);
+		texture[17].loadFromFile("Assests/Iori/Duck2.png");
+		sprite[17].setTexture(texture[17]);
+		texture[18].loadFromFile("Assests/Iori/Duck3.png");
+		sprite[18].setTexture(texture[18]);
+		texture[19].loadFromFile("Assests/Iori/Duck4.png");
+		sprite[19].setTexture(texture[19]);
+		texture[20].loadFromFile("Assests/Iori/Duck5.png");
+		sprite[20].setTexture(texture[20]);
+		texture[21].loadFromFile("Assests/Iori/Duck6.png");
+		sprite[21].setTexture(texture[21]);
+		texture[22].loadFromFile("Assests/Iori/Duck7.png");
+		sprite[22].setTexture(texture[22]);
+		texture[23].loadFromFile("Assests/Iori/Duck8.png");
+		sprite[23].setTexture(texture[23]);
+		texture[24].loadFromFile("Assests/Iori/Duck9.png");
+		sprite[24].setTexture(texture[24]);
+		texture[25].loadFromFile("Assests/Iori/WalkFront1.png");
+		sprite[25].setTexture(texture[25]);
+		texture[26].loadFromFile("Assests/Iori/WalkFront2.png");
+		sprite[26].setTexture(texture[26]);
+		texture[27].loadFromFile("Assests/Iori/WalkFront3.png");
+		sprite[27].setTexture(texture[27]);
+		texture[28].loadFromFile("Assests/Iori/WalkFront4.png");
+		sprite[28].setTexture(texture[28]);
+		texture[29].loadFromFile("Assests/Iori/WalkFront5.png");
+		sprite[29].setTexture(texture[29]);
+		texture[30].loadFromFile("Assests/Iori/WalkFront6.png");
+		sprite[30].setTexture(texture[30]);
+		texture[31].loadFromFile("Assests/Iori/WalkFront7.png");
+		sprite[31].setTexture(texture[31]);
+		texture[32].loadFromFile("Assests/Iori/WalkFront8.png");
+		sprite[32].setTexture(texture[32]);
+		texture[33].loadFromFile("Assests/Iori/WalkFront9.png");
+		sprite[33].setTexture(texture[33]);
+		texture[34].loadFromFile("Assests/Iori/WalkFront10.png");
+		sprite[34].setTexture(texture[34]);
+		texture[35].loadFromFile("Assests/Iori/WalkBack1.png");
+		sprite[35].setTexture(texture[35]);
+		texture[36].loadFromFile("Assests/Iori/WalkBack2.png");
+		sprite[36].setTexture(texture[36]);
+		texture[37].loadFromFile("Assests/Iori/WalkBack3.png");
+		sprite[37].setTexture(texture[37]);
+		texture[38].loadFromFile("Assests/Iori/WalkBack4.png");
+		sprite[38].setTexture(texture[38]);
+		texture[39].loadFromFile("Assests/Iori/WalkBack5.png");
+		sprite[39].setTexture(texture[39]);
+		texture[40].loadFromFile("Assests/Iori/WalkBack6.png");
+		sprite[40].setTexture(texture[40]);
+		texture[41].loadFromFile("Assests/Iori/WalkBack7.png");
+		sprite[41].setTexture(texture[41]);
+		texture[42].loadFromFile("Assests/Iori/WalkBack8.png");
+		sprite[42].setTexture(texture[42]);
+		texture[43].loadFromFile("Assests/Iori/WalkBack9.png");
+		sprite[43].setTexture(texture[43]);
+		texture[44].loadFromFile("Assests/Iori/Jump1.png");
+		sprite[44].setTexture(texture[44]);
+		texture[45].loadFromFile("Assests/Iori/Jump2.png");
+		sprite[45].setTexture(texture[45]);
+		texture[46].loadFromFile("Assests/Iori/Jump3.png");
+		sprite[46].setTexture(texture[46]);
+		texture[47].loadFromFile("Assests/Iori/Jump4.png");
+		sprite[47].setTexture(texture[47]);
+		texture[48].loadFromFile("Assests/Iori/Jump5.png");
+		sprite[48].setTexture(texture[48]);
+		texture[49].loadFromFile("Assests/Iori/Jump6.png");
+		sprite[49].setTexture(texture[49]);
+		texture[50].loadFromFile("Assests/Iori/Jump7.png");
+		sprite[50].setTexture(texture[50]);
+		texture[51].loadFromFile("Assests/Iori/Jump8.png");
+		sprite[51].setTexture(texture[51]);
+		texture[52].loadFromFile("Assests/Iori/Jump9.png");
+		sprite[52].setTexture(texture[52]);
+		texture[53].loadFromFile("Assests/Iori/Punch1.png");
+		sprite[53].setTexture(texture[53]);
+		texture[54].loadFromFile("Assests/Iori/Punch2.png");
+		sprite[54].setTexture(texture[54]);
+		texture[55].loadFromFile("Assests/Iori/Punch3.png");
+		sprite[55].setTexture(texture[55]);
+		texture[56].loadFromFile("Assests/Iori/Punch4.png");
+		sprite[56].setTexture(texture[56]);
+		texture[57].loadFromFile("Assests/Iori/Punch5.png");
+		sprite[57].setTexture(texture[57]);
+		texture[58].loadFromFile("Assests/Iori/Punch6.png");
+		sprite[58].setTexture(texture[58]);
+		texture[59].loadFromFile("Assests/Iori/Punch7.png");
+		sprite[59].setTexture(texture[59]);
+		texture[60].loadFromFile("Assests/Iori/Punch8.png");
+		sprite[60].setTexture(texture[60]);
+		texture[61].loadFromFile("Assests/Iori/Punch9.png");
+		sprite[61].setTexture(texture[61]);
+		texture[62].loadFromFile("Assests/Iori/Kick1.png");
+		sprite[62].setTexture(texture[62]);
+		texture[63].loadFromFile("Assests/Iori/Kick2.png");
+		sprite[63].setTexture(texture[63]);
+		texture[64].loadFromFile("Assests/Iori/Kick3.png");
+		sprite[64].setTexture(texture[64]);
+		texture[65].loadFromFile("Assests/Iori/Kick4.png");
+		sprite[65].setTexture(texture[65]);
+		texture[66].loadFromFile("Assests/Iori/Kick5.png");
+		sprite[66].setTexture(texture[66]);
+		texture[67].loadFromFile("Assests/Iori/Kick6.png");
+		sprite[67].setTexture(texture[67]);
+		texture[68].loadFromFile("Assests/Iori/Kick7.png");
+		sprite[68].setTexture(texture[68]);
+		texture[69].loadFromFile("Assests/Iori/Kick8.png");
+		sprite[69].setTexture(texture[69]);
+		texture[70].loadFromFile("Assests/Iori/Kick9.png");
+		sprite[70].setTexture(texture[70]);
+		texture[71].loadFromFile("Assests/Iori/Kick10.png");
+		sprite[71].setTexture(texture[71]);
+		texture[72].loadFromFile("Assests/Iori/Combo1.png");
+		sprite[72].setTexture(texture[72]);
+		texture[73].loadFromFile("Assests/Iori/Combo2.png");
+		sprite[73].setTexture(texture[73]);
+		texture[74].loadFromFile("Assests/Iori/Combo3.png");
+		sprite[74].setTexture(texture[74]);
+		texture[75].loadFromFile("Assests/Iori/Combo4.png");
+		sprite[75].setTexture(texture[75]);
+		texture[76].loadFromFile("Assests/Iori/Combo5.png");
+		sprite[76].setTexture(texture[76]);
+		texture[77].loadFromFile("Assests/Iori/Combo6.png");
+		sprite[77].setTexture(texture[77]);
+		texture[78].loadFromFile("Assests/Iori/Combo7.png");
+		sprite[78].setTexture(texture[78]);
+		texture[79].loadFromFile("Assests/Iori/Combo8.png");
+		sprite[79].setTexture(texture[79]);
+		texture[80].loadFromFile("Assests/Iori/Combo9.png");
+		sprite[80].setTexture(texture[80]);
+		texture[81].loadFromFile("Assests/Iori/Combo10.png");
+		sprite[81].setTexture(texture[81]);
+		texture[82].loadFromFile("Assests/Iori/Combo11.png");
+		sprite[82].setTexture(texture[82]);
+		texture[83].loadFromFile("Assests/Iori/Combo12.png");
+		sprite[83].setTexture(texture[83]);
+		texture[84].loadFromFile("Assests/Iori/Combo13.png");
+		sprite[84].setTexture(texture[84]);
+		texture[85].loadFromFile("Assests/Iori/Combo14.png");
+		sprite[85].setTexture(texture[85]);
+		texture[86].loadFromFile("Assests/Iori/Combo15.png");
+		sprite[86].setTexture(texture[86]);
+		texture[87].loadFromFile("Assests/Iori/Combo16.png");
+		sprite[87].setTexture(texture[87]);
+		texture[88].loadFromFile("Assests/Iori/Combo17.png");
+		sprite[88].setTexture(texture[88]);
+		texture[89].loadFromFile("Assests/Iori/Combo18.png");
+		sprite[89].setTexture(texture[89]);
+		texture[90].loadFromFile("Assests/Iori/Combo19.png");
+		sprite[90].setTexture(texture[90]);
+		texture[91].loadFromFile("Assests/Iori/Combo20.png");
+		sprite[91].setTexture(texture[91]);
+		texture[92].loadFromFile("Assests/Iori/Combo21.png");
+		sprite[92].setTexture(texture[92]);
+		texture[93].loadFromFile("Assests/Iori/Combo22.png");
+		sprite[93].setTexture(texture[93]);
+		texture[94].loadFromFile("Assests/Iori/Combo23.png");
+		sprite[94].setTexture(texture[94]);
+		texture[95].loadFromFile("Assests/Iori/Combo24.png");
+		sprite[95].setTexture(texture[95]);
+		texture[96].loadFromFile("Assests/Iori/Combo25.png");
+		sprite[96].setTexture(texture[96]);
+		texture[97].loadFromFile("Assests/Iori/Combo26.png");
+		sprite[97].setTexture(texture[97]);
+		texture[98].loadFromFile("Assests/Iori/Combo27.png");
+		sprite[98].setTexture(texture[98]);
+		texture[99].loadFromFile("Assests/Iori/Block1.png");
+		sprite[99].setTexture(texture[99]);
+		texture[100].loadFromFile("Assests/Iori/Block2.png");
+		sprite[100].setTexture(texture[100]);
+		texture[101].loadFromFile("Assests/Iori/Block3.png");
+		sprite[101].setTexture(texture[101]);
+		texture[102].loadFromFile("Assests/Iori/Block4.png");
+		sprite[102].setTexture(texture[102]);
+		texture[103].loadFromFile("Assests/Iori/Block5.png");
+		sprite[103].setTexture(texture[103]);
+		texture[104].loadFromFile("Assests/Iori/Block6.png");
+		sprite[104].setTexture(texture[104]);
+		texture[105].loadFromFile("Assests/Iori/Block7.png");
+		sprite[105].setTexture(texture[105]);
+		texture[106].loadFromFile("Assests/Iori/Dead1.png");
+		sprite[106].setTexture(texture[106]);
+		texture[107].loadFromFile("Assests/Iori/Dead2.png");
+		sprite[107].setTexture(texture[107]);
+		texture[108].loadFromFile("Assests/Iori/Dead3.png");
+		sprite[108].setTexture(texture[108]);
+		texture[109].loadFromFile("Assests/Iori/Dead4.png");
+		sprite[109].setTexture(texture[109]);
+		texture[110].loadFromFile("Assests/Iori/Dead5.png");
+		sprite[110].setTexture(texture[110]);
+		texture[111].loadFromFile("Assests/Iori/Dead6.png");
+		sprite[111].setTexture(texture[111]);
+		texture[112].loadFromFile("Assests/Iori/Dead7.png");
+		sprite[112].setTexture(texture[112]);
+		texture[113].loadFromFile("Assests/Iori/Dead8.png");
+		sprite[113].setTexture(texture[113]);
+		texture[114].loadFromFile("Assests/Iori/Dead9.png");
+		sprite[114].setTexture(texture[114]);
+		texture[115].loadFromFile("Assests/Iori/Dead10.png");
+		sprite[115].setTexture(texture[115]);
 	}
 	~Iori()
 	{
@@ -438,12 +638,50 @@ public:
 			sprite[15].setPosition(pos);
 		}
 	}
-	void Duck()
+	bool Duck()
 	{
 		if (Keyboard::isKeyPressed(Keyboard::Down))
 		{
-			//
+			float tmpy = 420.0f;
+			sprite[16].setScale(
+				targetSize.x / sprite[16].getLocalBounds().width,
+				targetSize.y / sprite[16].getLocalBounds().height);
+			sprite[16].setPosition(pos.x, tmpy);
+			sprite[17].setScale(
+				targetSize.x / sprite[17].getLocalBounds().width,
+				targetSize.y / sprite[17].getLocalBounds().height);
+			sprite[17].setPosition(pos.x, tmpy);
+			sprite[18].setScale(
+				targetSize.x / sprite[18].getLocalBounds().width,
+				targetSize.y / sprite[18].getLocalBounds().height);
+			sprite[18].setPosition(pos.x, tmpy);
+			sprite[19].setScale(
+				targetSize.x / sprite[19].getLocalBounds().width,
+				targetSize.y / sprite[19].getLocalBounds().height);
+			sprite[19].setPosition(pos.x, tmpy);
+			sprite[20].setScale(
+				targetSize.x / sprite[20].getLocalBounds().width,
+				targetSize.y / sprite[20].getLocalBounds().height);
+			sprite[20].setPosition(pos.x, tmpy);
+			sprite[21].setScale(
+				targetSize.x / sprite[21].getLocalBounds().width,
+				targetSize.y / sprite[21].getLocalBounds().height);
+			sprite[21].setPosition(pos.x, tmpy);
+			sprite[22].setScale(
+				targetSize.x / sprite[22].getLocalBounds().width,
+				targetSize.y / sprite[22].getLocalBounds().height);
+			sprite[22].setPosition(pos.x, tmpy);
+			sprite[23].setScale(
+				targetSize.x / sprite[23].getLocalBounds().width,
+				targetSize.y / sprite[23].getLocalBounds().height);
+			sprite[23].setPosition(pos.x, tmpy);
+			sprite[24].setScale(
+				targetSize.x / sprite[24].getLocalBounds().width,
+				targetSize.y / sprite[24].getLocalBounds().height);
+			sprite[24].setPosition(pos.x, tmpy);
+			return true;
 		}
+		return false;
 	}
 	void WalkFront()
 	{
