@@ -279,8 +279,8 @@ class characters
 {
 	string name;
 protected:
-	Sprite sprite[16];
-	Texture texture[16];
+	Sprite sprite[116];
+	Texture texture[116];
 public:
 	characters()
 	{
@@ -564,7 +564,7 @@ public:
 	}
 	void Ready(bool status)
 	{
-		if (status == false)
+		if (status == true)
 		{
 			sprite[0].setScale(
 				targetSize.x / sprite[0].getLocalBounds().width,
@@ -596,9 +596,9 @@ public:
 			sprite[6].setPosition(pos);
 		}
 	}
-	void Idle(bool key)
+	void Idle(bool status)
 	{
-		if (key == false)
+		if (status == false)
 		{
 			sprite[7].setScale(
 				targetSize.x / sprite[7].getLocalBounds().width,
@@ -1080,13 +1080,42 @@ public:
 		}
 		return false;
 	}
-	void Block()
+	bool Block()
 	{
 
 		if (Keyboard::isKeyPressed(Keyboard::F))
 		{
-			//
+			sprite[99].setScale(
+				targetSize.x / sprite[99].getLocalBounds().width,
+				targetSize.y / sprite[99].getLocalBounds().height);
+			sprite[99].setPosition(pos);
+			sprite[100].setScale(
+				targetSize.x / sprite[100].getLocalBounds().width,
+				targetSize.y / sprite[100].getLocalBounds().height);
+			sprite[100].setPosition(pos);
+			sprite[101].setScale(
+				targetSize.x / sprite[101].getLocalBounds().width,
+				targetSize.y / sprite[101].getLocalBounds().height);
+			sprite[101].setPosition(pos);
+			sprite[102].setScale(
+				targetSize.x / sprite[102].getLocalBounds().width,
+				targetSize.y / sprite[102].getLocalBounds().height);
+			sprite[102].setPosition(pos);
+			sprite[103].setScale(
+				targetSize.x / sprite[103].getLocalBounds().width,
+				targetSize.y / sprite[103].getLocalBounds().height);
+			sprite[103].setPosition(pos);
+			sprite[104].setScale(
+				targetSize.x / sprite[104].getLocalBounds().width,
+				targetSize.y / sprite[104].getLocalBounds().height);
+			sprite[104].setPosition(pos);
+			sprite[105].setScale(
+				targetSize.x / sprite[105].getLocalBounds().width,
+				targetSize.y / sprite[105].getLocalBounds().height);
+			sprite[105].setPosition(pos);
+			return true;
 		}
+		return false;
 	}
 
 };
@@ -1159,6 +1188,42 @@ public:
 	{
 		iori.Idle(key);
 	}
+	bool IW_Duck()
+	{
+		return iori.Duck();
+	}
+	bool IW_WalkFront()
+	{
+		return iori.WalkFront();
+	}
+	bool IW_WalkBack()
+	{
+		return iori.WalkBack();
+	}
+	bool IW_Jump()
+	{
+		return iori.Jump();
+	}
+	bool IW_Punch()
+	{
+		return iori.Punch();
+	}
+	bool IW_Kick()
+	{
+		return iori.Kick();
+	}
+	bool IW_Combo()
+	{
+		return iori.Combo();
+	}
+	bool IW_Block()
+	{
+		return iori.Block();
+	}
+	bool IW_Dead()
+	{
+		return iori.Dead();
+	}
 	Sprite IW_getSprite(int i)
 	{
 		return iori.getSprite(i);
@@ -1172,25 +1237,26 @@ int main()
 	mainmenu menu;
 	Instruction instructions;
 	Level1 lvl1;
-	int flag = 0, curr = 0;
+	bool iskeyPressed = false;
+	int flag = 0;
 	bool is_Exit = false;
-	bool is_chnglevel = false, isKeyPressed = false;
+	bool is_chnglevel = false;
 	int nxtlvl = 0;
+	int animcontrolller[11] = { 0, 7, 17, 25, 35, 44, 53, 62, 72, 99, 106 };
 	Clock clock;
-	float speed = 80.f;
 	//game music
 	Music music, music2, music3;
 	if (!music.openFromFile("Assests/sound/Track_01.ogg"))
 	{
-		//return EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
 	if (!music2.openFromFile("Assests/sound/Track_02.ogg"))
 	{
-		//return EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
 	if (!music3.openFromFile("Assests/sound/Track_03.ogg"))
 	{
-		//return EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
 	while (window.isOpen())
 	{
@@ -1232,7 +1298,7 @@ int main()
 				{
 					flag = 2;
 					clock.restart();
-					curr = 0;
+					animcontrolller[0] = 0;
 				}
 			}
 			if (flag == 1)
@@ -1279,46 +1345,212 @@ int main()
 				window.draw(instructions.getTx(i));
 			}
 		}
-		if (flag == 2)
+		if (flag == 2)//if level 1 is to be displayed
 		{
 			lvl1.setPosition();
 			window.draw(lvl1.getspbg());
 			lvl1.draw();
-			lvl1.IW_Idle(isKeyPressed);
 			Time t1 = clock.getElapsedTime();
-			if (t1.asSeconds() < 3.0f)
+			if (t1.asSeconds() < 2.0f)
 			{
-				lvl1.IW_Ready(isKeyPressed);
 				for (int i = 0; i < 2; i++)
 				{
 					window.draw(lvl1.gettxt(i));
 				}
-				if (curr < 7)
+				//Ready Animation
+				lvl1.IW_Ready(true);
+				if (animcontrolller[0] >= 0 && animcontrolller[0] <= 6)
 				{
-					window.draw(lvl1.IW_getSprite(curr));
-					Sleep(500);
-					curr++;
-					isKeyPressed = true;
+					window.draw(lvl1.IW_getSprite(animcontrolller[0]));
+					Sleep(100);
+					animcontrolller[0]++;
+				}
+				else
+				{
+					window.draw(lvl1.IW_getSprite(animcontrolller[0] - 1));
+					Sleep(100);
 				}
 			}
 			for (int i = 2; i < 4; i++)
 			{
 				window.draw(lvl1.gettxt(i));
 			}
-			if (curr < 14 && curr >= 7)
+			if (t1.asSeconds() > 2.0f)
 			{
-				isKeyPressed = false;
-				window.draw(lvl1.IW_getSprite(curr));
-				Sleep(200);
-				curr++;
-				isKeyPressed = true;
-			}
-			else
-			{
-				isKeyPressed = false;
-				window.draw(lvl1.IW_getSprite(curr));
-				Sleep(200);
-				curr = 7;
+				//Idle Animation
+				if (iskeyPressed == false)
+				{
+					lvl1.IW_Idle(iskeyPressed);
+					if (animcontrolller[1] >= 7 && animcontrolller[1] <= 15)
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[1]));
+						Sleep(100);
+						animcontrolller[1]++;
+					}
+					else
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[1] - 1));
+						Sleep(100);
+						animcontrolller[1] = 7;
+					}
+				}
+				//Duck Animation
+				if (lvl1.IW_Duck() == true)
+				{
+					iskeyPressed = true;
+					if (animcontrolller[2] >= 16 && animcontrolller[2] < 24)
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[2]));
+						Sleep(80);
+						animcontrolller[2]++;
+					}
+					else
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[2] - 1));
+						Sleep(80);
+						animcontrolller[2] = 17;
+					}
+				}
+				//Walk Front Animation
+				else if (lvl1.IW_WalkFront() == true)
+				{
+					iskeyPressed = true;
+					if (animcontrolller[3] >= 25 && animcontrolller[3] < 34)
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[3]));
+						Sleep(75);
+						animcontrolller[3]++;
+					}
+					else
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[3] - 1));
+						Sleep(75);
+						animcontrolller[3] = 25;
+					}
+				}
+				//Walk Back Animation
+				else if (lvl1.IW_WalkBack() == true)
+				{
+					iskeyPressed = true;
+					if (animcontrolller[4] >= 35 && animcontrolller[4] < 43)
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[4]));
+						Sleep(75);
+						animcontrolller[4]++;
+					}
+					else
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[4] - 1));
+						Sleep(75);
+						animcontrolller[4] = 35;
+					}
+				}
+				//Jump Animation
+				else if (lvl1.IW_Jump() == true)
+				{
+					iskeyPressed = true;
+					if (animcontrolller[5] >= 43 && animcontrolller[5] < 53)
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[5]));
+						Sleep(75);
+						animcontrolller[5]++;
+					}
+					else
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[5] - 1));
+						Sleep(75);
+						animcontrolller[5] = 43;
+					}
+				}
+				//Punch Animation
+				else if (lvl1.IW_Punch() == true)
+				{
+					iskeyPressed = true;
+					if (animcontrolller[6] >= 53 && animcontrolller[6] <= 61)
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[6]));
+						Sleep(75);
+						animcontrolller[6]++;
+					}
+					else
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[6] - 1));
+						Sleep(75);
+						animcontrolller[6] = 53;
+					}
+				}
+				//Kick Animation
+				else if (lvl1.IW_Kick() == true)
+				{
+					iskeyPressed = true;
+					if (animcontrolller[7] >= 62 && animcontrolller[7] <= 71)
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[7]));
+						Sleep(75);
+						animcontrolller[7]++;
+					}
+					else
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[7] - 1));
+						Sleep(75);
+						animcontrolller[7] = 62;
+					}
+				}
+				//combo Animation
+				else if (lvl1.IW_Combo() == true)
+				{
+					iskeyPressed = true;
+					if (animcontrolller[8] >= 72 && animcontrolller[8] <= 98)
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[8]));
+						Sleep(75);
+						animcontrolller[8]++;
+					}
+					else
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[8] - 1));
+						Sleep(75);
+						animcontrolller[8] = 72;
+					}
+				}
+				//Block Animation
+				else if (lvl1.IW_Block() == true)
+				{
+					iskeyPressed = true;
+					if (animcontrolller[9] >= 99 && animcontrolller[9] < 105)
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[9]));
+						Sleep(75);
+						animcontrolller[9]++;
+					}
+					else
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[9] - 1));
+						Sleep(75);
+						animcontrolller[9] = 99;
+					}
+				}
+				//Dead Animation
+				else if (lvl1.IW_Dead() == true)
+				{
+					iskeyPressed = true;
+					if (animcontrolller[10] >= 106 && animcontrolller[10] <= 115)
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[10]));
+						Sleep(75);
+						animcontrolller[10]++;
+					}
+					else
+					{
+						window.draw(lvl1.IW_getSprite(animcontrolller[10] - 1));
+						Sleep(75);
+						animcontrolller[10] = 106;
+					}
+				}
+				else
+				{
+					iskeyPressed = false;
+				}
 			}
 		}
 		window.display();
