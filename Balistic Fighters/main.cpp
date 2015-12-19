@@ -822,12 +822,49 @@ public:
 		}
 		return false;
 	}
-	void Punch()
+	bool Punch()
 	{
 		if (Keyboard::isKeyPressed(Keyboard::A))
 		{
-			//
+			sprite[53].setScale(
+				targetSize.x / sprite[53].getLocalBounds().width,
+				targetSize.y / sprite[53].getLocalBounds().height);
+			sprite[53].setPosition(pos);
+			sprite[54].setScale(
+				targetSize.x / sprite[54].getLocalBounds().width,
+				targetSize.y / sprite[54].getLocalBounds().height);
+			sprite[54].setPosition(pos);
+			sprite[55].setScale(
+				targetSize.x / sprite[55].getLocalBounds().width,
+				targetSize.y / sprite[55].getLocalBounds().height);
+			sprite[55].setPosition(pos);
+			sprite[56].setScale(
+				targetSize.x / sprite[56].getLocalBounds().width,
+				targetSize.y / sprite[56].getLocalBounds().height);
+			sprite[56].setPosition(pos);
+			sprite[57].setScale(
+				targetSize.x / sprite[57].getLocalBounds().width,
+				targetSize.y / sprite[57].getLocalBounds().height);
+			sprite[57].setPosition(pos);
+			sprite[58].setScale(
+				targetSize.x / sprite[58].getLocalBounds().width,
+				targetSize.y / sprite[58].getLocalBounds().height);
+			sprite[58].setPosition(pos);
+			sprite[59].setScale(
+				targetSize.x / sprite[59].getLocalBounds().width,
+				targetSize.y / sprite[59].getLocalBounds().height);
+			sprite[59].setPosition(pos);
+			sprite[60].setScale(
+				targetSize.x / sprite[60].getLocalBounds().width,
+				targetSize.y / sprite[60].getLocalBounds().height);
+			sprite[60].setPosition(pos);
+			sprite[61].setScale(
+				targetSize.x / sprite[61].getLocalBounds().width,
+				targetSize.y / sprite[61].getLocalBounds().height);
+			sprite[61].setPosition(pos);
+			return true;
 		}
+		return false;
 	}
 	void Kick()
 	{
