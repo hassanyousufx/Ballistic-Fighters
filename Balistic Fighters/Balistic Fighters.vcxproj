@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\SFML-2.3.2-windows-vc12-32-bit\SFML-2.3.2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SFML-2.3.2-windows-vc12-32-bit\SFML-2.3.2\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Admin\Ballistic-Fighters\SFML\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Admin\Ballistic-Fighters\SFML\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -73,18 +73,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Character.cpp" />
-    <ClCompile Include="Instructions.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="Ryo.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Character.h" />
-    <ClInclude Include="Instructions.h" />
-    <ClInclude Include="Levels.h" />
-    <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="Ryo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
