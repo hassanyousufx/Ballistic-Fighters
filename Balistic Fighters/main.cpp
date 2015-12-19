@@ -915,12 +915,121 @@ public:
 		}
 		return false;
 	}
-	void Combo()
+	bool Combo()
 	{
 		if (Keyboard::isKeyPressed(Keyboard::D))
 		{
-			//
+			sprite[72].setScale(
+				targetSize.x / sprite[72].getLocalBounds().width,
+				targetSize.y / sprite[72].getLocalBounds().height);
+			sprite[72].setPosition(pos);
+			sprite[73].setScale(
+				targetSize.x / sprite[73].getLocalBounds().width,
+				targetSize.y / sprite[73].getLocalBounds().height);
+			sprite[73].setPosition(pos);
+			sprite[74].setScale(
+				targetSize.x / sprite[74].getLocalBounds().width,
+				targetSize.y / sprite[74].getLocalBounds().height);
+			sprite[74].setPosition(pos);
+			sprite[75].setScale(
+				targetSize.x / sprite[75].getLocalBounds().width,
+				targetSize.y / sprite[75].getLocalBounds().height);
+			sprite[75].setPosition(pos);
+			sprite[76].setScale(
+				targetSize.x / sprite[76].getLocalBounds().width,
+				targetSize.y / sprite[76].getLocalBounds().height);
+			sprite[76].setPosition(pos);
+			sprite[77].setScale(
+				targetSize.x / sprite[77].getLocalBounds().width,
+				targetSize.y / sprite[77].getLocalBounds().height);
+			sprite[77].setPosition(pos);
+			sprite[78].setScale(
+				targetSize.x / sprite[78].getLocalBounds().width,
+				targetSize.y / sprite[78].getLocalBounds().height);
+			sprite[78].setPosition(pos);
+			sprite[79].setScale(
+				targetSize.x / sprite[79].getLocalBounds().width,
+				targetSize.y / sprite[79].getLocalBounds().height);
+			sprite[79].setPosition(pos);
+			sprite[80].setScale(
+				targetSize.x / sprite[80].getLocalBounds().width,
+				targetSize.y / sprite[80].getLocalBounds().height);
+			sprite[80].setPosition(pos);
+			sprite[81].setScale(
+				targetSize.x / sprite[81].getLocalBounds().width,
+				targetSize.y / sprite[81].getLocalBounds().height);
+			sprite[81].setPosition(pos);
+			sprite[82].setScale(
+				targetSize.x / sprite[82].getLocalBounds().width,
+				targetSize.y / sprite[82].getLocalBounds().height);
+			sprite[82].setPosition(pos);
+			sprite[83].setScale(
+				targetSize.x / sprite[83].getLocalBounds().width,
+				targetSize.y / sprite[83].getLocalBounds().height);
+			sprite[83].setPosition(pos);
+			sprite[84].setScale(
+				targetSize.x / sprite[84].getLocalBounds().width,
+				targetSize.y / sprite[84].getLocalBounds().height);
+			sprite[84].setPosition(pos);
+			sprite[85].setScale(
+				targetSize.x / sprite[85].getLocalBounds().width,
+				targetSize.y / sprite[85].getLocalBounds().height);
+			sprite[85].setPosition(pos);
+			sprite[86].setScale(
+				targetSize.x / sprite[86].getLocalBounds().width,
+				targetSize.y / sprite[86].getLocalBounds().height);
+			sprite[86].setPosition(pos);
+			sprite[87].setScale(
+				targetSize.x / sprite[87].getLocalBounds().width,
+				targetSize.y / sprite[87].getLocalBounds().height);
+			sprite[87].setPosition(pos);
+			sprite[88].setScale(
+				targetSize.x / sprite[88].getLocalBounds().width,
+				targetSize.y / sprite[88].getLocalBounds().height);
+			sprite[88].setPosition(pos);
+			sprite[89].setScale(
+				targetSize.x / sprite[89].getLocalBounds().width,
+				targetSize.y / sprite[89].getLocalBounds().height);
+			sprite[89].setPosition(pos);
+			sprite[90].setScale(
+				targetSize.x / sprite[90].getLocalBounds().width,
+				targetSize.y / sprite[90].getLocalBounds().height);
+			sprite[90].setPosition(pos);
+			sprite[91].setScale(
+				targetSize.x / sprite[91].getLocalBounds().width,
+				targetSize.y / sprite[91].getLocalBounds().height);
+			sprite[91].setPosition(pos);
+			sprite[92].setScale(
+				targetSize.x / sprite[92].getLocalBounds().width,
+				targetSize.y / sprite[92].getLocalBounds().height);
+			sprite[92].setPosition(pos);
+			sprite[93].setScale(
+				targetSize.x / sprite[93].getLocalBounds().width,
+				targetSize.y / sprite[93].getLocalBounds().height);
+			sprite[93].setPosition(pos);
+			sprite[94].setScale(
+				targetSize.x / sprite[94].getLocalBounds().width,
+				targetSize.y / sprite[94].getLocalBounds().height);
+			sprite[94].setPosition(pos);
+			sprite[95].setScale(
+				targetSize.x / sprite[95].getLocalBounds().width,
+				targetSize.y / sprite[95].getLocalBounds().height);
+			sprite[95].setPosition(pos);
+			sprite[96].setScale(
+				targetSize.x / sprite[96].getLocalBounds().width,
+				targetSize.y / sprite[96].getLocalBounds().height);
+			sprite[96].setPosition(pos);
+			sprite[97].setScale(
+				targetSize.x / sprite[97].getLocalBounds().width,
+				targetSize.y / sprite[97].getLocalBounds().height);
+			sprite[97].setPosition(pos);
+			sprite[98].setScale(
+				targetSize.x / sprite[98].getLocalBounds().width,
+				targetSize.y / sprite[98].getLocalBounds().height);
+			sprite[98].setPosition(pos);
+			return true;
 		}
+		return false;
 	}
 	void Dead()
 	{
