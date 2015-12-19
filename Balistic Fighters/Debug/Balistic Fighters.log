@@ -1,4 +1,4 @@
-﻿Build started 12/19/2015 10:51:18 PM.
+﻿Build started 12/19/2015 11:49:17 PM.
      1>Project "C:\Users\Admin\Ballistic-Fighters\Balistic Fighters\Balistic Fighters.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Admin\Ballistic-Fighters\SFML\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -26,4 +26,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.14
+Time Elapsed 00:00:20.66

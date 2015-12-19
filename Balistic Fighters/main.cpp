@@ -1246,7 +1246,7 @@ int main()
 	Clock clock;
 	//game music
 	Music music, music2, music3;
-	/*if (!music.openFromFile("Assests/sound/Track_01.ogg"))
+	if (!music.openFromFile("Assests/sound/Track_01.ogg"))
 	{
 		return EXIT_FAILURE;
 	}
@@ -1257,7 +1257,7 @@ int main()
 	if (!music3.openFromFile("Assests/sound/Track_03.ogg"))
 	{
 		return EXIT_FAILURE;
-	}*/
+	}
 	while (window.isOpen())
 	{
 		//music playing
