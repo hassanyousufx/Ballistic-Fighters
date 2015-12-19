@@ -1031,13 +1031,54 @@ public:
 		}
 		return false;
 	}
-	void Dead()
+	bool Dead()
 	{
 
 		if (health <= 0)
 		{
-			//
+			sprite[106].setScale(
+				targetSize.x / sprite[106].getLocalBounds().width,
+				targetSize.y / sprite[106].getLocalBounds().height);
+			sprite[106].setPosition(pos);
+			sprite[107].setScale(
+				targetSize.x / sprite[107].getLocalBounds().width,
+				targetSize.y / sprite[107].getLocalBounds().height);
+			sprite[107].setPosition(pos);
+			sprite[108].setScale(
+				targetSize.x / sprite[108].getLocalBounds().width,
+				targetSize.y / sprite[108].getLocalBounds().height);
+			sprite[108].setPosition(pos);
+			sprite[109].setScale(
+				targetSize.x / sprite[109].getLocalBounds().width,
+				targetSize.y / sprite[109].getLocalBounds().height);
+			sprite[109].setPosition(pos);
+			sprite[110].setScale(
+				targetSize.x / sprite[110].getLocalBounds().width,
+				targetSize.y / sprite[110].getLocalBounds().height);
+			sprite[110].setPosition(pos);
+			sprite[111].setScale(
+				targetSize.x / sprite[111].getLocalBounds().width,
+				targetSize.y / sprite[111].getLocalBounds().height);
+			sprite[111].setPosition(pos);
+			sprite[112].setScale(
+				targetSize.x / sprite[112].getLocalBounds().width,
+				targetSize.y / sprite[112].getLocalBounds().height);
+			sprite[112].setPosition(pos);
+			sprite[113].setScale(
+				targetSize.x / sprite[113].getLocalBounds().width,
+				targetSize.y / sprite[113].getLocalBounds().height);
+			sprite[113].setPosition(pos);
+			sprite[114].setScale(
+				targetSize.x / sprite[114].getLocalBounds().width,
+				targetSize.y / sprite[114].getLocalBounds().height);
+			sprite[114].setPosition(pos);
+			sprite[115].setScale(
+				targetSize.x / sprite[115].getLocalBounds().width,
+				targetSize.y / sprite[115].getLocalBounds().height);
+			sprite[115].setPosition(pos);
+			return true;
 		}
+		return false;
 	}
 	void Block()
 	{
