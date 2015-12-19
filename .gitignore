@@ -2,6 +2,7 @@
 SFML
 Debug
 *.opensdf
+wntdll.pdb
 
 
 ### C++ ###
