@@ -1,9 +1,10 @@
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
+#include <SFML\Window.hpp>
+#include <SFML\Audio.hpp>
 #include <iostream>
 #include <string>
 #include <Windows.h>
+#include <ctime>
 using namespace std;
 using namespace sf;
 
@@ -56,7 +57,7 @@ public:
 		return name;
 	}
 };
-class mainmenu :public Levels
+class mainmenu:public Levels
 {
 	Font font;
 	Text title;
@@ -64,7 +65,7 @@ class mainmenu :public Levels
 	Text ins;
 	Text exi;
 public:
-	mainmenu(string adress = "Assests/mainmenubg.gif", string name = "Main Menu") :Levels(adress, name)
+	mainmenu(string adress = "Assests/mainmenubg.gif", string name = "Main Menu") :Levels(adress,name)
 	{
 		font.loadFromFile("Assests/SouthernAire.ttf");
 	}
@@ -102,7 +103,7 @@ public:
 		ply.setFont(font);
 		ply.setString("Play");
 		ply.setPosition(575.0f, 300.0f);
-		sf::IntRect rect2(ply.getPosition().x + 5, ply.getPosition().y + 5, ply.getGlobalBounds().width + 5, ply.getGlobalBounds().height + 5);
+		IntRect rect2(ply.getPosition().x + 5, ply.getPosition().y + 5, ply.getGlobalBounds().width + 5, ply.getGlobalBounds().height + 5);
 		//If we hover on Play change color
 		if (rect2.contains(Mouse::getPosition()))
 		{
@@ -146,8 +147,8 @@ public:
 	}
 	bool play()
 	{
-
-		sf::IntRect rect1(ply.getPosition().x + 5, ply.getPosition().y + 5, ply.getGlobalBounds().width + 5, ply.getGlobalBounds().height + 5);
+		
+		IntRect rect1(ply.getPosition().x + 5, ply.getPosition().y + 5, ply.getGlobalBounds().width + 5, ply.getGlobalBounds().height + 5);
 		//if mouse clicked
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
@@ -175,7 +176,7 @@ public:
 	}
 	bool exit()
 	{
-		sf::IntRect rect(exi.getPosition().x + 5, exi.getPosition().y + 5, exi.getGlobalBounds().width + 5, exi.getGlobalBounds().height + 5);
+		IntRect rect(exi.getPosition().x + 5, exi.getPosition().y + 5, exi.getGlobalBounds().width + 5, exi.getGlobalBounds().height + 5);
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
 			//If we clicked within the exit rectangle, then exit!
@@ -187,13 +188,13 @@ public:
 		return false;
 	}
 };
-class Instruction :public Levels
+class Instruction:public Levels
 {
 	Font font;
 	Text tx[7];
 	Texture txbg;
 public:
-	Instruction(string adress = "Assests/insbg.gif", string name = "Instructions") :Levels(adress, name)
+	Instruction(string adress = "Assests/insbg.gif", string name = "Instructions") :Levels(adress,name)
 	{
 		font.loadFromFile("Assests/SouthernAire.ttf");
 	}
@@ -279,8 +280,8 @@ class characters
 {
 	string name;
 protected:
-	Sprite sprite[116];
-	Texture texture[116];
+	Sprite *sprite;
+	Texture *texture;
 public:
 	characters()
 	{
@@ -316,6 +317,8 @@ class Iori :public characters
 public:
 	Iori(string name = "IORI") :characters(name)
 	{
+		texture = new Texture[116];
+		sprite = new Sprite[116];
 		pos.x = 100.0f;
 		pos.y = 365.0f;
 		targetSize.x = 250.0f;
@@ -558,7 +561,11 @@ public:
 	{
 		health = 0;
 	}
-	int getHealth()
+	void setHealth(int health)
+	{
+		this->health = health;
+	}
+	int getHealth()const
 	{
 		return health;
 	}
@@ -680,7 +687,7 @@ public:
 				targetSize.y / sprite[24].getLocalBounds().height);
 			sprite[24].setPosition(pos.x, tmpy);
 			return true;
-		}
+			}
 		return false;
 	}
 	bool WalkFront()
@@ -789,7 +796,7 @@ public:
 			sprite[45].setScale(
 				targetSize.x / sprite[45].getLocalBounds().width,
 				targetSize.y / sprite[45].getLocalBounds().height);
-			sprite[45].setPosition(pos.x, (tmpy - 100.0f));
+			sprite[45].setPosition(pos.x, (tmpy-100.0f));
 			sprite[46].setScale(
 				targetSize.x / sprite[46].getLocalBounds().width,
 				targetSize.y / sprite[46].getLocalBounds().height);
@@ -1055,27 +1062,27 @@ public:
 			sprite[110].setScale(
 				targetSize.x / sprite[110].getLocalBounds().width,
 				targetSize.y / sprite[110].getLocalBounds().height);
-			sprite[110].setPosition(pos);
+			sprite[110].setPosition(pos.x, (pos.y + 75));
 			sprite[111].setScale(
 				targetSize.x / sprite[111].getLocalBounds().width,
 				targetSize.y / sprite[111].getLocalBounds().height);
-			sprite[111].setPosition(pos);
+			sprite[111].setPosition(pos.x, (pos.y + 75));
 			sprite[112].setScale(
 				targetSize.x / sprite[112].getLocalBounds().width,
 				targetSize.y / sprite[112].getLocalBounds().height);
-			sprite[112].setPosition(pos);
+			sprite[112].setPosition(pos.x, (pos.y + 75));
 			sprite[113].setScale(
 				targetSize.x / sprite[113].getLocalBounds().width,
 				targetSize.y / sprite[113].getLocalBounds().height);
-			sprite[113].setPosition(pos);
+			sprite[113].setPosition(pos.x, (pos.y + 75));
 			sprite[114].setScale(
 				targetSize.x / sprite[114].getLocalBounds().width,
 				targetSize.y / sprite[114].getLocalBounds().height);
-			sprite[114].setPosition(pos);
+			sprite[114].setPosition(pos.x, (pos.y + 75));
 			sprite[115].setScale(
-				targetSize.x / sprite[115].getLocalBounds().width,
-				targetSize.y / sprite[115].getLocalBounds().height);
-			sprite[115].setPosition(pos);
+				(targetSize.x / sprite[115].getLocalBounds().width)+1.0f,
+				(targetSize.y / sprite[115].getLocalBounds().height)+1.5f);
+			sprite[115].setPosition(pos.x,(pos.y+75));
 			return true;
 		}
 		return false;
@@ -1117,15 +1124,512 @@ public:
 		}
 		return false;
 	}
-
+	void setPos(Vector2f pos)
+	{
+		this->pos = pos;
+	}
+	
 };
-class Level1 :public Levels
+class Ryo:public characters
+{
+	int health;
+	Vector2f targetSize;
+	Vector2f pos;
+public:
+	Ryo(string name = "RYO") :characters(name)
+	{
+		texture = new Texture[59];
+		sprite = new Sprite[59];
+		pos.x = 1100.0f;
+		pos.y = 365.0f;
+		targetSize.x = 250.0f;
+		targetSize.y = 400.0f;
+		health = 100;
+		texture[0].loadFromFile("Assests/Ryo/Ready1.png");
+		sprite[0].setTexture(texture[0]);
+		texture[1].loadFromFile("Assests/Ryo/Ready2.png");
+		sprite[1].setTexture(texture[1]);
+		texture[2].loadFromFile("Assests/Ryo/Ready3.png");
+		sprite[2].setTexture(texture[2]);
+		texture[3].loadFromFile("Assests/Ryo/Ready4.png");
+		sprite[3].setTexture(texture[3]);
+		texture[4].loadFromFile("Assests/Ryo/Idle1.png");
+		sprite[4].setTexture(texture[4]);
+		texture[5].loadFromFile("Assests/Ryo/Idle2.png");
+		sprite[5].setTexture(texture[5]);
+		texture[6].loadFromFile("Assests/Ryo/Idle3.png");
+		sprite[6].setTexture(texture[6]);
+		texture[7].loadFromFile("Assests/Ryo/Idle4.png");
+		sprite[7].setTexture(texture[7]);
+		texture[8].loadFromFile("Assests/Ryo/Duck1.png");
+		sprite[8].setTexture(texture[8]);
+		texture[9].loadFromFile("Assests/Ryo/Duck2.png");
+		sprite[9].setTexture(texture[9]);
+		texture[10].loadFromFile("Assests/Ryo/WalkFront1.png");
+		sprite[10].setTexture(texture[10]);
+		texture[11].loadFromFile("Assests/Ryo/WalkFront2.png");
+		sprite[11].setTexture(texture[11]);
+		texture[12].loadFromFile("Assests/Ryo/WalkFront3.png");
+		sprite[12].setTexture(texture[12]);
+		texture[13].loadFromFile("Assests/Ryo/WalkFront4.png");
+		sprite[13].setTexture(texture[13]);
+		texture[14].loadFromFile("Assests/Ryo/WalkFront5.png");
+		sprite[14].setTexture(texture[14]);
+		texture[15].loadFromFile("Assests/Ryo/WalkFront6.png");
+		sprite[15].setTexture(texture[15]);
+		texture[16].loadFromFile("Assests/Ryo/WalkBack1.png");
+		sprite[16].setTexture(texture[16]);
+		texture[17].loadFromFile("Assests/Ryo/WalkBack2.png");
+		sprite[17].setTexture(texture[17]);
+		texture[18].loadFromFile("Assests/Ryo/WalkBack3.png");
+		sprite[18].setTexture(texture[18]);
+		texture[19].loadFromFile("Assests/Ryo/WalkBack4.png");
+		sprite[19].setTexture(texture[19]);
+		texture[20].loadFromFile("Assests/Ryo/WalkBack5.png");
+		sprite[20].setTexture(texture[20]);
+		texture[21].loadFromFile("Assests/Ryo/Jump1.png");
+		sprite[21].setTexture(texture[21]);
+		texture[22].loadFromFile("Assests/Ryo/Jump2.png");
+		sprite[22].setTexture(texture[22]);
+		texture[23].loadFromFile("Assests/Ryo/Jump3.png");
+		sprite[23].setTexture(texture[23]);
+		texture[25].loadFromFile("Assests/Ryo/Punch1.png");
+		sprite[25].setTexture(texture[25]);
+		texture[26].loadFromFile("Assests/Ryo/Punch2.png");
+		sprite[26].setTexture(texture[26]);
+		texture[27].loadFromFile("Assests/Ryo/Punch3.png");
+		sprite[27].setTexture(texture[27]);
+		texture[28].loadFromFile("Assests/Ryo/Punch4.png");
+		sprite[28].setTexture(texture[28]);
+		texture[29].loadFromFile("Assests/Ryo/Punch5.png");
+		sprite[29].setTexture(texture[29]);
+		texture[30].loadFromFile("Assests/Ryo/Punch6.png");
+		sprite[30].setTexture(texture[30]);
+		texture[31].loadFromFile("Assests/Ryo/Punch7.png");
+		sprite[31].setTexture(texture[31]);
+		texture[32].loadFromFile("Assests/Ryo/Punch8.png");
+		sprite[32].setTexture(texture[32]);
+		texture[33].loadFromFile("Assests/Ryo/Punch9.png");
+		sprite[33].setTexture(texture[33]);
+		texture[34].loadFromFile("Assests/Ryo/Kick1.png");
+		sprite[34].setTexture(texture[34]);
+		texture[35].loadFromFile("Assests/Ryo/Kick2.png");
+		sprite[35].setTexture(texture[35]);
+		texture[36].loadFromFile("Assests/Ryo/Kick3.png");
+		sprite[36].setTexture(texture[36]);
+		texture[37].loadFromFile("Assests/Ryo/Kick4.png");
+		sprite[37].setTexture(texture[37]);
+		texture[38].loadFromFile("Assests/Ryo/Kick5.png");
+		sprite[38].setTexture(texture[38]);
+		texture[39].loadFromFile("Assests/Ryo/Kick6.png");
+		sprite[39].setTexture(texture[39]);
+		texture[40].loadFromFile("Assests/Ryo/Kick7.png");
+		sprite[40].setTexture(texture[40]);
+		texture[41].loadFromFile("Assests/Ryo/Kick8.png");
+		sprite[41].setTexture(texture[41]);
+		texture[42].loadFromFile("Assests/Ryo/Combo1.png");
+		sprite[42].setTexture(texture[42]);
+		texture[43].loadFromFile("Assests/Ryo/Combo2.png");
+		sprite[43].setTexture(texture[43]);
+		texture[44].loadFromFile("Assests/Ryo/Combo3.png");
+		sprite[44].setTexture(texture[44]);
+		texture[45].loadFromFile("Assests/Ryo/Combo4.png");
+		sprite[45].setTexture(texture[45]);
+		texture[46].loadFromFile("Assests/Ryo/Combo5.png");
+		sprite[46].setTexture(texture[46]);
+		texture[47].loadFromFile("Assests/Ryo/Combo6.png");
+		sprite[47].setTexture(texture[47]);
+		texture[48].loadFromFile("Assests/Ryo/Combo7.png");
+		sprite[48].setTexture(texture[48]);
+		texture[49].loadFromFile("Assests/Ryo/Combo8.png");
+		sprite[49].setTexture(texture[49]);
+		texture[50].loadFromFile("Assests/Ryo/Combo9.png");
+		sprite[50].setTexture(texture[50]);
+		texture[51].loadFromFile("Assests/Ryo/Combo10.png");
+		sprite[51].setTexture(texture[51]);
+		texture[52].loadFromFile("Assests/Ryo/Block1.png");
+		sprite[52].setTexture(texture[52]);
+		texture[53].loadFromFile("Assests/Ryo/Block2.png");
+		sprite[53].setTexture(texture[53]);
+		texture[54].loadFromFile("Assests/Ryo/Block3.png");
+		sprite[54].setTexture(texture[54]);
+		texture[55].loadFromFile("Assests/Ryo/Dead1.png");
+		sprite[55].setTexture(texture[55]);
+		texture[56].loadFromFile("Assests/Ryo/Dead2.png");
+		sprite[56].setTexture(texture[56]);
+		texture[57].loadFromFile("Assests/Ryo/Dead3.png");
+		sprite[57].setTexture(texture[57]);
+		texture[58].loadFromFile("Assests/Ryo/Dead4.png");
+		sprite[58].setTexture(texture[58]);
+	}
+	~Ryo()
+	{
+		health = 0;
+	}
+	void setHealth(int health)
+	{
+		this->health = health;
+	}
+	int getHealth()const
+	{
+		return this->health;
+	}
+	void Ready(bool status)
+	{
+		if (status == true)
+		{
+			sprite[0].setScale(
+				targetSize.x / sprite[0].getLocalBounds().width,
+				targetSize.y / sprite[0].getLocalBounds().height);
+			sprite[0].setPosition(pos);
+			sprite[1].setScale(
+				targetSize.x / sprite[1].getLocalBounds().width,
+				targetSize.y / sprite[1].getLocalBounds().height);
+			sprite[1].setPosition(pos);
+			sprite[2].setScale(
+				targetSize.x / sprite[2].getLocalBounds().width,
+				targetSize.y / sprite[2].getLocalBounds().height);
+			sprite[2].setPosition(pos);
+			sprite[3].setScale(
+				targetSize.x / sprite[3].getLocalBounds().width,
+				targetSize.y / sprite[3].getLocalBounds().height);
+			sprite[3].setPosition(pos);
+		}
+	}
+	void Idle(bool status)
+	{
+		if (status == false)
+		{
+			sprite[4].setScale(
+				targetSize.x / sprite[4].getLocalBounds().width,
+				targetSize.y / sprite[4].getLocalBounds().height);
+			sprite[4].setPosition(pos);
+			sprite[5].setScale(
+				targetSize.x / sprite[5].getLocalBounds().width,
+				targetSize.y / sprite[5].getLocalBounds().height);
+			sprite[5].setPosition(pos);
+			sprite[6].setScale(
+				targetSize.x / sprite[6].getLocalBounds().width,
+				targetSize.y / sprite[6].getLocalBounds().height);
+			sprite[6].setPosition(pos);
+			sprite[7].setScale(
+				targetSize.x / sprite[7].getLocalBounds().width,
+				targetSize.y / sprite[7].getLocalBounds().height);
+			sprite[7].setPosition(pos);
+		}
+	}
+	bool Duck()
+	{
+		if (Keyboard::isKeyPressed(Keyboard::K))
+		{
+			float tmpy = pos.y + 25;
+			sprite[8].setScale(
+				targetSize.x / sprite[8].getLocalBounds().width,
+				targetSize.y / sprite[8].getLocalBounds().height);
+			sprite[8].setPosition(pos.x, tmpy);
+			sprite[9].setScale(
+				targetSize.x / sprite[9].getLocalBounds().width,
+				targetSize.y / sprite[9].getLocalBounds().height);
+			sprite[9].setPosition(pos.x, tmpy);
+			return true;
+		}
+		return false;
+	}
+	bool WalkFront()
+	{
+		if (Keyboard::isKeyPressed(Keyboard::J))
+		{
+			pos.x = pos.x - 15;
+			sprite[10].setScale(
+				targetSize.x / sprite[10].getLocalBounds().width,
+				targetSize.y / sprite[10].getLocalBounds().height);
+			sprite[10].setPosition(pos.x, pos.y);
+			sprite[11].setScale(
+				targetSize.x / sprite[11].getLocalBounds().width,
+				targetSize.y / sprite[11].getLocalBounds().height);
+			sprite[11].setPosition(pos.x, pos.y);
+			sprite[12].setScale(
+				targetSize.x / sprite[12].getLocalBounds().width,
+				targetSize.y / sprite[12].getLocalBounds().height);
+			sprite[12].setPosition(pos.x, pos.y);
+			sprite[13].setScale(
+				targetSize.x / sprite[13].getLocalBounds().width,
+				targetSize.y / sprite[13].getLocalBounds().height);
+			sprite[13].setPosition(pos.x, pos.y);
+			sprite[14].setScale(
+				targetSize.x / sprite[14].getLocalBounds().width,
+				targetSize.y / sprite[14].getLocalBounds().height);
+			sprite[14].setPosition(pos.x, pos.y);
+			sprite[15].setScale(
+				targetSize.x / sprite[15].getLocalBounds().width,
+				targetSize.y / sprite[15].getLocalBounds().height);
+			sprite[15].setPosition(pos.x, pos.y);
+			return true;
+		}
+		return false;
+	}
+	bool WalkBack()
+	{
+		if (Keyboard::isKeyPressed(Keyboard::L))
+		{
+			pos.x = pos.x + 15;
+			sprite[16].setScale(
+				targetSize.x / sprite[16].getLocalBounds().width,
+				targetSize.y / sprite[16].getLocalBounds().height);
+			sprite[16].setPosition(pos.x, pos.y);
+			sprite[17].setScale(
+				targetSize.x / sprite[17].getLocalBounds().width,
+				targetSize.y / sprite[17].getLocalBounds().height);
+			sprite[17].setPosition(pos.x, pos.y);
+			sprite[18].setScale(
+				targetSize.x / sprite[18].getLocalBounds().width,
+				targetSize.y / sprite[18].getLocalBounds().height);
+			sprite[18].setPosition(pos.x, pos.y);
+			sprite[19].setScale(
+				targetSize.x / sprite[19].getLocalBounds().width,
+				targetSize.y / sprite[19].getLocalBounds().height);
+			sprite[19].setPosition(pos.x, pos.y);
+			sprite[20].setScale(
+				targetSize.x / sprite[20].getLocalBounds().width,
+				targetSize.y / sprite[20].getLocalBounds().height);
+			sprite[20].setPosition(pos.x, pos.y);
+			return true;
+		}
+		return false;
+	}
+	bool Jump()
+	{
+		if (Keyboard::isKeyPressed(Keyboard::I))
+		{
+			float tmpy = pos.y;
+			sprite[21].setScale(
+				targetSize.x / sprite[21].getLocalBounds().width,
+				targetSize.y / sprite[21].getLocalBounds().height);
+			sprite[21].setPosition(pos.x, pos.y);
+			sprite[22].setScale(
+				targetSize.x / sprite[22].getLocalBounds().width,
+				targetSize.y / sprite[22].getLocalBounds().height);
+			sprite[22].setPosition(pos.x, (tmpy - 100.0f));
+			sprite[23].setScale(
+				targetSize.x / sprite[23].getLocalBounds().width,
+				targetSize.y / sprite[23].getLocalBounds().height);
+			sprite[23].setPosition(pos.x, (tmpy - 150.0f));
+			return true;
+		}
+		return false;
+	}
+	bool Punch()
+	{
+		if (Keyboard::isKeyPressed(Keyboard::V))
+		{
+			sprite[25].setScale(
+				targetSize.x / sprite[25].getLocalBounds().width,
+				targetSize.y / sprite[25].getLocalBounds().height);
+			sprite[25].setPosition(pos);
+			sprite[26].setScale(
+				targetSize.x / sprite[26].getLocalBounds().width,
+				targetSize.y / sprite[26].getLocalBounds().height);
+			sprite[26].setPosition(pos);
+			sprite[27].setScale(
+				targetSize.x / sprite[27].getLocalBounds().width,
+				targetSize.y / sprite[27].getLocalBounds().height);
+			sprite[27].setPosition(pos);
+			sprite[28].setScale(
+				targetSize.x / sprite[28].getLocalBounds().width,
+				targetSize.y / sprite[28].getLocalBounds().height);
+			sprite[28].setPosition(pos);
+			sprite[29].setScale(
+				targetSize.x / sprite[29].getLocalBounds().width,
+				targetSize.y / sprite[29].getLocalBounds().height);
+			sprite[29].setPosition(pos);
+			sprite[30].setScale(
+				targetSize.x / sprite[30].getLocalBounds().width,
+				targetSize.y / sprite[30].getLocalBounds().height);
+			sprite[30].setPosition(pos);
+			sprite[31].setScale(
+				targetSize.x / sprite[31].getLocalBounds().width,
+				targetSize.y / sprite[31].getLocalBounds().height);
+			sprite[31].setPosition(pos);
+			sprite[32].setScale(
+				targetSize.x / sprite[32].getLocalBounds().width,
+				targetSize.y / sprite[32].getLocalBounds().height);
+			sprite[32].setPosition(pos);
+			sprite[33].setScale(
+				targetSize.x / sprite[33].getLocalBounds().width,
+				targetSize.y / sprite[33].getLocalBounds().height);
+			sprite[33].setPosition(pos);
+			return true;
+		}
+		return false;
+	}
+	bool Kick()
+	{
+
+		if (Keyboard::isKeyPressed(Keyboard::B))
+		{
+			sprite[34].setScale(
+				targetSize.x / sprite[34].getLocalBounds().width,
+				targetSize.y / sprite[34].getLocalBounds().height);
+			sprite[34].setPosition(pos);
+			sprite[35].setScale(
+				targetSize.x / sprite[35].getLocalBounds().width,
+				targetSize.y / sprite[35].getLocalBounds().height);
+			sprite[35].setPosition(pos);
+			sprite[36].setScale(
+				targetSize.x / sprite[36].getLocalBounds().width,
+				targetSize.y / sprite[36].getLocalBounds().height);
+			sprite[36].setPosition(pos);
+			sprite[37].setScale(
+				targetSize.x / sprite[37].getLocalBounds().width,
+				targetSize.y / sprite[37].getLocalBounds().height);
+			sprite[37].setPosition(pos);
+			sprite[38].setScale(
+				targetSize.x / sprite[38].getLocalBounds().width,
+				targetSize.y / sprite[38].getLocalBounds().height);
+			sprite[38].setPosition(pos);
+			sprite[39].setScale(
+				targetSize.x / sprite[39].getLocalBounds().width,
+				targetSize.y / sprite[39].getLocalBounds().height);
+			sprite[39].setPosition(pos);
+			sprite[40].setScale(
+				targetSize.x / sprite[40].getLocalBounds().width,
+				targetSize.y / sprite[40].getLocalBounds().height);
+			sprite[40].setPosition(pos);
+			sprite[41].setScale(
+				targetSize.x / sprite[41].getLocalBounds().width,
+				targetSize.y / sprite[41].getLocalBounds().height);
+			sprite[41].setPosition(pos);
+			return true;
+		}
+		return false;
+	}
+	bool Combo()
+	{
+		if (Keyboard::isKeyPressed(Keyboard::N))
+		{
+			sprite[42].setScale(
+				targetSize.x / sprite[72].getLocalBounds().width,
+				targetSize.y / sprite[72].getLocalBounds().height);
+			sprite[42].setPosition(pos);
+			sprite[43].setScale(
+				targetSize.x / sprite[43].getLocalBounds().width,
+				targetSize.y / sprite[43].getLocalBounds().height);
+			sprite[43].setPosition(pos);
+			sprite[44].setScale(
+				targetSize.x / sprite[44].getLocalBounds().width,
+				targetSize.y / sprite[44].getLocalBounds().height);
+			sprite[44].setPosition(pos);
+			sprite[45].setScale(
+				targetSize.x / sprite[45].getLocalBounds().width,
+				targetSize.y / sprite[45].getLocalBounds().height);
+			sprite[45].setPosition(pos);
+			sprite[46].setScale(
+				targetSize.x / sprite[46].getLocalBounds().width,
+				targetSize.y / sprite[46].getLocalBounds().height);
+			sprite[46].setPosition(pos);
+			sprite[47].setScale(
+				targetSize.x / sprite[47].getLocalBounds().width,
+				targetSize.y / sprite[47].getLocalBounds().height);
+			sprite[47].setPosition(pos);
+			sprite[48].setScale(
+				targetSize.x / sprite[48].getLocalBounds().width,
+				targetSize.y / sprite[48].getLocalBounds().height);
+			sprite[48].setPosition(pos);
+			sprite[49].setScale(
+				targetSize.x / sprite[49].getLocalBounds().width,
+				targetSize.y / sprite[49].getLocalBounds().height);
+			sprite[49].setPosition(pos);
+			sprite[50].setScale(
+				targetSize.x / sprite[50].getLocalBounds().width,
+				targetSize.y / sprite[50].getLocalBounds().height);
+			sprite[50].setPosition(pos);
+			sprite[51].setScale(
+				targetSize.x / sprite[51].getLocalBounds().width,
+				targetSize.y / sprite[51].getLocalBounds().height);
+			sprite[51].setPosition(pos);
+			sprite[52].setScale(
+				targetSize.x / sprite[52].getLocalBounds().width,
+				targetSize.y / sprite[52].getLocalBounds().height);
+			sprite[52].setPosition(pos);
+			sprite[53].setScale(
+				targetSize.x / sprite[53].getLocalBounds().width,
+				targetSize.y / sprite[53].getLocalBounds().height);
+			sprite[53].setPosition(pos);
+			sprite[54].setScale(
+				targetSize.x / sprite[54].getLocalBounds().width,
+				targetSize.y / sprite[54].getLocalBounds().height);
+			sprite[54].setPosition(pos);
+			sprite[55].setScale(
+				targetSize.x / sprite[55].getLocalBounds().width,
+				targetSize.y / sprite[55].getLocalBounds().height);
+			sprite[55].setPosition(pos);
+			sprite[56].setScale(
+				targetSize.x / sprite[56].getLocalBounds().width,
+				targetSize.y / sprite[56].getLocalBounds().height);
+			sprite[56].setPosition(pos);
+			return true;
+		}
+		return false;
+	}
+	bool Dead()
+	{
+
+		if (health <= 0)
+		{
+			sprite[55].setScale(
+				targetSize.x / sprite[55].getLocalBounds().width,
+				targetSize.y / sprite[55].getLocalBounds().height);
+			sprite[55].setPosition(pos);
+			sprite[56].setScale(
+				targetSize.x / sprite[56].getLocalBounds().width,
+				targetSize.y / sprite[56].getLocalBounds().height);
+			sprite[56].setPosition(pos);
+			sprite[57].setScale(
+				targetSize.x / sprite[57].getLocalBounds().width,
+				targetSize.y / sprite[57].getLocalBounds().height);
+			sprite[57].setPosition(pos.x, (pos.y + 125));
+			sprite[58].setScale(
+				targetSize.x / sprite[58].getLocalBounds().width,
+				targetSize.y / sprite[58].getLocalBounds().height);
+			sprite[58].setPosition(pos.x, (pos.y + 125));
+			return true;
+		}
+		return false;
+	}
+	bool Block()
+	{
+
+		if (Keyboard::isKeyPressed(Keyboard::M))
+		{
+			sprite[52].setScale(
+				targetSize.x / sprite[52].getLocalBounds().width,
+				targetSize.y / sprite[52].getLocalBounds().height);
+			sprite[52].setPosition(pos);
+			sprite[53].setScale(
+				targetSize.x / sprite[53].getLocalBounds().width,
+				targetSize.y / sprite[53].getLocalBounds().height);
+			sprite[54].setPosition(pos);
+			sprite[54].setScale(
+				targetSize.x / sprite[54].getLocalBounds().width,
+				targetSize.y / sprite[54].getLocalBounds().height);
+			sprite[54].setPosition(pos);
+			return true;
+		}
+		return false;
+	}
+	void setPos(Vector2f pos)
+	{
+		this->pos = pos;
+	}
+};
+class Level1:public Levels
 {
 	Font font;
-	Text txt[4];
+	Text txt[8];
 	Iori iori;
+	Ryo ryo;
 public:
-	Level1(string adress = "Assests/level1bg.jpg", string name = "Level 1") :Levels(adress, name)
+	Level1(string adress = "Assests/level1bg.jpg",string name = "Level 1") :Levels(adress,name)
 	{
 		font.loadFromFile("Assests/SouthernAire.ttf");
 	}
@@ -1163,12 +1667,54 @@ public:
 		txt[2].setPosition(75.0f, 50.0f);
 		txt[2].setColor(Color::Black);
 		txt[2].setCharacterSize(48);
+		//Health
+		string str = to_string(iori.getHealth());
+		txt[4].setFont(font);
+		if (iori.getHealth() <= 0)
+		{
+			str = '0';
+			txt[4].setColor(Color::Red);
+		}
+		else
+		{
+			txt[4].setColor(Color::Green);
+		}
+		txt[4].setString(str);
+		txt[4].setPosition(75.0f, 0.1f);
+		txt[4].setCharacterSize(72);
 		//Player 2
 		txt[3].setFont(font);
-		txt[3].setString("CPU");
+		txt[3].setString("Player 2");
 		txt[3].setPosition(1150.0f, 50.0f);
 		txt[3].setColor(Color::Black);
 		txt[3].setCharacterSize(48);
+		//Helth
+		string str1 = to_string(ryo.getHealth());
+		txt[5].setFont(font);
+		if (ryo.getHealth()<=0)
+		{
+			str1 = '0';
+			txt[5].setColor(Color::Red);
+		}
+		else
+		{
+			txt[5].setColor(Color::Green);
+		}
+		txt[5].setString(str1);
+		txt[5].setPosition(1150.0f, 0.1f);
+		txt[5].setCharacterSize(72);
+		//Player  1 WIns
+		txt[6].setFont(font);
+		txt[6].setString("Player 1 Wins");
+		txt[6].setPosition(600.0f, 350.0f);
+		txt[6].setColor(Color::Green);
+		txt[6].setCharacterSize(72);
+		//Player 2 Wins
+		txt[7].setFont(font);
+		txt[7].setString("Player 2 Wins");
+		txt[7].setPosition(600.0f, 350.0f);
+		txt[7].setColor(Color::Green);
+		txt[7].setCharacterSize(72);
 	}
 	//getter
 	Text gettxt(int i)
@@ -1176,6 +1722,10 @@ public:
 		return txt[i];
 	}
 	//ioriwrappers
+	void IW_setHealth(int health)
+	{
+		iori.setHealth(health);
+	}
 	int IW_getHealth()
 	{
 		return iori.getHealth();
@@ -1228,7 +1778,140 @@ public:
 	{
 		return iori.getSprite(i);
 	}
+	void IW_setPos(Vector2f pos)
+	{
+		iori.setPos(pos);
+	}
+	//Ryo Wrappers
+	void RW_setHealth(int health)
+	{
+		ryo.setHealth(health);
+	}
+	int RW_getHealth()
+	{
+		return ryo.getHealth();
+	}
+	void RW_Ready(bool status)
+	{
+		ryo.Ready(status);
+	}
+	void RW_Idle(bool key)
+	{
+		ryo.Idle(key);
+	}
+	bool RW_Duck()
+	{
+		return ryo.Duck();
+	}
+	bool RW_WalkFront()
+	{
+		return ryo.WalkFront();
+	}
+	bool RW_WalkBack()
+	{
+		return ryo.WalkBack();
+	}
+	bool RW_Jump()
+	{
+		return ryo.Jump();
+	}
+	bool RW_Punch()
+	{
+		return ryo.Punch();
+	}
+	bool RW_Kick()
+	{
+		return ryo.Kick();
+	}
+	bool RW_Combo()
+	{
+		return ryo.Combo();
+	}
+	bool RW_Block()
+	{
+		return ryo.Block();
+	}
+	bool RW_Dead()
+	{
+		return ryo.Dead();
+	}
+	Sprite RW_getSprite(int i)
+	{
+		return ryo.getSprite(i);
+	}
+	void RW_setPos(Vector2f pos)
+	{
+		ryo.setPos(pos);
+	}
+	//Game System
+	void Game(int ioriPcontroller, int iorikcontroller, int ioriCcontroller,int ryoPcontroller, int ryokcontroller, int ryoCcontroller)
+	{
+		//for iori
+		if (ryoPcontroller == 33 )
+		{
+				IntRect rect(ryo.getSprite(33).getGlobalBounds());
+				IntRect rect1(iori.getSprite(15).getGlobalBounds());
+				if (rect.intersects(rect1))
+				{
+					iori.setHealth(iori.getHealth() - 5);
+				}
+		}
+		else if (ryokcontroller == 41)
+		{
+			IntRect rect(ryo.getSprite(41).getGlobalBounds());
+			IntRect rect1(iori.getSprite(15).getGlobalBounds());
+			if (rect.intersects(rect1))
+			{
+				iori.setHealth(iori.getHealth() - 5);
+			}
+		}
+		else 
+		{
+			if ((ryoCcontroller==51))
+			{
+				IntRect rect(ryo.getSprite(51).getGlobalBounds());
+				IntRect rect1(iori.getSprite(15).getGlobalBounds());
+				if (rect.intersects(rect1))
+				{
+					iori.setHealth(iori.getHealth() - 20);
+				}
+			}
+		}
+		//for ryo
+		if (ioriPcontroller == 61)
+		{
+			IntRect rect(iori.getSprite(61).getGlobalBounds());
+			IntRect rect1(ryo.getSprite(7).getGlobalBounds());
+			if (rect.intersects(rect1))
+			{
+				ryo.setHealth(ryo.getHealth() - 5);
+			}
+		}
+		else if (iorikcontroller == 71)
+		{
+			IntRect rect(iori.getSprite(71).getGlobalBounds());
+			IntRect rect1(ryo.getSprite(7).getGlobalBounds());
+			if (rect.intersects(rect1))
+			{
+				ryo.setHealth(ryo.getHealth() - 5);
+			}
+		}
+		else
+		{
+			if ((ioriCcontroller == 98))
+			{
+				IntRect rect(iori.getSprite(98).getGlobalBounds());
+				IntRect rect1(ryo.getSprite(7).getGlobalBounds());
+				if (rect.intersects(rect1))
+				{
+					ryo.setHealth(ryo.getHealth() - 20);
+				}
+			}
+		}
+	
+	}
 };
+
 
 int main()
 {
@@ -1237,44 +1920,36 @@ int main()
 	mainmenu menu;
 	Instruction instructions;
 	Level1 lvl1;
-	bool iskeyPressed = false;
+	bool iskeyPressed = false, iskeyPressed2 = false;
 	int flag = 0;
 	bool is_Exit = false;
 	bool is_chnglevel = false;
 	int nxtlvl = 0;
-	int animcontrolller[11] = { 0, 7, 17, 25, 35, 44, 53, 62, 72, 99, 106 };
+	int animcontrolller[11] = { 0, 7, 17,25,35,44,53,62,72,99,106};
+	int animcontrolller2[11] = { 0, 4, 9, 10,16,21,25,34,42,52,55};
 	Clock clock;
 	//game music
-	Music music, music2, music3;
-	if (!music.openFromFile("Assests/sound/Track_01.ogg"))
-	{
-		return EXIT_FAILURE;
-	}
-	if (!music2.openFromFile("Assests/sound/Track_02.ogg"))
-	{
-		return EXIT_FAILURE;
-	}
-	if (!music3.openFromFile("Assests/sound/Track_03.ogg"))
-	{
-		return EXIT_FAILURE;
-	}
+	Music music[3];
+	music[0].openFromFile("Assests/sound/Track_01.ogg");
+	music[1].openFromFile("Assests/sound/Track_02.ogg");
+	music[2].openFromFile("Assests/sound/Track_03.ogg");
 	while (window.isOpen())
 	{
 		//music playing
-		if (music3.getStatus() == SoundSource::Stopped)
+		if (music[2].getStatus() == SoundSource::Stopped)
 		{
-			music.play();
-			music.setVolume(100);
+			music[0].play();
+			music[0].setVolume(100);
 		}
-		if (music.getStatus() == SoundSource::Stopped)
+		if (music[0].getStatus() == SoundSource::Stopped)
 		{
-			music2.play();
-			music2.setVolume(100);
+			music[1].play();
+			music[1].setVolume(100);
 		}
-		if (music2.getStatus() == SoundSource::Stopped)
+		if (music[1].getStatus() == SoundSource::Stopped)
 		{
-			music3.play();
-			music3.setVolume(100);
+			music[1].play();
+			music[1].setVolume(100);
 		}
 		// check all the window's events that were triggered since the last iteration of the loop
 		Event event;
@@ -1299,6 +1974,16 @@ int main()
 					flag = 2;
 					clock.restart();
 					animcontrolller[0] = 0;
+					animcontrolller2[0] = 0;
+					lvl1.IW_setHealth(100);
+					lvl1.RW_setHealth(100);
+					animcontrolller2[10] = 55;
+					animcontrolller[10] = 106;
+					Vector2f v(100.0f, 365.0f);
+					lvl1.IW_setPos(v);
+					v.x = 1100.0f;
+					v.y = 365.0f;
+					lvl1.RW_setPos(v);
 				}
 			}
 			if (flag == 1)
@@ -1362,198 +2047,359 @@ int main()
 				if (animcontrolller[0] >= 0 && animcontrolller[0] <= 6)
 				{
 					window.draw(lvl1.IW_getSprite(animcontrolller[0]));
-					Sleep(100);
 					animcontrolller[0]++;
 				}
 				else
 				{
 					window.draw(lvl1.IW_getSprite(animcontrolller[0] - 1));
-					Sleep(100);
+				}
+				//Ryo Ready Animation
+				lvl1.RW_Ready(true);
+				if (animcontrolller2[0] >= 0 && animcontrolller2[0] <= 3)
+				{
+					window.draw(lvl1.RW_getSprite(animcontrolller2[0]));
+					animcontrolller2[0]++;
+				}
+				else
+				{
+					window.draw(lvl1.RW_getSprite(animcontrolller2[0] - 1));
 				}
 			}
-			for (int i = 2; i < 4; i++)
+			for (int i = 2; i < 6; i++)
 			{
 				window.draw(lvl1.gettxt(i));
 			}
 			if (t1.asSeconds() > 2.0f)
 			{
-				//Idle Animation
-				if (iskeyPressed == false)
+				if (lvl1.RW_getHealth() > 0 && lvl1.IW_getHealth() > 0)
 				{
-					lvl1.IW_Idle(iskeyPressed);
-					if (animcontrolller[1] >= 7 && animcontrolller[1] <= 15)
+					lvl1.Game(animcontrolller[6], animcontrolller[7], animcontrolller[8], animcontrolller2[6], animcontrolller2[7], animcontrolller2[8]);
+					//Idle Animation
+					if (iskeyPressed == false)
 					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[1]));
-						Sleep(100);
-						animcontrolller[1]++;
+						lvl1.IW_Idle(iskeyPressed);
+						if (animcontrolller[1] >= 7 && animcontrolller[1] <= 15)
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[1]));
+							animcontrolller[1]++;
+						}
+						else
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[1] - 1));
+							animcontrolller[1] = 7;
+						}
+					}
+					//Duck Animation
+					if (lvl1.IW_Duck() == true)
+					{
+						iskeyPressed = true;
+						if (animcontrolller[2] >= 16 && animcontrolller[2] < 24)
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[2]));
+							animcontrolller[2]++;
+						}
+						else
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[2] - 1));
+							animcontrolller[2] = 17;
+						}
+					}
+					//Walk Front Animation
+					else if (lvl1.IW_WalkFront() == true)
+					{
+						iskeyPressed = true;
+						if (animcontrolller[3] >= 25 && animcontrolller[3] < 34)
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[3]));
+							animcontrolller[3]++;
+						}
+						else
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[3] - 1));
+							animcontrolller[3] = 25;
+						}
+					}
+					//Walk Back Animation
+					else if (lvl1.IW_WalkBack() == true)
+					{
+						iskeyPressed = true;
+						if (animcontrolller[4] >= 35 && animcontrolller[4] < 43)
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[4]));
+							animcontrolller[4]++;
+						}
+						else
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[4] - 1));
+							animcontrolller[4] = 35;
+						}
+					}
+					//Jump Animation
+					else if (lvl1.IW_Jump() == true)
+					{
+						iskeyPressed = true;
+						if (animcontrolller[5] >= 43 && animcontrolller[5] <= 49)
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[5]));
+							animcontrolller[5]++;
+						}
+						else
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[5] - 1));
+							animcontrolller[5] = 43;
+						}
+					}
+					//Punch Animation
+					else if (lvl1.IW_Punch() == true)
+					{
+						iskeyPressed = true;
+						if (animcontrolller[6] >= 53 && animcontrolller[6] <= 61)
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[6]));
+							animcontrolller[6]++;
+						}
+						else
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[6] - 1));
+							animcontrolller[6] = 53;
+						}
+					}
+					//Kick Animation
+					else if (lvl1.IW_Kick() == true)
+					{
+						iskeyPressed = true;
+						if (animcontrolller[7] >= 62 && animcontrolller[7] <= 71)
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[7]));
+							animcontrolller[7]++;
+						}
+						else
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[7] - 1));
+							animcontrolller[7] = 62;
+						}
+					}
+					//combo Animation
+					else if (lvl1.IW_Combo() == true)
+					{
+						iskeyPressed = true;
+						if (animcontrolller[8] >= 72 && animcontrolller[8] <= 98)
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[8]));
+							animcontrolller[8]++;
+						}
+						else
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[8] - 1));
+							animcontrolller[8] = 72;
+						}
+					}
+					//Block Animation
+					else if (lvl1.IW_Block() == true)
+					{
+						iskeyPressed = true;
+						if (animcontrolller[9] >= 99 && animcontrolller[9] < 105)
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[9]));
+							animcontrolller[9]++;
+						}
+						else
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[9] - 1));
+							animcontrolller[9] = 99;
+						}
+					}
+					//Dead Animation
+					else if (lvl1.IW_Dead() == true)
+					{
+						iskeyPressed = true;
+						if (animcontrolller[10] >= 106 && animcontrolller[10] < 115)
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[10]));
+							animcontrolller[10]++;
+							Sleep(100);
+						}
+						else
+						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[10]));
+						}
 					}
 					else
 					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[1] - 1));
-						Sleep(100);
-						animcontrolller[1] = 7;
+						iskeyPressed = false;
 					}
-				}
-				//Duck Animation
-				if (lvl1.IW_Duck() == true)
-				{
-					iskeyPressed = true;
-					if (animcontrolller[2] >= 16 && animcontrolller[2] < 24)
+					//Ryo
+					//Idle Animation
+					if (iskeyPressed2 == false)
 					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[2]));
-						Sleep(80);
-						animcontrolller[2]++;
+						lvl1.RW_Idle(iskeyPressed2);
+						if (animcontrolller2[1] >= 4 && animcontrolller2[1] <= 7)
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[1]));
+							animcontrolller2[1]++;
+						}
+						else
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[1] - 1));
+							animcontrolller2[1] = 4;
+						}
+					}
+					//Duck Animation
+					if (lvl1.RW_Duck() == true)
+					{
+						iskeyPressed2 = true;
+						if (animcontrolller2[2] >= 9 && animcontrolller2[2] <10)
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[2]));
+							animcontrolller2[2]++;
+						}
+						else
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[2] - 1));
+							animcontrolller2[2] = 9;
+						}
+					}
+					//Walk Front Animation
+					else if (lvl1.RW_WalkFront() == true)
+					{
+						iskeyPressed2 = true;
+						if (animcontrolller2[3] >= 10 && animcontrolller2[3] < 16)
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[3]));
+							animcontrolller2[3]++;
+						}
+						else
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[3] - 1));
+							animcontrolller2[3] = 10;
+						}
+					}
+					//Walk Back Animation
+					else if (lvl1.RW_WalkBack() == true)
+					{
+						iskeyPressed2 = true;
+						if (animcontrolller2[4] >= 16 && animcontrolller2[4] <= 20)
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[4]));
+							animcontrolller2[4]++;
+						}
+						else
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[4] - 1));
+							animcontrolller2[4] = 16;
+						}
+					}
+					//Jump Animation
+					else if (lvl1.RW_Jump() == true)
+					{
+						iskeyPressed2 = true;
+						if (animcontrolller2[5] >= 21 && animcontrolller2[5] <= 23)
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[5]));
+							animcontrolller2[5]++;
+						}
+						else
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[5] - 1));
+							animcontrolller2[5] = 21;
+						}
+					}
+					//Punch Animation
+					else if (lvl1.RW_Punch() == true)
+					{
+						iskeyPressed2 = true;
+						if (animcontrolller2[6] >= 25 && animcontrolller2[6] <= 33)
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[6]));
+							animcontrolller2[6]++;
+						}
+						else
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[6] - 1));
+							animcontrolller2[6] = 25;
+						}
+					}
+					//Kick Animation
+					else if (lvl1.RW_Kick() == true)
+					{
+						iskeyPressed2 = true;
+						if (animcontrolller2[7] >= 34 && animcontrolller2[7] <= 41)
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[7]));
+							animcontrolller2[7]++;
+						}
+						else
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[7] - 1));
+							animcontrolller2[7] = 34;
+						}
+					}
+					//Combo Animation
+					else if (lvl1.RW_Combo() == true)
+					{
+						iskeyPressed2 = true;
+						if (animcontrolller2[8] >= 42 && animcontrolller2[8] <= 51)
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[8]));
+							animcontrolller2[8]++;
+						}
+						else
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[8] - 1));
+							animcontrolller2[8] = 42;
+						}
+					}
+					//Block Animation
+					else if (lvl1.RW_Block() == true)
+					{
+						iskeyPressed2 = true;
+						if (animcontrolller2[9] >= 52 && animcontrolller2[9] < 55)
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[9]));
+							animcontrolller2[9]++;
+						}
+						else
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[9] - 1));
+							animcontrolller2[9] = 52;
+						}
+					}
+					//Dead Animation
+					else if (lvl1.RW_Dead() == true)
+					{
+						iskeyPressed2 = true;
+						if (animcontrolller2[10] >= 55 && animcontrolller2[10] < 58)
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[10]));
+							animcontrolller2[10]++;
+							Sleep(70);
+						}
+						else
+						{
+							window.draw(lvl1.RW_getSprite(animcontrolller2[10]));
+						}
 					}
 					else
 					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[2] - 1));
-						Sleep(80);
-						animcontrolller[2] = 17;
-					}
-				}
-				//Walk Front Animation
-				else if (lvl1.IW_WalkFront() == true)
-				{
-					iskeyPressed = true;
-					if (animcontrolller[3] >= 25 && animcontrolller[3] < 34)
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[3]));
-						Sleep(75);
-						animcontrolller[3]++;
-					}
-					else
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[3] - 1));
-						Sleep(75);
-						animcontrolller[3] = 25;
-					}
-				}
-				//Walk Back Animation
-				else if (lvl1.IW_WalkBack() == true)
-				{
-					iskeyPressed = true;
-					if (animcontrolller[4] >= 35 && animcontrolller[4] < 43)
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[4]));
-						Sleep(75);
-						animcontrolller[4]++;
-					}
-					else
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[4] - 1));
-						Sleep(75);
-						animcontrolller[4] = 35;
-					}
-				}
-				//Jump Animation
-				else if (lvl1.IW_Jump() == true)
-				{
-					iskeyPressed = true;
-					if (animcontrolller[5] >= 43 && animcontrolller[5] < 53)
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[5]));
-						Sleep(75);
-						animcontrolller[5]++;
-					}
-					else
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[5] - 1));
-						Sleep(75);
-						animcontrolller[5] = 43;
-					}
-				}
-				//Punch Animation
-				else if (lvl1.IW_Punch() == true)
-				{
-					iskeyPressed = true;
-					if (animcontrolller[6] >= 53 && animcontrolller[6] <= 61)
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[6]));
-						Sleep(75);
-						animcontrolller[6]++;
-					}
-					else
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[6] - 1));
-						Sleep(75);
-						animcontrolller[6] = 53;
-					}
-				}
-				//Kick Animation
-				else if (lvl1.IW_Kick() == true)
-				{
-					iskeyPressed = true;
-					if (animcontrolller[7] >= 62 && animcontrolller[7] <= 71)
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[7]));
-						Sleep(75);
-						animcontrolller[7]++;
-					}
-					else
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[7] - 1));
-						Sleep(75);
-						animcontrolller[7] = 62;
-					}
-				}
-				//combo Animation
-				else if (lvl1.IW_Combo() == true)
-				{
-					iskeyPressed = true;
-					if (animcontrolller[8] >= 72 && animcontrolller[8] <= 98)
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[8]));
-						Sleep(75);
-						animcontrolller[8]++;
-					}
-					else
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[8] - 1));
-						Sleep(75);
-						animcontrolller[8] = 72;
-					}
-				}
-				//Block Animation
-				else if (lvl1.IW_Block() == true)
-				{
-					iskeyPressed = true;
-					if (animcontrolller[9] >= 99 && animcontrolller[9] < 105)
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[9]));
-						Sleep(75);
-						animcontrolller[9]++;
-					}
-					else
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[9] - 1));
-						Sleep(75);
-						animcontrolller[9] = 99;
-					}
-				}
-				//Dead Animation
-				else if (lvl1.IW_Dead() == true)
-				{
-					iskeyPressed = true;
-					if (animcontrolller[10] >= 106 && animcontrolller[10] <= 115)
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[10]));
-						Sleep(75);
-						animcontrolller[10]++;
-					}
-					else
-					{
-						window.draw(lvl1.IW_getSprite(animcontrolller[10] - 1));
-						Sleep(75);
-						animcontrolller[10] = 106;
+						iskeyPressed2 = false;
 					}
 				}
 				else
 				{
-					iskeyPressed = false;
+					lvl1.draw();
+					if (lvl1.IW_getHealth() <= 0)
+					{
+						window.draw(lvl1.gettxt(7));
+					}
+					else
+					{
+						window.draw(lvl1.gettxt(6));
+					}
 				}
 			}
 		}
 		window.display();
+		Sleep(50);
 	}
 	return 0;
 }
