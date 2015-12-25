@@ -39,8 +39,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Admin\Ballistic-Fighters\SFML\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Admin\Ballistic-Fighters\SFML\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\SFML-2.3.2-windows-vc12-32-bit\SFML-2.3.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\SFML-2.3.2-windows-vc12-32-bit\SFML-2.3.2\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\SFML-2.3.2-windows-vc12-32-bit\SFML-2.3.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\SFML-2.3.2-windows-vc12-32-bit\SFML-2.3.2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

@@ -1912,7 +1912,6 @@ public:
 	}
 };
 
-
 int main()
 {
 	RenderWindow window(VideoMode(800, 640), "Balistics Fighter", Style::Fullscreen);
