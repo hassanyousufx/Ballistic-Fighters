@@ -694,7 +694,10 @@ public:
 	{
 		if (Keyboard::isKeyPressed(Keyboard::Right))
 		{
-			pos.x = pos.x + 15;
+			if (pos.x <= 1100.0f)
+			{
+				pos.x = pos.x + 15;
+			}
 			sprite[25].setScale(
 				targetSize.x / sprite[25].getLocalBounds().width,
 				targetSize.y / sprite[25].getLocalBounds().height);
@@ -743,7 +746,10 @@ public:
 	{
 		if (Keyboard::isKeyPressed(Keyboard::Left))
 		{
-			pos.x = pos.x - 15;
+			if (pos.x > 0.0f)
+			{
+				pos.x = pos.x - 15;
+			}
 			sprite[35].setScale(
 				targetSize.x / sprite[35].getLocalBounds().width,
 				targetSize.y / sprite[35].getLocalBounds().height);
@@ -1339,7 +1345,10 @@ public:
 	{
 		if (Keyboard::isKeyPressed(Keyboard::J))
 		{
-			pos.x = pos.x - 15;
+			if (pos.x >= 0.0f )
+			{
+				pos.x = pos.x - 15;
+			}
 			sprite[10].setScale(
 				targetSize.x / sprite[10].getLocalBounds().width,
 				targetSize.y / sprite[10].getLocalBounds().height);
@@ -1372,7 +1381,10 @@ public:
 	{
 		if (Keyboard::isKeyPressed(Keyboard::L))
 		{
-			pos.x = pos.x + 15;
+			if (pos.x <= 1100.0f)
+			{
+				pos.x = pos.x + 15;
+			}
 			sprite[16].setScale(
 				targetSize.x / sprite[16].getLocalBounds().width,
 				targetSize.y / sprite[16].getLocalBounds().height);
