@@ -1923,6 +1923,295 @@ public:
 	
 	}
 };
+class Level2 :public Levels
+{
+	Font font;
+	Text txt[8];
+	Iori iori;
+	Ryo ryo;
+public:
+	Level2(string adress = "Assests/level2bg.jpg", string name = "Level 1") :Levels(adress, name)
+	{
+		font.loadFromFile("Assests/SouthernAire.ttf");
+	}
+	~Level1()
+	{
+		setTxbg("NULL");
+		setName("NULL");
+	}
+	//Methods
+	bool back()
+	{
+		if (Keyboard::isKeyPressed(Keyboard::Escape))
+		{
+			return true;
+		}
+		return false;
+	}
+	void draw()
+	{
+		//Level name
+		txt[0].setFont(font);
+		txt[0].setString(getName());
+		txt[0].setPosition(600.0f, 250.0f);
+		txt[0].setColor(Color::Red);
+		txt[0].setCharacterSize(72);
+		//Ready
+		txt[1].setFont(font);
+		txt[1].setString("Ready");
+		txt[1].setPosition(600.0f, 350.0f);
+		txt[1].setColor(Color::Red);
+		txt[1].setCharacterSize(72);
+		//Player 1
+		txt[2].setFont(font);
+		txt[2].setString("Player 1");
+		txt[2].setPosition(75.0f, 50.0f);
+		txt[2].setColor(Color::Black);
+		txt[2].setCharacterSize(48);
+		//Health
+		string str = to_string(iori.getHealth());
+		txt[4].setFont(font);
+		if (iori.getHealth() <= 0)
+		{
+			str = '0';
+			txt[4].setColor(Color::Red);
+		}
+		else
+		{
+			txt[4].setColor(Color::Green);
+		}
+		txt[4].setString(str);
+		txt[4].setPosition(75.0f, 0.1f);
+		txt[4].setCharacterSize(72);
+		//Player 2
+		txt[3].setFont(font);
+		txt[3].setString("Player 2");
+		txt[3].setPosition(1150.0f, 50.0f);
+		txt[3].setColor(Color::Black);
+		txt[3].setCharacterSize(48);
+		//Helth
+		string str1 = to_string(ryo.getHealth());
+		txt[5].setFont(font);
+		if (ryo.getHealth() <= 0)
+		{
+			str1 = '0';
+			txt[5].setColor(Color::Red);
+		}
+		else
+		{
+			txt[5].setColor(Color::Green);
+		}
+		txt[5].setString(str1);
+		txt[5].setPosition(1150.0f, 0.1f);
+		txt[5].setCharacterSize(72);
+		//Player  1 WIns
+		txt[6].setFont(font);
+		txt[6].setString("Player 1 Wins");
+		txt[6].setPosition(600.0f, 350.0f);
+		txt[6].setColor(Color::Green);
+		txt[6].setCharacterSize(72);
+		//Player 2 Wins
+		txt[7].setFont(font);
+		txt[7].setString("Player 2 Wins");
+		txt[7].setPosition(600.0f, 350.0f);
+		txt[7].setColor(Color::Green);
+		txt[7].setCharacterSize(72);
+	}
+	//getter
+	Text gettxt(int i)
+	{
+		return txt[i];
+	}
+	//ioriwrappers
+	void IW_setHealth(int health)
+	{
+		iori.setHealth(health);
+	}
+	int IW_getHealth()
+	{
+		return iori.getHealth();
+	}
+	void IW_Ready(bool status)
+	{
+		iori.Ready(status);
+	}
+	void IW_Idle(bool key)
+	{
+		iori.Idle(key);
+	}
+	bool IW_Duck()
+	{
+		return iori.Duck();
+	}
+	bool IW_WalkFront()
+	{
+		return iori.WalkFront();
+	}
+	bool IW_WalkBack()
+	{
+		return iori.WalkBack();
+	}
+	bool IW_Jump()
+	{
+		return iori.Jump();
+	}
+	bool IW_Punch()
+	{
+		return iori.Punch();
+	}
+	bool IW_Kick()
+	{
+		return iori.Kick();
+	}
+	bool IW_Combo()
+	{
+		return iori.Combo();
+	}
+	bool IW_Block()
+	{
+		return iori.Block();
+	}
+	bool IW_Dead()
+	{
+		return iori.Dead();
+	}
+	Sprite IW_getSprite(int i)
+	{
+		return iori.getSprite(i);
+	}
+	void IW_setPos(Vector2f pos)
+	{
+		iori.setPos(pos);
+	}
+	//Ryo Wrappers
+	void RW_setHealth(int health)
+	{
+		ryo.setHealth(health);
+	}
+	int RW_getHealth()
+	{
+		return ryo.getHealth();
+	}
+	void RW_Ready(bool status)
+	{
+		ryo.Ready(status);
+	}
+	void RW_Idle(bool key)
+	{
+		ryo.Idle(key);
+	}
+	bool RW_Duck()
+	{
+		return ryo.Duck();
+	}
+	bool RW_WalkFront()
+	{
+		return ryo.WalkFront();
+	}
+	bool RW_WalkBack()
+	{
+		return ryo.WalkBack();
+	}
+	bool RW_Jump()
+	{
+		return ryo.Jump();
+	}
+	bool RW_Punch()
+	{
+		return ryo.Punch();
+	}
+	bool RW_Kick()
+	{
+		return ryo.Kick();
+	}
+	bool RW_Combo()
+	{
+		return ryo.Combo();
+	}
+	bool RW_Block()
+	{
+		return ryo.Block();
+	}
+	bool RW_Dead()
+	{
+		return ryo.Dead();
+	}
+	Sprite RW_getSprite(int i)
+	{
+		return ryo.getSprite(i);
+	}
+	void RW_setPos(Vector2f pos)
+	{
+		ryo.setPos(pos);
+	}
+	//Game System
+	void Game(int ioriPcontroller, int iorikcontroller, int ioriCcontroller, int ryoPcontroller, int ryokcontroller, int ryoCcontroller)
+	{
+		//for iori
+		if (ryoPcontroller == 33)
+		{
+			IntRect rect(ryo.getSprite(33).getGlobalBounds());
+			IntRect rect1(iori.getSprite(15).getGlobalBounds());
+			if (rect.intersects(rect1))
+			{
+				iori.setHealth(iori.getHealth() - 5);
+			}
+		}
+		else if (ryokcontroller == 41)
+		{
+			IntRect rect(ryo.getSprite(41).getGlobalBounds());
+			IntRect rect1(iori.getSprite(15).getGlobalBounds());
+			if (rect.intersects(rect1))
+			{
+				iori.setHealth(iori.getHealth() - 5);
+			}
+		}
+		else
+		{
+			if ((ryoCcontroller == 51))
+			{
+				IntRect rect(ryo.getSprite(51).getGlobalBounds());
+				IntRect rect1(iori.getSprite(15).getGlobalBounds());
+				if (rect.intersects(rect1))
+				{
+					iori.setHealth(iori.getHealth() - 20);
+				}
+			}
+		}
+		//for ryo
+		if (ioriPcontroller == 61)
+		{
+			IntRect rect(iori.getSprite(61).getGlobalBounds());
+			IntRect rect1(ryo.getSprite(7).getGlobalBounds());
+			if (rect.intersects(rect1))
+			{
+				ryo.setHealth(ryo.getHealth() - 5);
+			}
+		}
+		else if (iorikcontroller == 71)
+		{
+			IntRect rect(iori.getSprite(71).getGlobalBounds());
+			IntRect rect1(ryo.getSprite(7).getGlobalBounds());
+			if (rect.intersects(rect1))
+			{
+				ryo.setHealth(ryo.getHealth() - 5);
+			}
+		}
+		else
+		{
+			if ((ioriCcontroller == 98))
+			{
+				IntRect rect(iori.getSprite(98).getGlobalBounds());
+				IntRect rect1(ryo.getSprite(7).getGlobalBounds());
+				if (rect.intersects(rect1))
+				{
+					ryo.setHealth(ryo.getHealth() - 20);
+				}
+			}
+		}
+
+	}
+};
 
 int main()
 {
@@ -1931,6 +2220,7 @@ int main()
 	mainmenu menu;
 	Instruction instructions;
 	Level1 lvl1;
+	Level2 lvl2;
 	bool iskeyPressed = false, iskeyPressed2 = false;
 	int flag = 0;
 	bool is_Exit = false;
