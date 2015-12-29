@@ -1,234 +1,245 @@
+// standard SFML libs
 #include <SFML/Graphics.hpp>
-#include <SFML\Window.hpp>
-#include <SFML\Audio.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+
+// standard C++ libs
 #include <iostream>
 #include <string>
 #include <Windows.h>
 #include <ctime>
+
 using namespace std;
 using namespace sf;
 
-//classes
+// start of classes
 class Levels
 {
+	// private variables
 	string name;
-	Sprite spbg;
-	Texture txbg;
+	Sprite spbg;  // SFML pre-defined class
+	Texture txbg; // SFML pre-defined class
 public:
-	Levels()
-	{
+	// basic constructors, destructors, setters & getters
+	Levels() {
 		name = '\0';
 	}
-	Levels(string adress, string name)
-	{
+
+	Levels(string adress, string name) {
 		this->name = name;
 		txbg.loadFromFile(adress);
 		spbg.setTexture(txbg);
 	}
-	~Levels()
-	{
+	
+	~Levels() {
 		name = '\0';
 	}
+
 	//setPosition
-	void setPosition()
-	{
+	void setPosition() {
 		//position setting
 		Vector2f targetSize(1366.0f, 768.0f);
+		// get screen size
 		spbg.setScale(
 			targetSize.x / spbg.getLocalBounds().width,
 			targetSize.y / spbg.getLocalBounds().height);
 	}
-	//setter
-	void setName(string name)
-	{
+
+	//setters
+	void setName(string name) {
 		this->name = name;
 	}
-	void setTxbg(string adress)
-	{
+
+	void setTxbg(string adress) {
+		// pre-defined SFML function
 		this->txbg.loadFromFile(adress);
 	}
-	//getter
-	Sprite getspbg()
-	{
+
+	//getters
+	Sprite getspbg() {
 		return spbg;
 	}
-	string getName()
-	{
+
+	string getName() {
 		return name;
 	}
 };
 class mainmenu:public Levels
 {
+	// main menu class (INHERITED):
+	// the first window of the game
+	// show the play, instrucion and exit button
+private:
+	// pre-defined classes in SFML
+	// composed here
 	Font font;
 	Text title;
 	Text ply;
 	Text ins;
 	Text exi;
 public:
-	mainmenu(string adress = "Assests/mainmenubg.gif", string name = "Main Menu") :Levels(adress,name)
-	{
+	mainmenu(string adress = "Assests/mainmenubg.gif", string name = "Main Menu") :Levels(adress,name) {
+		// load font file from assets directory
+		// and store bg image in address
 		font.loadFromFile("Assests/SouthernAire.ttf");
 	}
-	~mainmenu()
-	{
+
+	~mainmenu() {
 		setTxbg("NULL");
 		setName("NULL");
 	}
+
 	//getters
-	Text gettitle()
-	{
+	Text gettitle() {
 		return title;
 	}
-	Text getPlay()
-	{
+
+	Text getPlay() {
 		return ply;
 	}
-	Text getInstruction()
-	{
+
+	Text getInstruction() {
 		return ins;
 	}
-	Text getExit()
-	{
+
+	Text getExit() {
 		return exi;
 	}
-	void draw()
-	{
-		//title setting
-		title.setFont(font);
-		title.setString("Balistic Fighters");
-		title.setPosition(300.0f, 50.0f);
-		title.setColor(Color::White);
-		title.setCharacterSize(172);
-		//play setting
+
+	void draw() {
+		// title setting
+		title.setFont(font);						// set font style i.e SouthernAire.ttf
+		title.setString("Balistic Fighters");		// store the title
+		title.setPosition(300.0f, 50.0f);			// set the position where you want your title to be placed
+		title.setColor(Color::White);				// set font color
+		title.setCharacterSize(172);				// set font size
+
+		// play setting
 		ply.setFont(font);
 		ply.setString("Play");
-		ply.setPosition(575.0f, 300.0f);
+		ply.setPosition(575.0f, 300.0f);			// color will be set below because we want to achieve a hover effect
+		
+		// pre-defined SFML class
+		// create OBJ using parameterized constructor
+
+		// this will set an invisible rectangle border around the play text.
+		// in simple HTML words, create a button and add some padding around it
 		IntRect rect2(ply.getPosition().x + 5, ply.getPosition().y + 5, ply.getGlobalBounds().width + 5, ply.getGlobalBounds().height + 5);
-		//If we hover on Play change color
+		
+		// If we hover on Play, change color
 		if (rect2.contains(Mouse::getPosition()))
-		{
 			ply.setColor(Color::Green);
-		}
+		
 		else
-		{
 			ply.setColor(Color::White);
-		}
-		ply.setCharacterSize(72);
-		//instruction setting
+		
+		ply.setCharacterSize(72);	// set font size
+
+		// instruction setting
+		// again, we want to create a button, we create a hover effect
 		ins.setFont(font);
 		ins.setString("Instruction");
 		ins.setPosition(575.0f, 450.0f);
 		sf::IntRect rect1(ins.getPosition().x + 5, ins.getPosition().y + 5, ins.getGlobalBounds().width + 5, ins.getGlobalBounds().height + 5);
+		
 		//If we hover on Instruction change color
 		if (rect1.contains(Mouse::getPosition()))
-		{
 			ins.setColor(Color::Green);
-		}
+		
 		else
-		{
 			ins.setColor(Color::White);
-		}
+		
 		ins.setCharacterSize(72);
-		//exit setting
+		
+		//exit setting (self explanatory)
 		exi.setFont(font);
 		exi.setString("Exit");
 		exi.setPosition(575.0f, 600.0f);
 		sf::IntRect rect(exi.getPosition().x + 5, exi.getPosition().y + 5, exi.getGlobalBounds().width + 5, exi.getGlobalBounds().height + 5);
+		
 		//If we hover on exit change color
 		if (rect.contains(Mouse::getPosition()))
-		{
 			exi.setColor(Color::Green);
-		}
+		
 		else
-		{
 			exi.setColor(Color::White);
-		}
+		
 		exi.setCharacterSize(72);
 	}
-	bool play()
-	{
+
+	bool play() {
 		
 		IntRect rect1(ply.getPosition().x + 5, ply.getPosition().y + 5, ply.getGlobalBounds().width + 5, ply.getGlobalBounds().height + 5);
-		//if mouse clicked
+		// if left-mouse clicked, check if the cursor is inside the rectangle
 		if (Mouse::isButtonPressed(Mouse::Left))
-		{
-			//if cursor inside rectangle
 			if (rect1.contains(Mouse::getPosition()))
-			{
 				return true;
-			}
-		}
+		
 		return false;
 	}
-	bool instructions()
-	{
-		sf::IntRect rect1(ins.getPosition().x + 5, ins.getPosition().y + 5, ins.getGlobalBounds().width + 5, ins.getGlobalBounds().height + 5);
-		//if mouse clicked
+
+	bool instructions() {
+		// add sf:: if the function does not workk
+		IntRect rect1(ins.getPosition().x + 5, ins.getPosition().y + 5, ins.getGlobalBounds().width + 5, ins.getGlobalBounds().height + 5);
+		// if mouse clicked, check if it is inside the rectangle
 		if (Mouse::isButtonPressed(Mouse::Left))
-		{
-			//if cursor inside rectangle
 			if (rect1.contains(Mouse::getPosition()))
-			{
 				return true;
-			}
-		}
+		
 		return false;
 	}
-	bool exit()
-	{
+
+	bool exit() {
 		IntRect rect(exi.getPosition().x + 5, exi.getPosition().y + 5, exi.getGlobalBounds().width + 5, exi.getGlobalBounds().height + 5);
+		// if exit is clicked, close window
 		if (Mouse::isButtonPressed(Mouse::Left))
-		{
-			//If we clicked within the exit rectangle, then exit!
 			if (rect.contains(Mouse::getPosition()))
-			{
 				return true;
-			}
-		}
+
 		return false;
 	}
 };
 class Instruction:public Levels
 {
+	// INHERITED from levels
+	// this class acts as a level
+private:
+	// pre-defined classes in SFML, composed
 	Font font;
 	Text tx[7];
 	Texture txbg;
 public:
-	Instruction(string adress = "Assests/insbg.gif", string name = "Instructions") :Levels(adress,name)
-	{
+	Instruction(string adress = "Assests/insbg.gif", string name = "Instructions") :Levels(adress,name) {
 		font.loadFromFile("Assests/SouthernAire.ttf");
 	}
-	~Instruction()
-	{
+
+	~Instruction() {
 		setTxbg("NULL");
 		setName("NULL");
 	}
+
 	//getters
-	Text getTx(int i)
-	{
+	Text getTx(int i) {
 		return tx[i];
 	}
-	bool back()
-	{
-		sf::IntRect rect(tx[6].getPosition().x + 5, tx[6].getPosition().y + 5, tx[6].getGlobalBounds().width + 5, tx[6].getGlobalBounds().height + 5);
+
+	bool back() {
+		// add sf:: if function does not work
+		IntRect rect(tx[6].getPosition().x + 5, tx[6].getPosition().y + 5, tx[6].getGlobalBounds().width + 5, tx[6].getGlobalBounds().height + 5);
 		if (Mouse::isButtonPressed(Mouse::Left))
-		{
-			//If we clicked within the Back rectangle, then Back!
 			if (rect.contains(Mouse::getPosition()))
-			{
 				return true;
-			}
-		}
+		
 		return false;
 	}
-	void draw()
-	{
+
+	void draw() {
 		//strings setting
-		tx[0].setFont(font);
-		tx[0].setString("Instructions");
-		tx[0].setPosition(300.0f, 50.0f);
-		tx[0].setColor(Color::White);
-		tx[0].setCharacterSize(172);
+		tx[0].setFont(font);								// set font style
+		tx[0].setString("Instructions");					// store the text
+		tx[0].setPosition(300.0f, 50.0f);					// set position
+		tx[0].setColor(Color::White);						// set font color
+		tx[0].setCharacterSize(172);						// set font size, same for all below texts
 		//setting
 		tx[1].setFont(font);
 		tx[1].setString("Arrow Keys to Move Character");
@@ -264,66 +275,77 @@ public:
 		tx[6].setString("Back to Main Menu");
 		tx[6].setPosition(300.0f, 550.0f);
 		sf::IntRect rect2(tx[6].getPosition().x + 5, tx[6].getPosition().y + 5, tx[6].getGlobalBounds().width + 5, tx[6].getGlobalBounds().height + 5);
-		//If we hover on Play change color
+		// If we hover on back, change color
 		if (rect2.contains(Mouse::getPosition()))
-		{
 			tx[6].setColor(Color::Green);
-		}
+		
 		else
-		{
 			tx[6].setColor(Color::White);
-		}
+		
 		tx[6].setCharacterSize(50);
 	}
 };
 class characters
-{
+{	
+	// Characters class,
+	// acts as an ABSTRACT class
+	// will be INHERITED by IORI and RYU
+private:
 	string name;
 protected:
+	// create pointers that are protected
+	// so that they cannot be accessed in main
 	Sprite *sprite;
 	Texture *texture;
 public:
-	characters()
-	{
+	characters() {
 		this->name = "\0";
 	}
-	characters(string name)
-	{
+
+	characters(string name) {
 		this->name = name;
 	}
-	~characters()
-	{
+
+	~characters() {
 		this->name = "\0";
 	}
+
 	//getters
-	string getName()
-	{
+	string getName() {
 		return this->name;
 	}
-	Texture geTexture(int i)
-	{
+
+	Texture geTexture(int i) {
 		return texture[i];
 	}
-	Sprite getSprite(int i)
-	{
+	
+	Sprite getSprite(int i) {
 		return sprite[i];
 	}
 };
 class Iori :public characters
 {
+	// this will be our player 1
+	// set health of player 1
 	int health;
+	// pre-defined SFML class, composed
 	Vector2f targetSize;
 	Vector2f pos;
 public:
-	Iori(string name = "IORI") :characters(name)
-	{
+	Iori(string name = "IORI") :characters(name) {
+		// initialize the pointer array
 		texture = new Texture[116];
 		sprite = new Sprite[116];
+		// set position and targetSize i.e where
+		// do you want your sprites (characters)
+		// to be displayed
 		pos.x = 100.0f;
 		pos.y = 365.0f;
 		targetSize.x = 250.0f;
 		targetSize.y = 400.0f;
 		health = 100;
+		// load the characters from assets
+		// using SFML loadFromFile function
 		texture[0].loadFromFile("Assests/Iori/Ready1.png");
 		sprite[0].setTexture(texture[0]);
 		texture[1].loadFromFile("Assests/Iori/Ready2.png");
@@ -1923,295 +1945,6 @@ public:
 	
 	}
 };
-class Level2 :public Levels
-{
-	Font font;
-	Text txt[8];
-	Iori iori;
-	Ryo ryo;
-public:
-	Level2(string adress = "Assests/level2bg.jpg", string name = "Level 1") :Levels(adress, name)
-	{
-		font.loadFromFile("Assests/SouthernAire.ttf");
-	}
-	~Level2()
-	{
-		setTxbg("NULL");
-		setName("NULL");
-	}
-	//Methods
-	bool back()
-	{
-		if (Keyboard::isKeyPressed(Keyboard::Escape))
-		{
-			return true;
-		}
-		return false;
-	}
-	void draw()
-	{
-		//Level name
-		txt[0].setFont(font);
-		txt[0].setString(getName());
-		txt[0].setPosition(600.0f, 250.0f);
-		txt[0].setColor(Color::Red);
-		txt[0].setCharacterSize(72);
-		//Ready
-		txt[1].setFont(font);
-		txt[1].setString("Ready");
-		txt[1].setPosition(600.0f, 350.0f);
-		txt[1].setColor(Color::Red);
-		txt[1].setCharacterSize(72);
-		//Player 1
-		txt[2].setFont(font);
-		txt[2].setString("Player 1");
-		txt[2].setPosition(75.0f, 50.0f);
-		txt[2].setColor(Color::Black);
-		txt[2].setCharacterSize(48);
-		//Health
-		string str = to_string(iori.getHealth());
-		txt[4].setFont(font);
-		if (iori.getHealth() <= 0)
-		{
-			str = '0';
-			txt[4].setColor(Color::Red);
-		}
-		else
-		{
-			txt[4].setColor(Color::Green);
-		}
-		txt[4].setString(str);
-		txt[4].setPosition(75.0f, 0.1f);
-		txt[4].setCharacterSize(72);
-		//Player 2
-		txt[3].setFont(font);
-		txt[3].setString("Player 2");
-		txt[3].setPosition(1150.0f, 50.0f);
-		txt[3].setColor(Color::Black);
-		txt[3].setCharacterSize(48);
-		//Helth
-		string str1 = to_string(ryo.getHealth());
-		txt[5].setFont(font);
-		if (ryo.getHealth() <= 0)
-		{
-			str1 = '0';
-			txt[5].setColor(Color::Red);
-		}
-		else
-		{
-			txt[5].setColor(Color::Green);
-		}
-		txt[5].setString(str1);
-		txt[5].setPosition(1150.0f, 0.1f);
-		txt[5].setCharacterSize(72);
-		//Player  1 WIns
-		txt[6].setFont(font);
-		txt[6].setString("Player 1 Wins");
-		txt[6].setPosition(600.0f, 350.0f);
-		txt[6].setColor(Color::Green);
-		txt[6].setCharacterSize(72);
-		//Player 2 Wins
-		txt[7].setFont(font);
-		txt[7].setString("Player 2 Wins");
-		txt[7].setPosition(600.0f, 350.0f);
-		txt[7].setColor(Color::Green);
-		txt[7].setCharacterSize(72);
-	}
-	//getter
-	Text gettxt(int i)
-	{
-		return txt[i];
-	}
-	//ioriwrappers
-	void IW_setHealth(int health)
-	{
-		iori.setHealth(health);
-	}
-	int IW_getHealth()
-	{
-		return iori.getHealth();
-	}
-	void IW_Ready(bool status)
-	{
-		iori.Ready(status);
-	}
-	void IW_Idle(bool key)
-	{
-		iori.Idle(key);
-	}
-	bool IW_Duck()
-	{
-		return iori.Duck();
-	}
-	bool IW_WalkFront()
-	{
-		return iori.WalkFront();
-	}
-	bool IW_WalkBack()
-	{
-		return iori.WalkBack();
-	}
-	bool IW_Jump()
-	{
-		return iori.Jump();
-	}
-	bool IW_Punch()
-	{
-		return iori.Punch();
-	}
-	bool IW_Kick()
-	{
-		return iori.Kick();
-	}
-	bool IW_Combo()
-	{
-		return iori.Combo();
-	}
-	bool IW_Block()
-	{
-		return iori.Block();
-	}
-	bool IW_Dead()
-	{
-		return iori.Dead();
-	}
-	Sprite IW_getSprite(int i)
-	{
-		return iori.getSprite(i);
-	}
-	void IW_setPos(Vector2f pos)
-	{
-		iori.setPos(pos);
-	}
-	//Ryo Wrappers
-	void RW_setHealth(int health)
-	{
-		ryo.setHealth(health);
-	}
-	int RW_getHealth()
-	{
-		return ryo.getHealth();
-	}
-	void RW_Ready(bool status)
-	{
-		ryo.Ready(status);
-	}
-	void RW_Idle(bool key)
-	{
-		ryo.Idle(key);
-	}
-	bool RW_Duck()
-	{
-		return ryo.Duck();
-	}
-	bool RW_WalkFront()
-	{
-		return ryo.WalkFront();
-	}
-	bool RW_WalkBack()
-	{
-		return ryo.WalkBack();
-	}
-	bool RW_Jump()
-	{
-		return ryo.Jump();
-	}
-	bool RW_Punch()
-	{
-		return ryo.Punch();
-	}
-	bool RW_Kick()
-	{
-		return ryo.Kick();
-	}
-	bool RW_Combo()
-	{
-		return ryo.Combo();
-	}
-	bool RW_Block()
-	{
-		return ryo.Block();
-	}
-	bool RW_Dead()
-	{
-		return ryo.Dead();
-	}
-	Sprite RW_getSprite(int i)
-	{
-		return ryo.getSprite(i);
-	}
-	void RW_setPos(Vector2f pos)
-	{
-		ryo.setPos(pos);
-	}
-	//Game System
-	void Game(int ioriPcontroller, int iorikcontroller, int ioriCcontroller, int ryoPcontroller, int ryokcontroller, int ryoCcontroller)
-	{
-		//for iori
-		if (ryoPcontroller == 33)
-		{
-			IntRect rect(ryo.getSprite(33).getGlobalBounds());
-			IntRect rect1(iori.getSprite(15).getGlobalBounds());
-			if (rect.intersects(rect1))
-			{
-				iori.setHealth(iori.getHealth() - 5);
-			}
-		}
-		else if (ryokcontroller == 41)
-		{
-			IntRect rect(ryo.getSprite(41).getGlobalBounds());
-			IntRect rect1(iori.getSprite(15).getGlobalBounds());
-			if (rect.intersects(rect1))
-			{
-				iori.setHealth(iori.getHealth() - 5);
-			}
-		}
-		else
-		{
-			if ((ryoCcontroller == 51))
-			{
-				IntRect rect(ryo.getSprite(51).getGlobalBounds());
-				IntRect rect1(iori.getSprite(15).getGlobalBounds());
-				if (rect.intersects(rect1))
-				{
-					iori.setHealth(iori.getHealth() - 20);
-				}
-			}
-		}
-		//for ryo
-		if (ioriPcontroller == 61)
-		{
-			IntRect rect(iori.getSprite(61).getGlobalBounds());
-			IntRect rect1(ryo.getSprite(7).getGlobalBounds());
-			if (rect.intersects(rect1))
-			{
-				ryo.setHealth(ryo.getHealth() - 5);
-			}
-		}
-		else if (iorikcontroller == 71)
-		{
-			IntRect rect(iori.getSprite(71).getGlobalBounds());
-			IntRect rect1(ryo.getSprite(7).getGlobalBounds());
-			if (rect.intersects(rect1))
-			{
-				ryo.setHealth(ryo.getHealth() - 5);
-			}
-		}
-		else
-		{
-			if ((ioriCcontroller == 98))
-			{
-				IntRect rect(iori.getSprite(98).getGlobalBounds());
-				IntRect rect1(ryo.getSprite(7).getGlobalBounds());
-				if (rect.intersects(rect1))
-				{
-					ryo.setHealth(ryo.getHealth() - 20);
-				}
-			}
-		}
-
-	}
-};
 
 int main()
 {
@@ -2220,11 +1953,11 @@ int main()
 	mainmenu menu;
 	Instruction instructions;
 	Level1 lvl1;
-	Level2 lvl2;
 	bool iskeyPressed = false, iskeyPressed2 = false;
 	int flag = 0;
 	bool is_Exit = false;
 	bool is_chnglevel = false;
+	int IW_comboBreaker = 0, RW_comboBreaker = 0;
 	int nxtlvl = 0;
 	bool f = false;
 	int animcontrolller[11] = { 0, 7, 17,25,35,44,53,62,72,99,106};
@@ -2504,15 +2237,19 @@ int main()
 					else if (lvl1.IW_Combo() == true)
 					{
 						iskeyPressed = true;
-						if (animcontrolller[8] >= 72 && animcontrolller[8] <= 98)
+						if (IW_comboBreaker >= 2) 
 						{
-							window.draw(lvl1.IW_getSprite(animcontrolller[8]));
-							animcontrolller[8]++;
-						}
-						else
-						{
-							window.draw(lvl1.IW_getSprite(animcontrolller[8] - 1));
-							animcontrolller[8] = 72;
+							if (animcontrolller[8] >= 72 && animcontrolller[8] <= 98)
+							{
+								window.draw(lvl1.IW_getSprite(animcontrolller[8]));
+								animcontrolller[8]++;
+							}
+							else
+							{
+								window.draw(lvl1.IW_getSprite(animcontrolller[8] - 1));
+								animcontrolller[8] = 72;
+							}
+							IW_comboBreaker++;
 						}
 					}
 					//Block Animation
@@ -2665,15 +2402,19 @@ int main()
 					else if (lvl1.RW_Combo() == true)
 					{
 						iskeyPressed2 = true;
-						if (animcontrolller2[8] >= 42 && animcontrolller2[8] <= 51)
+						if (RW_comboBreaker <= 2) 
 						{
-							window.draw(lvl1.RW_getSprite(animcontrolller2[8]));
-							animcontrolller2[8]++;
-						}
-						else
-						{
-							window.draw(lvl1.RW_getSprite(animcontrolller2[8] - 1));
-							animcontrolller2[8] = 42;
+							if (animcontrolller2[8] >= 42 && animcontrolller2[8] <= 51)
+							{
+								window.draw(lvl1.RW_getSprite(animcontrolller2[8]));
+								animcontrolller2[8]++;
+							}
+							else
+							{
+								window.draw(lvl1.RW_getSprite(animcontrolller2[8] - 1));
+								animcontrolller2[8] = 42;
+							}
+							RW_comboBreaker++;
 						}
 					}
 					//Block Animation
@@ -2738,6 +2479,7 @@ int main()
 				}
 			}
 		}
+
 		window.display();
 		Sleep(50);
 	}
