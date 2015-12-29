@@ -1934,7 +1934,7 @@ public:
 	{
 		font.loadFromFile("Assests/SouthernAire.ttf");
 	}
-	~Level1()
+	~Level2()
 	{
 		setTxbg("NULL");
 		setName("NULL");
@@ -2226,31 +2226,39 @@ int main()
 	bool is_Exit = false;
 	bool is_chnglevel = false;
 	int nxtlvl = 0;
+	bool f = false;
 	int animcontrolller[11] = { 0, 7, 17,25,35,44,53,62,72,99,106};
 	int animcontrolller2[11] = { 0, 4, 9, 10,16,21,25,34,42,52,55};
 	Clock clock;
 	//game music
-	Music music[3];
+	Music music[8];
 	music[0].openFromFile("Assests/sound/Track_01.ogg");
 	music[1].openFromFile("Assests/sound/Track_02.ogg");
 	music[2].openFromFile("Assests/sound/Track_03.ogg");
+	music[3].openFromFile("Assests/sound/Crowd.ogg");
+	music[4].openFromFile("Assests/sound/End.ogg");
+	music[5].openFromFile("Assests/sound/Kick.ogg");
+	music[6].openFromFile("Assests/sound/Punch.ogg");
+	music[7].openFromFile("Assests/sound/Start.ogg");
+	music[3].play();
+	music[3].setVolume(0);
 	while (window.isOpen())
 	{
 		//music playing
 		if (music[2].getStatus() == SoundSource::Stopped)
 		{
 			music[0].play();
-			music[0].setVolume(100);
+			music[0].setVolume(40);
 		}
 		if (music[0].getStatus() == SoundSource::Stopped)
 		{
 			music[1].play();
-			music[1].setVolume(100);
+			music[1].setVolume(40);
 		}
 		if (music[1].getStatus() == SoundSource::Stopped)
 		{
-			music[1].play();
-			music[1].setVolume(100);
+			music[2].play();
+			music[2].setVolume(40);
 		}
 		// check all the window's events that were triggered since the last iteration of the loop
 		Event event;
@@ -2339,6 +2347,12 @@ int main()
 			Time t1 = clock.getElapsedTime();
 			if (t1.asSeconds() < 2.0f)
 			{
+				if (f == false)
+				{
+					music[7].play();
+					music[7].setVolume(100);
+					music[3].setVolume(5);
+				}
 				for (int i = 0; i < 2; i++)
 				{
 					window.draw(lvl1.gettxt(i));
@@ -2365,6 +2379,7 @@ int main()
 				{
 					window.draw(lvl1.RW_getSprite(animcontrolller2[0] - 1));
 				}
+				f = true;
 			}
 			for (int i = 2; i < 6; i++)
 			{
@@ -2372,6 +2387,7 @@ int main()
 			}
 			if (t1.asSeconds() > 2.0f)
 			{
+				music[3].setVolume(70);
 				if (lvl1.RW_getHealth() > 0 && lvl1.IW_getHealth() > 0)
 				{
 					lvl1.Game(animcontrolller[6], animcontrolller[7], animcontrolller[8], animcontrolller2[6], animcontrolller2[7], animcontrolller2[8]);
@@ -2453,6 +2469,8 @@ int main()
 					//Punch Animation
 					else if (lvl1.IW_Punch() == true)
 					{
+						music[6].play();
+						music[6].setVolume(100);
 						iskeyPressed = true;
 						if (animcontrolller[6] >= 53 && animcontrolller[6] <= 61)
 						{
@@ -2468,6 +2486,8 @@ int main()
 					//Kick Animation
 					else if (lvl1.IW_Kick() == true)
 					{
+						music[5].play();
+						music[5].setVolume(100);
 						iskeyPressed = true;
 						if (animcontrolller[7] >= 62 && animcontrolller[7] <= 71)
 						{
@@ -2608,6 +2628,8 @@ int main()
 					//Punch Animation
 					else if (lvl1.RW_Punch() == true)
 					{
+						music[6].play();
+						music[6].setVolume(100);
 						iskeyPressed2 = true;
 						if (animcontrolller2[6] >= 25 && animcontrolller2[6] <= 33)
 						{
@@ -2619,10 +2641,13 @@ int main()
 							window.draw(lvl1.RW_getSprite(animcontrolller2[6] - 1));
 							animcontrolller2[6] = 25;
 						}
+						
 					}
 					//Kick Animation
 					else if (lvl1.RW_Kick() == true)
 					{
+						music[5].play();
+						music[5].setVolume(100);
 						iskeyPressed2 = true;
 						if (animcontrolller2[7] >= 34 && animcontrolller2[7] <= 41)
 						{
@@ -2634,6 +2659,7 @@ int main()
 							window.draw(lvl1.RW_getSprite(animcontrolller2[7] - 1));
 							animcontrolller2[7] = 34;
 						}
+						
 					}
 					//Combo Animation
 					else if (lvl1.RW_Combo() == true)
@@ -2683,19 +2709,32 @@ int main()
 					else
 					{
 						iskeyPressed2 = false;
+						f = false;
 					}
 				}
 				else
 				{
 					lvl1.draw();
+					if (f == false)
+					{
+						music[3].setVolume(20);
+						music[4].play();
+						music[4].setVolume(100);
+					}
 					if (lvl1.IW_getHealth() <= 0)
 					{
+
 						window.draw(lvl1.gettxt(7));
+						window.draw(lvl1.RW_getSprite(6));
+						window.draw(lvl1.IW_getSprite(115));
 					}
 					else
 					{
 						window.draw(lvl1.gettxt(6));
+						window.draw(lvl1.IW_getSprite(3));
+						window.draw(lvl1.RW_getSprite(58));
 					}
+					f = true;
 				}
 			}
 		}
