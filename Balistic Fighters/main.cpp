@@ -659,283 +659,174 @@ public:
 		this->pos = pos;
 	}
 };
+
 class Ryo:public characters
 {
+	// this will be our player 2
+	// set health of player 2
 	int health;
+	// pre-defined SFML class, composed
 	Vector2f targetSize;
 	Vector2f pos;
 public:
-	Ryo(string name = "RYO") :characters(name)
-	{
+	Ryo(string name = "RYO") :characters(name) {
+		// initialize pointer array
 		texture = new Texture[59];
 		sprite = new Sprite[59];
 		pos.x = 1100.0f;
 		pos.y = 365.0f;
+		// set position and targetSize i.e where
+		// do you want your sprites (characters)
+		// to be displayed
 		targetSize.x = 250.0f;
 		targetSize.y = 400.0f;
 		health = 100;
+		// load sprites from loadFromFile
+
 		texture[0].loadFromFile("Assests/Ryo/Ready1.png");
-		sprite[0].setTexture(texture[0]);
 		texture[1].loadFromFile("Assests/Ryo/Ready2.png");
-		sprite[1].setTexture(texture[1]);
 		texture[2].loadFromFile("Assests/Ryo/Ready3.png");
-		sprite[2].setTexture(texture[2]);
 		texture[3].loadFromFile("Assests/Ryo/Ready4.png");
-		sprite[3].setTexture(texture[3]);
 		texture[4].loadFromFile("Assests/Ryo/Idle1.png");
-		sprite[4].setTexture(texture[4]);
 		texture[5].loadFromFile("Assests/Ryo/Idle2.png");
-		sprite[5].setTexture(texture[5]);
 		texture[6].loadFromFile("Assests/Ryo/Idle3.png");
-		sprite[6].setTexture(texture[6]);
 		texture[7].loadFromFile("Assests/Ryo/Idle4.png");
-		sprite[7].setTexture(texture[7]);
 		texture[8].loadFromFile("Assests/Ryo/Duck1.png");
-		sprite[8].setTexture(texture[8]);
 		texture[9].loadFromFile("Assests/Ryo/Duck2.png");
-		sprite[9].setTexture(texture[9]);
 		texture[10].loadFromFile("Assests/Ryo/WalkFront1.png");
-		sprite[10].setTexture(texture[10]);
 		texture[11].loadFromFile("Assests/Ryo/WalkFront2.png");
-		sprite[11].setTexture(texture[11]);
 		texture[12].loadFromFile("Assests/Ryo/WalkFront3.png");
-		sprite[12].setTexture(texture[12]);
 		texture[13].loadFromFile("Assests/Ryo/WalkFront4.png");
-		sprite[13].setTexture(texture[13]);
 		texture[14].loadFromFile("Assests/Ryo/WalkFront5.png");
-		sprite[14].setTexture(texture[14]);
 		texture[15].loadFromFile("Assests/Ryo/WalkFront6.png");
-		sprite[15].setTexture(texture[15]);
 		texture[16].loadFromFile("Assests/Ryo/WalkBack1.png");
-		sprite[16].setTexture(texture[16]);
 		texture[17].loadFromFile("Assests/Ryo/WalkBack2.png");
-		sprite[17].setTexture(texture[17]);
 		texture[18].loadFromFile("Assests/Ryo/WalkBack3.png");
-		sprite[18].setTexture(texture[18]);
 		texture[19].loadFromFile("Assests/Ryo/WalkBack4.png");
-		sprite[19].setTexture(texture[19]);
 		texture[20].loadFromFile("Assests/Ryo/WalkBack5.png");
-		sprite[20].setTexture(texture[20]);
 		texture[21].loadFromFile("Assests/Ryo/Jump1.png");
-		sprite[21].setTexture(texture[21]);
 		texture[22].loadFromFile("Assests/Ryo/Jump2.png");
-		sprite[22].setTexture(texture[22]);
 		texture[23].loadFromFile("Assests/Ryo/Jump3.png");
-		sprite[23].setTexture(texture[23]);
 		texture[25].loadFromFile("Assests/Ryo/Punch1.png");
-		sprite[25].setTexture(texture[25]);
 		texture[26].loadFromFile("Assests/Ryo/Punch2.png");
-		sprite[26].setTexture(texture[26]);
 		texture[27].loadFromFile("Assests/Ryo/Punch3.png");
-		sprite[27].setTexture(texture[27]);
 		texture[28].loadFromFile("Assests/Ryo/Punch4.png");
-		sprite[28].setTexture(texture[28]);
 		texture[29].loadFromFile("Assests/Ryo/Punch5.png");
-		sprite[29].setTexture(texture[29]);
 		texture[30].loadFromFile("Assests/Ryo/Punch6.png");
-		sprite[30].setTexture(texture[30]);
 		texture[31].loadFromFile("Assests/Ryo/Punch7.png");
-		sprite[31].setTexture(texture[31]);
 		texture[32].loadFromFile("Assests/Ryo/Punch8.png");
-		sprite[32].setTexture(texture[32]);
 		texture[33].loadFromFile("Assests/Ryo/Punch9.png");
-		sprite[33].setTexture(texture[33]);
 		texture[34].loadFromFile("Assests/Ryo/Kick1.png");
-		sprite[34].setTexture(texture[34]);
 		texture[35].loadFromFile("Assests/Ryo/Kick2.png");
-		sprite[35].setTexture(texture[35]);
 		texture[36].loadFromFile("Assests/Ryo/Kick3.png");
-		sprite[36].setTexture(texture[36]);
 		texture[37].loadFromFile("Assests/Ryo/Kick4.png");
-		sprite[37].setTexture(texture[37]);
 		texture[38].loadFromFile("Assests/Ryo/Kick5.png");
-		sprite[38].setTexture(texture[38]);
 		texture[39].loadFromFile("Assests/Ryo/Kick6.png");
-		sprite[39].setTexture(texture[39]);
 		texture[40].loadFromFile("Assests/Ryo/Kick7.png");
-		sprite[40].setTexture(texture[40]);
 		texture[41].loadFromFile("Assests/Ryo/Kick8.png");
-		sprite[41].setTexture(texture[41]);
 		texture[42].loadFromFile("Assests/Ryo/Combo1.png");
-		sprite[42].setTexture(texture[42]);
 		texture[43].loadFromFile("Assests/Ryo/Combo2.png");
-		sprite[43].setTexture(texture[43]);
 		texture[44].loadFromFile("Assests/Ryo/Combo3.png");
-		sprite[44].setTexture(texture[44]);
 		texture[45].loadFromFile("Assests/Ryo/Combo4.png");
-		sprite[45].setTexture(texture[45]);
 		texture[46].loadFromFile("Assests/Ryo/Combo5.png");
-		sprite[46].setTexture(texture[46]);
 		texture[47].loadFromFile("Assests/Ryo/Combo6.png");
-		sprite[47].setTexture(texture[47]);
 		texture[48].loadFromFile("Assests/Ryo/Combo7.png");
-		sprite[48].setTexture(texture[48]);
 		texture[49].loadFromFile("Assests/Ryo/Combo8.png");
-		sprite[49].setTexture(texture[49]);
 		texture[50].loadFromFile("Assests/Ryo/Combo9.png");
-		sprite[50].setTexture(texture[50]);
 		texture[51].loadFromFile("Assests/Ryo/Combo10.png");
-		sprite[51].setTexture(texture[51]);
 		texture[52].loadFromFile("Assests/Ryo/Block1.png");
-		sprite[52].setTexture(texture[52]);
 		texture[53].loadFromFile("Assests/Ryo/Block2.png");
-		sprite[53].setTexture(texture[53]);
 		texture[54].loadFromFile("Assests/Ryo/Block3.png");
-		sprite[54].setTexture(texture[54]);
 		texture[55].loadFromFile("Assests/Ryo/Dead1.png");
-		sprite[55].setTexture(texture[55]);
 		texture[56].loadFromFile("Assests/Ryo/Dead2.png");
-		sprite[56].setTexture(texture[56]);
 		texture[57].loadFromFile("Assests/Ryo/Dead3.png");
-		sprite[57].setTexture(texture[57]);
 		texture[58].loadFromFile("Assests/Ryo/Dead4.png");
-		sprite[58].setTexture(texture[58]);
+
+		for (int i = 0; i < 59; i++) 
+			sprite[i].setTexture(texture[i]);
 	}
-	~Ryo()
-	{
+	~Ryo() {
 		health = 0;
 	}
-	void setHealth(int health)
-	{
+	
+	void setHealth(int health) {
 		this->health = health;
 	}
-	int getHealth()const
-	{
+
+	int getHealth()const {
 		return this->health;
 	}
-	void Ready(bool status)
-	{
+
+	void Ready(bool status) {
 		if (status == true)
-		{
-			sprite[0].setScale(
-				targetSize.x / sprite[0].getLocalBounds().width,
-				targetSize.y / sprite[0].getLocalBounds().height);
-			sprite[0].setPosition(pos);
-			sprite[1].setScale(
-				targetSize.x / sprite[1].getLocalBounds().width,
-				targetSize.y / sprite[1].getLocalBounds().height);
-			sprite[1].setPosition(pos);
-			sprite[2].setScale(
-				targetSize.x / sprite[2].getLocalBounds().width,
-				targetSize.y / sprite[2].getLocalBounds().height);
-			sprite[2].setPosition(pos);
-			sprite[3].setScale(
-				targetSize.x / sprite[3].getLocalBounds().width,
-				targetSize.y / sprite[3].getLocalBounds().height);
-			sprite[3].setPosition(pos);
-		}
+			for (int i = 0; i < 4; i++) {
+				sprite[i].setScale(
+					targetSize.x / sprite[i].getLocalBounds().width,
+					targetSize.y / sprite[i].getLocalBounds().height);
+				sprite[i].setPosition(pos);
+			}
 	}
-	void Idle(bool status)
-	{
+
+	void Idle(bool status) {
 		if (status == false)
-		{
-			sprite[4].setScale(
-				targetSize.x / sprite[4].getLocalBounds().width,
-				targetSize.y / sprite[4].getLocalBounds().height);
-			sprite[4].setPosition(pos);
-			sprite[5].setScale(
-				targetSize.x / sprite[5].getLocalBounds().width,
-				targetSize.y / sprite[5].getLocalBounds().height);
-			sprite[5].setPosition(pos);
-			sprite[6].setScale(
-				targetSize.x / sprite[6].getLocalBounds().width,
-				targetSize.y / sprite[6].getLocalBounds().height);
-			sprite[6].setPosition(pos);
-			sprite[7].setScale(
-				targetSize.x / sprite[7].getLocalBounds().width,
-				targetSize.y / sprite[7].getLocalBounds().height);
-			sprite[7].setPosition(pos);
-		}
+			for (int i = 4; i < 8; i++) {
+				sprite[i].setScale(
+					targetSize.x / sprite[i].getLocalBounds().width,
+					targetSize.y / sprite[i].getLocalBounds().height);
+				sprite[i].setPosition(pos);
+			}
 	}
+
 	bool Duck()
 	{
-		if (Keyboard::isKeyPressed(Keyboard::K))
-		{
-			float tmpy = pos.y + 25;
-			sprite[8].setScale(
-				targetSize.x / sprite[8].getLocalBounds().width,
-				targetSize.y / sprite[8].getLocalBounds().height);
-			sprite[8].setPosition(pos.x, tmpy);
-			sprite[9].setScale(
-				targetSize.x / sprite[9].getLocalBounds().width,
-				targetSize.y / sprite[9].getLocalBounds().height);
-			sprite[9].setPosition(pos.x, tmpy);
+		float tmpy = pos.y + 25;
+		if (Keyboard::isKeyPressed(Keyboard::K)) {
+			for (int i = 8; i < 10; i++) {
+				sprite[i].setScale(
+					targetSize.x / sprite[i].getLocalBounds().width,
+					targetSize.y / sprite[i].getLocalBounds().height);
+				sprite[i].setPosition(pos.x, tmpy);
+			}
 			return true;
 		}
 		return false;
 	}
-	bool WalkFront()
-	{
-		if (Keyboard::isKeyPressed(Keyboard::J))
-		{
+
+	bool WalkFront() {
+		if (Keyboard::isKeyPressed(Keyboard::J)) {
 			if (pos.x >= 0.0f )
-			{
 				pos.x = pos.x - 15;
+
+			for (int i = 10; i < 16; i++) {
+				sprite[i].setScale(
+					targetSize.x / sprite[i].getLocalBounds().width,
+					targetSize.y / sprite[i].getLocalBounds().height);
+				sprite[i].setPosition(pos.x, pos.y);
 			}
-			sprite[10].setScale(
-				targetSize.x / sprite[10].getLocalBounds().width,
-				targetSize.y / sprite[10].getLocalBounds().height);
-			sprite[10].setPosition(pos.x, pos.y);
-			sprite[11].setScale(
-				targetSize.x / sprite[11].getLocalBounds().width,
-				targetSize.y / sprite[11].getLocalBounds().height);
-			sprite[11].setPosition(pos.x, pos.y);
-			sprite[12].setScale(
-				targetSize.x / sprite[12].getLocalBounds().width,
-				targetSize.y / sprite[12].getLocalBounds().height);
-			sprite[12].setPosition(pos.x, pos.y);
-			sprite[13].setScale(
-				targetSize.x / sprite[13].getLocalBounds().width,
-				targetSize.y / sprite[13].getLocalBounds().height);
-			sprite[13].setPosition(pos.x, pos.y);
-			sprite[14].setScale(
-				targetSize.x / sprite[14].getLocalBounds().width,
-				targetSize.y / sprite[14].getLocalBounds().height);
-			sprite[14].setPosition(pos.x, pos.y);
-			sprite[15].setScale(
-				targetSize.x / sprite[15].getLocalBounds().width,
-				targetSize.y / sprite[15].getLocalBounds().height);
-			sprite[15].setPosition(pos.x, pos.y);
 			return true;
 		}
 		return false;
 	}
-	bool WalkBack()
-	{
-		if (Keyboard::isKeyPressed(Keyboard::L))
-		{
+
+	bool WalkBack() {
+		if (Keyboard::isKeyPressed(Keyboard::L)) {
 			if (pos.x <= 1100.0f)
-			{
 				pos.x = pos.x + 15;
+			
+			for (int i = 16; i < 21; i++) {
+				sprite[i].setScale(
+					targetSize.x / sprite[i].getLocalBounds().width,
+					targetSize.y / sprite[i].getLocalBounds().height);
+				sprite[i].setPosition(pos.x, pos.y);
+
 			}
-			sprite[16].setScale(
-				targetSize.x / sprite[16].getLocalBounds().width,
-				targetSize.y / sprite[16].getLocalBounds().height);
-			sprite[16].setPosition(pos.x, pos.y);
-			sprite[17].setScale(
-				targetSize.x / sprite[17].getLocalBounds().width,
-				targetSize.y / sprite[17].getLocalBounds().height);
-			sprite[17].setPosition(pos.x, pos.y);
-			sprite[18].setScale(
-				targetSize.x / sprite[18].getLocalBounds().width,
-				targetSize.y / sprite[18].getLocalBounds().height);
-			sprite[18].setPosition(pos.x, pos.y);
-			sprite[19].setScale(
-				targetSize.x / sprite[19].getLocalBounds().width,
-				targetSize.y / sprite[19].getLocalBounds().height);
-			sprite[19].setPosition(pos.x, pos.y);
-			sprite[20].setScale(
-				targetSize.x / sprite[20].getLocalBounds().width,
-				targetSize.y / sprite[20].getLocalBounds().height);
-			sprite[20].setPosition(pos.x, pos.y);
 			return true;
 		}
 		return false;
 	}
-	bool Jump()
-	{
-		if (Keyboard::isKeyPressed(Keyboard::I))
-		{
+
+	bool Jump() {
+		if (Keyboard::isKeyPressed(Keyboard::I)) {
 			float tmpy = pos.y;
 			sprite[21].setScale(
 				targetSize.x / sprite[21].getLocalBounds().width,
@@ -953,207 +844,73 @@ public:
 		}
 		return false;
 	}
-	bool Punch()
-	{
-		if (Keyboard::isKeyPressed(Keyboard::V))
-		{
-			sprite[25].setScale(
-				targetSize.x / sprite[25].getLocalBounds().width,
-				targetSize.y / sprite[25].getLocalBounds().height);
-			sprite[25].setPosition(pos);
-			sprite[26].setScale(
-				targetSize.x / sprite[26].getLocalBounds().width,
-				targetSize.y / sprite[26].getLocalBounds().height);
-			sprite[26].setPosition(pos);
-			sprite[27].setScale(
-				targetSize.x / sprite[27].getLocalBounds().width,
-				targetSize.y / sprite[27].getLocalBounds().height);
-			sprite[27].setPosition(pos);
-			sprite[28].setScale(
-				targetSize.x / sprite[28].getLocalBounds().width,
-				targetSize.y / sprite[28].getLocalBounds().height);
-			sprite[28].setPosition(pos);
-			sprite[29].setScale(
-				targetSize.x / sprite[29].getLocalBounds().width,
-				targetSize.y / sprite[29].getLocalBounds().height);
-			sprite[29].setPosition(pos);
-			sprite[30].setScale(
-				targetSize.x / sprite[30].getLocalBounds().width,
-				targetSize.y / sprite[30].getLocalBounds().height);
-			sprite[30].setPosition(pos);
-			sprite[31].setScale(
-				targetSize.x / sprite[31].getLocalBounds().width,
-				targetSize.y / sprite[31].getLocalBounds().height);
-			sprite[31].setPosition(pos);
-			sprite[32].setScale(
-				targetSize.x / sprite[32].getLocalBounds().width,
-				targetSize.y / sprite[32].getLocalBounds().height);
-			sprite[32].setPosition(pos);
-			sprite[33].setScale(
-				targetSize.x / sprite[33].getLocalBounds().width,
-				targetSize.y / sprite[33].getLocalBounds().height);
-			sprite[33].setPosition(pos);
-			return true;
-		}
-		return false;
-	}
-	bool Kick()
-	{
 
-		if (Keyboard::isKeyPressed(Keyboard::B))
-		{
-			sprite[34].setScale(
-				targetSize.x / sprite[34].getLocalBounds().width,
-				targetSize.y / sprite[34].getLocalBounds().height);
-			sprite[34].setPosition(pos);
-			sprite[35].setScale(
-				targetSize.x / sprite[35].getLocalBounds().width,
-				targetSize.y / sprite[35].getLocalBounds().height);
-			sprite[35].setPosition(pos);
-			sprite[36].setScale(
-				targetSize.x / sprite[36].getLocalBounds().width,
-				targetSize.y / sprite[36].getLocalBounds().height);
-			sprite[36].setPosition(pos);
-			sprite[37].setScale(
-				targetSize.x / sprite[37].getLocalBounds().width,
-				targetSize.y / sprite[37].getLocalBounds().height);
-			sprite[37].setPosition(pos);
-			sprite[38].setScale(
-				targetSize.x / sprite[38].getLocalBounds().width,
-				targetSize.y / sprite[38].getLocalBounds().height);
-			sprite[38].setPosition(pos);
-			sprite[39].setScale(
-				targetSize.x / sprite[39].getLocalBounds().width,
-				targetSize.y / sprite[39].getLocalBounds().height);
-			sprite[39].setPosition(pos);
-			sprite[40].setScale(
-				targetSize.x / sprite[40].getLocalBounds().width,
-				targetSize.y / sprite[40].getLocalBounds().height);
-			sprite[40].setPosition(pos);
-			sprite[41].setScale(
-				targetSize.x / sprite[41].getLocalBounds().width,
-				targetSize.y / sprite[41].getLocalBounds().height);
-			sprite[41].setPosition(pos);
+	bool Punch() {
+		if (Keyboard::isKeyPressed(Keyboard::V)) {
+			for (int i = 25; i < 34; i++) {
+				sprite[i].setScale(
+					targetSize.x / sprite[i].getLocalBounds().width,
+					targetSize.y / sprite[i].getLocalBounds().height);
+				sprite[i].setPosition(pos);
+			}
 			return true;
 		}
 		return false;
 	}
-	bool Combo()
-	{
-		if (Keyboard::isKeyPressed(Keyboard::N))
-		{
-			sprite[42].setScale(
-				targetSize.x / sprite[72].getLocalBounds().width,
-				targetSize.y / sprite[72].getLocalBounds().height);
-			sprite[42].setPosition(pos);
-			sprite[43].setScale(
-				targetSize.x / sprite[43].getLocalBounds().width,
-				targetSize.y / sprite[43].getLocalBounds().height);
-			sprite[43].setPosition(pos);
-			sprite[44].setScale(
-				targetSize.x / sprite[44].getLocalBounds().width,
-				targetSize.y / sprite[44].getLocalBounds().height);
-			sprite[44].setPosition(pos);
-			sprite[45].setScale(
-				targetSize.x / sprite[45].getLocalBounds().width,
-				targetSize.y / sprite[45].getLocalBounds().height);
-			sprite[45].setPosition(pos);
-			sprite[46].setScale(
-				targetSize.x / sprite[46].getLocalBounds().width,
-				targetSize.y / sprite[46].getLocalBounds().height);
-			sprite[46].setPosition(pos);
-			sprite[47].setScale(
-				targetSize.x / sprite[47].getLocalBounds().width,
-				targetSize.y / sprite[47].getLocalBounds().height);
-			sprite[47].setPosition(pos);
-			sprite[48].setScale(
-				targetSize.x / sprite[48].getLocalBounds().width,
-				targetSize.y / sprite[48].getLocalBounds().height);
-			sprite[48].setPosition(pos);
-			sprite[49].setScale(
-				targetSize.x / sprite[49].getLocalBounds().width,
-				targetSize.y / sprite[49].getLocalBounds().height);
-			sprite[49].setPosition(pos);
-			sprite[50].setScale(
-				targetSize.x / sprite[50].getLocalBounds().width,
-				targetSize.y / sprite[50].getLocalBounds().height);
-			sprite[50].setPosition(pos);
-			sprite[51].setScale(
-				targetSize.x / sprite[51].getLocalBounds().width,
-				targetSize.y / sprite[51].getLocalBounds().height);
-			sprite[51].setPosition(pos);
-			sprite[52].setScale(
-				targetSize.x / sprite[52].getLocalBounds().width,
-				targetSize.y / sprite[52].getLocalBounds().height);
-			sprite[52].setPosition(pos);
-			sprite[53].setScale(
-				targetSize.x / sprite[53].getLocalBounds().width,
-				targetSize.y / sprite[53].getLocalBounds().height);
-			sprite[53].setPosition(pos);
-			sprite[54].setScale(
-				targetSize.x / sprite[54].getLocalBounds().width,
-				targetSize.y / sprite[54].getLocalBounds().height);
-			sprite[54].setPosition(pos);
-			sprite[55].setScale(
-				targetSize.x / sprite[55].getLocalBounds().width,
-				targetSize.y / sprite[55].getLocalBounds().height);
-			sprite[55].setPosition(pos);
-			sprite[56].setScale(
-				targetSize.x / sprite[56].getLocalBounds().width,
-				targetSize.y / sprite[56].getLocalBounds().height);
-			sprite[56].setPosition(pos);
-			return true;
-		}
-		return false;
-	}
-	bool Dead()
-	{
 
-		if (health <= 0)
-		{
-			sprite[55].setScale(
-				targetSize.x / sprite[55].getLocalBounds().width,
-				targetSize.y / sprite[55].getLocalBounds().height);
-			sprite[55].setPosition(pos);
-			sprite[56].setScale(
-				targetSize.x / sprite[56].getLocalBounds().width,
-				targetSize.y / sprite[56].getLocalBounds().height);
-			sprite[56].setPosition(pos);
-			sprite[57].setScale(
-				targetSize.x / sprite[57].getLocalBounds().width,
-				targetSize.y / sprite[57].getLocalBounds().height);
-			sprite[57].setPosition(pos.x, (pos.y + 125));
-			sprite[58].setScale(
-				targetSize.x / sprite[58].getLocalBounds().width,
-				targetSize.y / sprite[58].getLocalBounds().height);
-			sprite[58].setPosition(pos.x, (pos.y + 125));
+	bool Kick() {
+		if (Keyboard::isKeyPressed(Keyboard::B)) {
+			for (int i = 34; i < 42; i++) {
+				sprite[i].setScale(
+					targetSize.x / sprite[i].getLocalBounds().width,
+					targetSize.y / sprite[i].getLocalBounds().height);
+				sprite[i].setPosition(pos);
+			}
 			return true;
 		}
 		return false;
 	}
-	bool Block()
-	{
 
-		if (Keyboard::isKeyPressed(Keyboard::M))
-		{
-			sprite[52].setScale(
-				targetSize.x / sprite[52].getLocalBounds().width,
-				targetSize.y / sprite[52].getLocalBounds().height);
-			sprite[52].setPosition(pos);
-			sprite[53].setScale(
-				targetSize.x / sprite[53].getLocalBounds().width,
-				targetSize.y / sprite[53].getLocalBounds().height);
-			sprite[54].setPosition(pos);
-			sprite[54].setScale(
-				targetSize.x / sprite[54].getLocalBounds().width,
-				targetSize.y / sprite[54].getLocalBounds().height);
-			sprite[54].setPosition(pos);
+	bool Combo() {
+		if (Keyboard::isKeyPressed(Keyboard::N)) {
+			for (int i = 42; i < 57; i++) {
+				sprite[i].setScale(
+					targetSize.x / sprite[i].getLocalBounds().width,
+					targetSize.y / sprite[i].getLocalBounds().height);
+				sprite[i].setPosition(pos);
+			}
 			return true;
 		}
 		return false;
 	}
-	void setPos(Vector2f pos)
-	{
+
+	bool Dead() {
+		if (health <= 0) {
+			for (int i = 55; i < 59; i++) {
+				sprite[i].setScale(
+					targetSize.x / sprite[i].getLocalBounds().width,
+					targetSize.y / sprite[i].getLocalBounds().height);
+				sprite[i].setPosition(pos);
+			}
+			return true;
+		}
+		return false;
+	}
+
+	bool Block() {
+		if (Keyboard::isKeyPressed(Keyboard::M)) {
+			for (int i = 52; i < 55; i++) {
+				sprite[i].setScale(
+					targetSize.x / sprite[i].getLocalBounds().width,
+					targetSize.y / sprite[i].getLocalBounds().height);
+				sprite[i].setPosition(pos);
+			}
+			return true;
+		}
+		return false;
+	}
+
+	void setPos(Vector2f pos) {
 		this->pos = pos;
 	}
 };
