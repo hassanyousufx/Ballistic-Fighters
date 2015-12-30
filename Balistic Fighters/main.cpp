@@ -234,46 +234,35 @@ public:
 	}
 
 	void draw() {
-		//strings setting
-		tx[0].setFont(font);								// set font style
-		tx[0].setString("Instructions");					// store the text
+		for (int i = 0; i < 7; i++) {
+			tx[i].setFont(font);							// set font style
+			tx[i].setColor(Color::White);					// set font color
+			tx[i].setCharacterSize(52);						// set font size, same for all below texts
+		}
+
+		//strings setting					
+		tx[0].setString("Instructions");
 		tx[0].setPosition(300.0f, 50.0f);					// set position
-		tx[0].setColor(Color::White);						// set font color
-		tx[0].setCharacterSize(172);						// set font size, same for all below texts
+		tx[0].setCharacterSize(172);						
 		//setting
-		tx[1].setFont(font);
 		tx[1].setString("Arrow Keys to Move Character");
-		tx[1].setPosition(300.0f, 250.0f);
-		tx[1].setColor(Color::White);
-		tx[1].setCharacterSize(52);
+		tx[1].setPosition(300.0f, 250.0f);					// set position
 		//setting
-		tx[2].setFont(font);
 		tx[2].setString("Use A to Punch");
-		tx[2].setPosition(300.0f, 300.f);
-		tx[2].setColor(Color::White);
-		tx[2].setCharacterSize(52);
+		tx[2].setPosition(300.0f, 300.f);					// set position
 		//setting
-		tx[3].setFont(font);
 		tx[3].setString("Use S To Kick");
-		tx[3].setPosition(300.0f, 350.0f);
-		tx[3].setColor(Color::White);
-		tx[3].setCharacterSize(52);
+		tx[3].setPosition(300.0f, 350.0f);					// set position
 		//setting
-		tx[4].setFont(font);
 		tx[4].setString("Use D To Combo : Note it will reduce your health 20% too");
-		tx[4].setPosition(300.0f, 400.0f);
-		tx[4].setColor(Color::White);
-		tx[4].setCharacterSize(52);
+		tx[4].setPosition(300.0f, 400.0f);					// set position
 		//setting
-		tx[5].setFont(font);
 		tx[5].setString("Use F To Block");
-		tx[5].setPosition(300.0f, 450.0f);
-		tx[5].setColor(Color::White);
-		tx[5].setCharacterSize(52);
+		tx[5].setPosition(300.0f, 450.0f);					// set position
 		//setting
-		tx[6].setFont(font);
 		tx[6].setString("Back to Main Menu");
-		tx[6].setPosition(300.0f, 550.0f);
+		tx[6].setPosition(300.0f, 550.0f);					// set position
+
 		sf::IntRect rect2(tx[6].getPosition().x + 5, tx[6].getPosition().y + 5, tx[6].getGlobalBounds().width + 5, tx[6].getGlobalBounds().height + 5);
 		// If we hover on back, change color
 		if (rect2.contains(Mouse::getPosition()))
@@ -348,11 +337,13 @@ public:
 		// using SFML loadFromFile function
 
 		for (int i = 0; i < 7; ++i)
-		{
+		{	// use loops to load sprites
 			texture[i].loadFromFile("Assests/Iori/Ready" + std::to_string(i + 1) + ".png");
 			sprite[i].setTexture(texture[i]);
 		}
 
+		// you need to load textures from assets manually
+		// and load all 116 sprites manually, won't work via loops
 		texture[7].loadFromFile("Assests/Iori/Idle1.png");
 		texture[8].loadFromFile("Assests/Iori/Idle2.png");
 		texture[9].loadFromFile("Assests/Iori/Idle3.png");
@@ -462,7 +453,8 @@ public:
 		texture[113].loadFromFile("Assests/Iori/Dead8.png");
 		texture[114].loadFromFile("Assests/Iori/Dead9.png");
 		texture[115].loadFromFile("Assests/Iori/Dead10.png");
-
+		
+		// load sprites via loops
 		for (int i = 0; i < 116; i++)
 			sprite[i].setTexture(texture[i]);
 	}
@@ -480,7 +472,7 @@ public:
 	}
 
 	void Ready(bool status) {
-		if (status == true)
+		if (status == true)	// use loops to load sprite bounds
 			for (int i = 0; i < 7; i++) {
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
@@ -490,7 +482,7 @@ public:
 	}
 
 	void Idle(bool status) {
-		if (status == false)
+		if (status == false) // use loops to load sprite bounds
 			for (int i = 7; i < 16; i++) {
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
@@ -500,7 +492,7 @@ public:
 	}
 
 	bool Duck() {
-		if (Keyboard::isKeyPressed(Keyboard::Down)) {
+		if (Keyboard::isKeyPressed(Keyboard::Down)) { // use loops to load sprite bounds
 			float tmpy = 420.0f;
 			for (int i = 16; i < 25; i++) {
 				sprite[i].setScale(
@@ -514,7 +506,7 @@ public:
 	}
 
 	bool WalkFront() {
-		if (Keyboard::isKeyPressed(Keyboard::Right)) {
+		if (Keyboard::isKeyPressed(Keyboard::Right)) { // use loops to load sprite bounds
 			if (pos.x <= 1100.0f)
 				pos.x = pos.x + 15;
 			
@@ -530,7 +522,7 @@ public:
 	}
 
 	bool WalkBack(){
-		if (Keyboard::isKeyPressed(Keyboard::Left)) {
+		if (Keyboard::isKeyPressed(Keyboard::Left)) { // use loops to load sprite bounds
 			if (pos.x > 0.0f)
 				pos.x = pos.x - 15;
 			
@@ -546,8 +538,7 @@ public:
 	}
 
 	bool Jump() {
-		if (Keyboard::isKeyPressed(Keyboard::Up))
-		{
+		if (Keyboard::isKeyPressed(Keyboard::Up)) { // manually set sprite bounds for jump
 			float tmpy = pos.y;
 			sprite[44].setScale(
 				targetSize.x / sprite[44].getLocalBounds().width,
@@ -591,7 +582,7 @@ public:
 	}
 
 	bool Punch() {
-		if (Keyboard::isKeyPressed(Keyboard::A)) {
+		if (Keyboard::isKeyPressed(Keyboard::A)) { // use loops to load sprite bounds
 			for (int i = 53; i < 62; i++) {
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
@@ -604,7 +595,7 @@ public:
 	}
 	
 	bool Kick() {
-		if (Keyboard::isKeyPressed(Keyboard::S)) {
+		if (Keyboard::isKeyPressed(Keyboard::S)) { // use loops to load sprite bounds
 			for (int i = 62; i < 72; i++) {
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
@@ -617,7 +608,7 @@ public:
 	}
 
 	bool Combo() {
-		if (Keyboard::isKeyPressed(Keyboard::D)) {
+		if (Keyboard::isKeyPressed(Keyboard::D)) { // use loops to load sprite bounds
 			for (int i = 72; i < 99; i++) {
 			sprite[i].setScale(
 				targetSize.x / sprite[i].getLocalBounds().width,
@@ -630,7 +621,7 @@ public:
 	}
 
 	bool Block() {
-		if (Keyboard::isKeyPressed(Keyboard::F)) {
+		if (Keyboard::isKeyPressed(Keyboard::F)) { // use loops to load sprite bounds
 			for (int i = 99; i < 106; i++) {
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
@@ -644,7 +635,7 @@ public:
 
 	bool Dead() {
 		if (health <= 0) {
-			for (int i = 106; i < 116; i++) {
+			for (int i = 106; i < 116; i++) { // use loops to load sprite bounds
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
 					targetSize.y / sprite[i].getLocalBounds().height);
@@ -659,7 +650,6 @@ public:
 		this->pos = pos;
 	}
 };
-
 class Ryo:public characters
 {
 	// this will be our player 2
@@ -759,7 +749,7 @@ public:
 
 	void Ready(bool status) {
 		if (status == true)
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i < 4; i++) { // use loops to load sprite bounds
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
 					targetSize.y / sprite[i].getLocalBounds().height);
@@ -769,7 +759,7 @@ public:
 
 	void Idle(bool status) {
 		if (status == false)
-			for (int i = 4; i < 8; i++) {
+			for (int i = 4; i < 8; i++) { // use loops to load sprite bounds
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
 					targetSize.y / sprite[i].getLocalBounds().height);
@@ -780,7 +770,7 @@ public:
 	bool Duck()
 	{
 		float tmpy = pos.y + 25;
-		if (Keyboard::isKeyPressed(Keyboard::K)) {
+		if (Keyboard::isKeyPressed(Keyboard::K)) { // use loops to load sprite bounds
 			for (int i = 8; i < 10; i++) {
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
@@ -793,7 +783,7 @@ public:
 	}
 
 	bool WalkFront() {
-		if (Keyboard::isKeyPressed(Keyboard::J)) {
+		if (Keyboard::isKeyPressed(Keyboard::J)) { // use loops to load sprite bounds
 			if (pos.x >= 0.0f )
 				pos.x = pos.x - 15;
 
@@ -809,7 +799,7 @@ public:
 	}
 
 	bool WalkBack() {
-		if (Keyboard::isKeyPressed(Keyboard::L)) {
+		if (Keyboard::isKeyPressed(Keyboard::L)) { // use loops to load sprite bounds
 			if (pos.x <= 1100.0f)
 				pos.x = pos.x + 15;
 			
@@ -826,7 +816,7 @@ public:
 	}
 
 	bool Jump() {
-		if (Keyboard::isKeyPressed(Keyboard::I)) {
+		if (Keyboard::isKeyPressed(Keyboard::I)) { // manually load sprite bounds for jump
 			float tmpy = pos.y;
 			sprite[21].setScale(
 				targetSize.x / sprite[21].getLocalBounds().width,
@@ -846,7 +836,7 @@ public:
 	}
 
 	bool Punch() {
-		if (Keyboard::isKeyPressed(Keyboard::V)) {
+		if (Keyboard::isKeyPressed(Keyboard::V)) { // use loops to load sprite bounds
 			for (int i = 25; i < 34; i++) {
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
@@ -859,7 +849,7 @@ public:
 	}
 
 	bool Kick() {
-		if (Keyboard::isKeyPressed(Keyboard::B)) {
+		if (Keyboard::isKeyPressed(Keyboard::B)) { // use loops to load sprite bounds
 			for (int i = 34; i < 42; i++) {
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
@@ -872,7 +862,7 @@ public:
 	}
 
 	bool Combo() {
-		if (Keyboard::isKeyPressed(Keyboard::N)) {
+		if (Keyboard::isKeyPressed(Keyboard::N)) { // use loops to load sprite bounds
 			for (int i = 42; i < 57; i++) {
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
@@ -886,7 +876,7 @@ public:
 
 	bool Dead() {
 		if (health <= 0) {
-			for (int i = 55; i < 59; i++) {
+			for (int i = 55; i < 59; i++) { // use loops to load sprite bounds
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
 					targetSize.y / sprite[i].getLocalBounds().height);
@@ -898,7 +888,7 @@ public:
 	}
 
 	bool Block() {
-		if (Keyboard::isKeyPressed(Keyboard::M)) {
+		if (Keyboard::isKeyPressed(Keyboard::M)) { // use loops to load sprite bounds
 			for (int i = 52; i < 55; i++) {
 				sprite[i].setScale(
 					targetSize.x / sprite[i].getLocalBounds().width,
@@ -916,45 +906,46 @@ public:
 };
 class Level1:public Levels
 {
+	// pre-defined classes in SFML
+	// composed and inherited
 	Font font;
 	Text txt[8];
+	// compose characters in Level 1
 	Iori iori;
 	Ryo ryo;
 public:
-	Level1(string adress = "Assests/level1bg.jpg",string name = "Level 1") :Levels(adress,name)
-	{
+	Level1(string adress = "Assests/level1bg.jpg",string name = "Level 1") :Levels(adress,name) {
 		font.loadFromFile("Assests/SouthernAire.ttf");
 	}
-	~Level1()
-	{
+
+	~Level1() {
 		setTxbg("NULL");
 		setName("NULL");
 	}
+
 	//Methods
-	bool back()
-	{
+	bool back() {
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
-		{
 			return true;
-		}
+		
 		return false;
 	}
 	void draw()
 	{
 		//Level name
-		txt[0].setFont(font);
-		txt[0].setString(getName());
-		txt[0].setPosition(600.0f, 250.0f);
-		txt[0].setColor(Color::Red);
+		txt[0].setFont(font);							// set font style
+		txt[0].setString(getName());					// get name
+		txt[0].setPosition(600.0f, 250.0f);				// set text position
+		txt[0].setColor(Color::Red);					// get font size
 		txt[0].setCharacterSize(72);
 		//Ready
-		txt[1].setFont(font);
-		txt[1].setString("Ready");
-		txt[1].setPosition(600.0f, 350.0f);
-		txt[1].setColor(Color::Red);
+		txt[1].setFont(font);							// set font style
+		txt[1].setString("Ready");						// get name
+		txt[1].setPosition(600.0f, 350.0f);				// set text position
+		txt[1].setColor(Color::Red);					// get font size
 		txt[1].setCharacterSize(72);
 		//Player 1
-		txt[2].setFont(font);
+		txt[2].setFont(font);							// self-explanatory
 		txt[2].setString("Player 1");
 		txt[2].setPosition(75.0f, 50.0f);
 		txt[2].setColor(Color::Black);
@@ -962,15 +953,14 @@ public:
 		//Health
 		string str = to_string(iori.getHealth());
 		txt[4].setFont(font);
-		if (iori.getHealth() <= 0)
-		{
+		if (iori.getHealth() <= 0) {
 			str = '0';
 			txt[4].setColor(Color::Red);
 		}
+
 		else
-		{
 			txt[4].setColor(Color::Green);
-		}
+		
 		txt[4].setString(str);
 		txt[4].setPosition(75.0f, 0.1f);
 		txt[4].setCharacterSize(72);
@@ -983,15 +973,15 @@ public:
 		//Helth
 		string str1 = to_string(ryo.getHealth());
 		txt[5].setFont(font);
-		if (ryo.getHealth()<=0)
-		{
+
+		if (ryo.getHealth()<=0) {
 			str1 = '0';
 			txt[5].setColor(Color::Red);
 		}
+
 		else
-		{
 			txt[5].setColor(Color::Green);
-		}
+		
 		txt[5].setString(str1);
 		txt[5].setPosition(1150.0f, 0.1f);
 		txt[5].setCharacterSize(72);
@@ -1009,310 +999,273 @@ public:
 		txt[7].setCharacterSize(72);
 	}
 	//getter
-	Text gettxt(int i)
-	{
+	Text gettxt(int i) {
 		return txt[i];
 	}
+
 	//ioriwrappers
-	void IW_setHealth(int health)
-	{
+	void IW_setHealth(int health) {
 		iori.setHealth(health);
 	}
-	int IW_getHealth()
-	{
+
+	int IW_getHealth() {
 		return iori.getHealth();
 	}
-	void IW_Ready(bool status)
-	{
+
+	void IW_Ready(bool status) {
 		iori.Ready(status);
 	}
-	void IW_Idle(bool key)
-	{
+
+	void IW_Idle(bool key) {
 		iori.Idle(key);
 	}
-	bool IW_Duck()
-	{
+
+	bool IW_Duck() {
 		return iori.Duck();
 	}
-	bool IW_WalkFront()
-	{
+
+	bool IW_WalkFront() {
 		return iori.WalkFront();
 	}
-	bool IW_WalkBack()
-	{
+
+	bool IW_WalkBack() {
 		return iori.WalkBack();
 	}
-	bool IW_Jump()
-	{
+
+	bool IW_Jump() {
 		return iori.Jump();
 	}
-	bool IW_Punch()
-	{
+
+	bool IW_Punch() {
 		return iori.Punch();
 	}
-	bool IW_Kick()
-	{
+	
+	bool IW_Kick() {
 		return iori.Kick();
 	}
-	bool IW_Combo()
-	{
+
+	bool IW_Combo() {
 		return iori.Combo();
 	}
-	bool IW_Block()
-	{
+
+	bool IW_Block() {
 		return iori.Block();
 	}
-	bool IW_Dead()
-	{
+
+	bool IW_Dead() {
 		return iori.Dead();
 	}
-	Sprite IW_getSprite(int i)
-	{
+
+	Sprite IW_getSprite(int i) {
 		return iori.getSprite(i);
 	}
-	void IW_setPos(Vector2f pos)
-	{
+
+	void IW_setPos(Vector2f pos) {
 		iori.setPos(pos);
 	}
+
 	//Ryo Wrappers
-	void RW_setHealth(int health)
-	{
+	void RW_setHealth(int health) {
 		ryo.setHealth(health);
 	}
-	int RW_getHealth()
-	{
+
+	int RW_getHealth() {
 		return ryo.getHealth();
 	}
-	void RW_Ready(bool status)
-	{
+
+	void RW_Ready(bool status) {
 		ryo.Ready(status);
 	}
-	void RW_Idle(bool key)
-	{
+
+	void RW_Idle(bool key) {
 		ryo.Idle(key);
 	}
-	bool RW_Duck()
-	{
+
+	bool RW_Duck() {
 		return ryo.Duck();
 	}
-	bool RW_WalkFront()
-	{
+
+	bool RW_WalkFront() {
 		return ryo.WalkFront();
 	}
-	bool RW_WalkBack()
-	{
+
+	bool RW_WalkBack() {
 		return ryo.WalkBack();
 	}
-	bool RW_Jump()
-	{
+	
+	bool RW_Jump() {
 		return ryo.Jump();
 	}
-	bool RW_Punch()
-	{
+
+	bool RW_Punch() {
 		return ryo.Punch();
 	}
-	bool RW_Kick()
-	{
+
+	bool RW_Kick() {
 		return ryo.Kick();
 	}
-	bool RW_Combo()
-	{
+
+	bool RW_Combo() {
 		return ryo.Combo();
 	}
-	bool RW_Block()
-	{
+
+	bool RW_Block() {
 		return ryo.Block();
 	}
-	bool RW_Dead()
-	{
+
+	bool RW_Dead() {
 		return ryo.Dead();
 	}
-	Sprite RW_getSprite(int i)
-	{
+
+	Sprite RW_getSprite(int i) {
 		return ryo.getSprite(i);
 	}
-	void RW_setPos(Vector2f pos)
-	{
+
+	void RW_setPos(Vector2f pos) {
 		ryo.setPos(pos);
 	}
+
 	//Game System
-	void Game(int ioriPcontroller, int iorikcontroller, int ioriCcontroller,int ryoPcontroller, int ryokcontroller, int ryoCcontroller)
-	{
-		//for iori
-		if (ryoPcontroller == 33 )
-		{
+	// CONTROLLERS for
+	// IORI (Kick, Punch and Combo) and
+	// RYO (Kick, Punch and Combo)
+	void Game(int ioriPcontroller, int iorikcontroller, int ioriCcontroller,int ryoPcontroller, int ryokcontroller, int ryoCcontroller) {
+		if (ryoPcontroller == 33 ) {
 				IntRect rect(ryo.getSprite(33).getGlobalBounds());
 				IntRect rect1(iori.getSprite(15).getGlobalBounds());
-				if (rect.intersects(rect1))
-				{
+				if (rect.intersects(rect1))	// decrement 5 from health if punch is activated
 					iori.setHealth(iori.getHealth() - 5);
-				}
 		}
-		else if (ryokcontroller == 41)
-		{
+
+		else if (ryokcontroller == 41) {
 			IntRect rect(ryo.getSprite(41).getGlobalBounds());
 			IntRect rect1(iori.getSprite(15).getGlobalBounds());
-			if (rect.intersects(rect1))
-			{
+			if (rect.intersects(rect1)) // decrement 5 from health if kick is activated
 				iori.setHealth(iori.getHealth() - 5);
-			}
 		}
-		else 
-		{
-			if ((ryoCcontroller==51))
-			{
+
+		else {
+			if (ryoCcontroller == 51) {
 				IntRect rect(ryo.getSprite(51).getGlobalBounds());
 				IntRect rect1(iori.getSprite(15).getGlobalBounds());
-				if (rect.intersects(rect1))
-				{
+				if (rect.intersects(rect1)) // decrement 20 from health if Combo is activated
 					iori.setHealth(iori.getHealth() - 20);
-				}
 			}
 		}
-		//for ryo
-		if (ioriPcontroller == 61)
-		{
+
+		if (ioriPcontroller == 61) {
 			IntRect rect(iori.getSprite(61).getGlobalBounds());
 			IntRect rect1(ryo.getSprite(7).getGlobalBounds());
-			if (rect.intersects(rect1))
-			{
+			if (rect.intersects(rect1))// decrement 5 from health if punch is activated
 				ryo.setHealth(ryo.getHealth() - 5);
-			}
 		}
-		else if (iorikcontroller == 71)
-		{
+
+		else if (iorikcontroller == 71) {
 			IntRect rect(iori.getSprite(71).getGlobalBounds());
 			IntRect rect1(ryo.getSprite(7).getGlobalBounds());
-			if (rect.intersects(rect1))
-			{
+			if (rect.intersects(rect1))// decrement 5 from health if kick is activated
 				ryo.setHealth(ryo.getHealth() - 5);
-			}
 		}
-		else
-		{
-			if ((ioriCcontroller == 98))
-			{
+
+		else {
+			if ((ioriCcontroller == 98)) {
 				IntRect rect(iori.getSprite(98).getGlobalBounds());
 				IntRect rect1(ryo.getSprite(7).getGlobalBounds());
-				if (rect.intersects(rect1))
-				{
+				if (rect.intersects(rect1))// decrement 20 from health if combo is activated
 					ryo.setHealth(ryo.getHealth() - 20);
-				}
 			}
 		}
 	
 	}
 };
 
-int main()
-{
-	RenderWindow window(VideoMode(800, 640), "Balistics Fighter", Style::Fullscreen);
-	window.setFramerateLimit(60);
-	mainmenu menu;
-	Instruction instructions;
-	Level1 lvl1;
-	bool iskeyPressed = false, iskeyPressed2 = false;
-	int flag = 0;
-	bool is_Exit = false;
-	bool is_chnglevel = false;
-	int IW_comboBreaker = 0, RW_comboBreaker = 0;
-	int nxtlvl = 0;
-	bool f = false;
-	int animcontrolller[11] = { 0, 7, 17,25,35,44,53,62,72,99,106};
-	int animcontrolller2[11] = { 0, 4, 9, 10,16,21,25,34,42,52,55};
-	Clock clock;
-	//game music
-	Music music[8];
-	music[0].openFromFile("Assests/sound/Track_01.ogg");
-	music[1].openFromFile("Assests/sound/Track_02.ogg");
-	music[2].openFromFile("Assests/sound/Track_03.ogg");
-	music[3].openFromFile("Assests/sound/Crowd.ogg");
-	music[4].openFromFile("Assests/sound/End.ogg");
-	music[5].openFromFile("Assests/sound/Kick.ogg");
-	music[6].openFromFile("Assests/sound/Punch.ogg");
-	music[7].openFromFile("Assests/sound/Start.ogg");
-	music[3].play();
-	music[3].setVolume(0);
-	while (window.isOpen())
-	{
-		//music playing
-		if (music[2].getStatus() == SoundSource::Stopped)
-		{
-			music[0].play();
-			music[0].setVolume(40);
+int main() {
+	RenderWindow window(VideoMode(800, 640), "Balistics Fighter", Style::Fullscreen);	// render a window with 800x640 and set it to full screen
+	window.setFramerateLimit(60);														// set frames per second i.e 60
+	mainmenu menu;																		// create menu object
+	Instruction instructions;															// create instruction object
+	Level1 lvl1;																		// create level 1 object
+	bool iskeyPressed = false, iskeyPressed2 = false, isExit = false, changeLevel = false, f = false;		// create bool variables
+	int flag = 0, nxtlvl = 0;															// create int variables
+	int animcontrolller[11] = { 0, 7, 17, 25, 35, 44, 53, 62, 72, 99, 106};				// create array for sprites (P1)
+	int animcontrolller2[11] = { 0, 4, 9, 10, 16, 21, 25, 34, 42, 52, 55};				// create array for sprites (P2)
+	Clock clock;																		// create Clock object for sprite speed
+	Music music[8];																		// create Music object for sound/audio effects
+	music[0].openFromFile("Assests/sound/Track_01.ogg");								// set sounds in subscripts
+	music[1].openFromFile("Assests/sound/Track_02.ogg");								// set sounds in subscripts
+	music[2].openFromFile("Assests/sound/Track_03.ogg");								// set sounds in subscripts
+	music[3].openFromFile("Assests/sound/Crowd.ogg");									// set sounds in subscripts
+	music[4].openFromFile("Assests/sound/End.ogg");										// set sounds in subscripts
+	music[5].openFromFile("Assests/sound/Kick.ogg");									// set sounds in subscripts
+	music[6].openFromFile("Assests/sound/Punch.ogg");									// set sounds in subscripts
+	music[7].openFromFile("Assests/sound/Start.ogg");									// set sounds in subscripts
+	
+	while (window.isOpen()) {
+		if (music[2].getStatus() == SoundSource::Stopped) {								// check if music is stopped
+			music[0].play();															// if so, play next
+			music[0].setVolume(40);														// and set volume to 40
 		}
-		if (music[0].getStatus() == SoundSource::Stopped)
-		{
+
+		if (music[0].getStatus() == SoundSource::Stopped) {
 			music[1].play();
 			music[1].setVolume(40);
 		}
-		if (music[1].getStatus() == SoundSource::Stopped)
-		{
+
+		if (music[1].getStatus() == SoundSource::Stopped) {
 			music[2].play();
 			music[2].setVolume(40);
 		}
+
 		// check all the window's events that were triggered since the last iteration of the loop
 		Event event;
-		while (window.pollEvent(event))
-		{
-			if (flag == 0)//if menu is to be displayed
-			{
+		while (window.pollEvent(event)) {
+			if (flag == 0) {									// if menu is to be displayed
 				//check if exit is called
-				is_Exit = menu.exit();
-				if (is_Exit == true)
-				{
-					window.close();
-				}
-				is_chnglevel = menu.instructions();
-				if (is_chnglevel == true)
-				{
+				isExit = menu.exit();
+				if (isExit)
+					window.close();								// if exit function returns true, close window
+				
+				changeLevel = menu.instructions();
+				if (changeLevel)		
 					flag = 1;
-				}
-				is_chnglevel = menu.play();
-				if (is_chnglevel == true)
-				{
+				
+				changeLevel = menu.play();										
+				if (changeLevel == true) {						// if play is clicked, simulate level
 					flag = 2;
-					clock.restart();
-					animcontrolller[0] = 0;
-					animcontrolller2[0] = 0;
-					lvl1.IW_setHealth(100);
+					clock.restart();							// restart clock after a loop is completed
+					animcontrolller[0] = 0;						// for P1
+					animcontrolller2[0] = 0;					// for P2
+					lvl1.IW_setHealth(100);						// set healths
 					lvl1.RW_setHealth(100);
-					animcontrolller2[10] = 55;
+					animcontrolller2[10] = 55;					// set arrays for sprites
 					animcontrolller[10] = 106;
-					Vector2f v(100.0f, 365.0f);
-					lvl1.IW_setPos(v);
+					Vector2f v(100.0f, 365.0f);					// set positions of vectors on where they want to be displayed
+					lvl1.IW_setPos(v);							
 					v.x = 1100.0f;
 					v.y = 365.0f;
-					lvl1.RW_setPos(v);
+					lvl1.RW_setPos(v);							// now set for P2
 				}
 			}
-			if (flag == 1)
-			{
-				is_chnglevel = instructions.back();
-				if (is_chnglevel == true)
-				{
+
+			if (flag == 1) {
+				changeLevel = instructions.back();				// if user clicks back, then return to main menu
+				if (changeLevel == true)
 					flag = 0;
-				}
 			}
-			if (flag == 2)
-			{
-				//user pressed play Game
-				is_chnglevel = lvl1.back();
-				if (is_chnglevel == true)
-				{
+
+			if (flag == 2) {									//user pressed play Game
+				changeLevel = lvl1.back();
+				if (changeLevel == true)
 					flag = 0;
-				}
-			}
-			// "close requested" event: we close the window
-			if (event.type == Event::Closed)
-			{
+			}			
+
+			if (event.type == Event::Closed)					// "close requested" event: we close the window
 				window.close();
-			}
 		}
-		window.clear();
-		if (flag == 0)//if menu is to be displayed
-		{
-			menu.setPosition();
+
+		window.clear();											// clear window now
+		if (flag == 0) {										//if menu is to be displayed
+			menu.setPosition();									// display whole menu
 			menu.draw();
 			window.draw(menu.getspbg());
 			window.draw(menu.gettitle());
@@ -1320,415 +1273,329 @@ int main()
 			window.draw(menu.getInstruction());
 			window.draw(menu.getExit());
 		}
-		if (flag == 1)//if instruction level is to be displayed
-		{
+
+		if (flag == 1) {										// if instruction level is to be displayed
 			instructions.draw();
-			instructions.setPosition();
+			instructions.setPosition();							// display instructions
 			window.draw(instructions.getspbg());
 			for (int i = 0; i < 7; i++)
-			{
 				window.draw(instructions.getTx(i));
-			}
 		}
-		if (flag == 2)//if level 1 is to be displayed
-		{
+		if (flag == 2) {										// if level 1 is to be displayed
 			lvl1.setPosition();
-			window.draw(lvl1.getspbg());
+			window.draw(lvl1.getspbg());						// level 1 START
 			lvl1.draw();
 			Time t1 = clock.getElapsedTime();
-			if (t1.asSeconds() < 2.0f)
-			{
-				if (f == false)
-				{
+			if (t1.asSeconds() < 2.0f) {
+				if (!f) {										// add additional sounds
 					music[7].play();
 					music[7].setVolume(100);
 					music[3].setVolume(5);
 				}
+
 				for (int i = 0; i < 2; i++)
-				{
-					window.draw(lvl1.gettxt(i));
+					window.draw(lvl1.gettxt(i));				// show texts i.e Level 1, Ready
+				
+				lvl1.IW_Ready(true);							//Ready Animation
+				if (animcontrolller[0] >= 0 && animcontrolller[0] <= 6) {	// load sprites in anim controller
+					window.draw(lvl1.IW_getSprite(animcontrolller[0]));		// now draw them
+					animcontrolller[0]++;									// now increment it, same for all below conditions
 				}
-				//Ready Animation
-				lvl1.IW_Ready(true);
-				if (animcontrolller[0] >= 0 && animcontrolller[0] <= 6)
-				{
-					window.draw(lvl1.IW_getSprite(animcontrolller[0]));
-					animcontrolller[0]++;
-				}
+
 				else
-				{
 					window.draw(lvl1.IW_getSprite(animcontrolller[0] - 1));
-				}
-				//Ryo Ready Animation
+				
+																//Ryo Ready Animation
 				lvl1.RW_Ready(true);
-				if (animcontrolller2[0] >= 0 && animcontrolller2[0] <= 3)
-				{
+				if (animcontrolller2[0] >= 0 && animcontrolller2[0] <= 3) {
 					window.draw(lvl1.RW_getSprite(animcontrolller2[0]));
 					animcontrolller2[0]++;
 				}
+
 				else
-				{
 					window.draw(lvl1.RW_getSprite(animcontrolller2[0] - 1));
-				}
+
 				f = true;
 			}
+
 			for (int i = 2; i < 6; i++)
-			{
 				window.draw(lvl1.gettxt(i));
-			}
-			if (t1.asSeconds() > 2.0f)
-			{
+			
+			if (t1.asSeconds() > 2.0f) {
 				music[3].setVolume(70);
-				if (lvl1.RW_getHealth() > 0 && lvl1.IW_getHealth() > 0)
-				{
+				if (lvl1.RW_getHealth() > 0 && lvl1.IW_getHealth() > 0) {
 					lvl1.Game(animcontrolller[6], animcontrolller[7], animcontrolller[8], animcontrolller2[6], animcontrolller2[7], animcontrolller2[8]);
 					//Idle Animation
-					if (iskeyPressed == false)
-					{
+					if (iskeyPressed == false) {
 						lvl1.IW_Idle(iskeyPressed);
-						if (animcontrolller[1] >= 7 && animcontrolller[1] <= 15)
-						{
+						if (animcontrolller[1] >= 7 && animcontrolller[1] <= 15) {
 							window.draw(lvl1.IW_getSprite(animcontrolller[1]));
 							animcontrolller[1]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.IW_getSprite(animcontrolller[1] - 1));
 							animcontrolller[1] = 7;
 						}
 					}
 					//Duck Animation
-					if (lvl1.IW_Duck() == true)
-					{
+					if (lvl1.IW_Duck() == true) {
 						iskeyPressed = true;
-						if (animcontrolller[2] >= 16 && animcontrolller[2] < 24)
-						{
+						if (animcontrolller[2] >= 16 && animcontrolller[2] < 24) {
 							window.draw(lvl1.IW_getSprite(animcontrolller[2]));
 							animcontrolller[2]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.IW_getSprite(animcontrolller[2] - 1));
 							animcontrolller[2] = 17;
 						}
 					}
 					//Walk Front Animation
-					else if (lvl1.IW_WalkFront() == true)
-					{
+					else if (lvl1.IW_WalkFront() == true) {
 						iskeyPressed = true;
-						if (animcontrolller[3] >= 25 && animcontrolller[3] < 34)
-						{
+						if (animcontrolller[3] >= 25 && animcontrolller[3] < 34) {
 							window.draw(lvl1.IW_getSprite(animcontrolller[3]));
 							animcontrolller[3]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.IW_getSprite(animcontrolller[3] - 1));
 							animcontrolller[3] = 25;
 						}
 					}
 					//Walk Back Animation
-					else if (lvl1.IW_WalkBack() == true)
-					{
+					else if (lvl1.IW_WalkBack() == true) {
 						iskeyPressed = true;
-						if (animcontrolller[4] >= 35 && animcontrolller[4] < 43)
-						{
+						if (animcontrolller[4] >= 35 && animcontrolller[4] < 43) {
 							window.draw(lvl1.IW_getSprite(animcontrolller[4]));
 							animcontrolller[4]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.IW_getSprite(animcontrolller[4] - 1));
 							animcontrolller[4] = 35;
 						}
 					}
 					//Jump Animation
-					else if (lvl1.IW_Jump() == true)
-					{
+					else if (lvl1.IW_Jump() == true) {
 						iskeyPressed = true;
-						if (animcontrolller[5] >= 43 && animcontrolller[5] <= 49)
-						{
+						if (animcontrolller[5] >= 43 && animcontrolller[5] <= 49) {
 							window.draw(lvl1.IW_getSprite(animcontrolller[5]));
 							animcontrolller[5]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.IW_getSprite(animcontrolller[5] - 1));
 							animcontrolller[5] = 43;
 						}
 					}
 					//Punch Animation
-					else if (lvl1.IW_Punch() == true)
-					{
+					else if (lvl1.IW_Punch() == true) {
 						music[6].play();
 						music[6].setVolume(100);
 						iskeyPressed = true;
-						if (animcontrolller[6] >= 53 && animcontrolller[6] <= 61)
-						{
+						if (animcontrolller[6] >= 53 && animcontrolller[6] <= 61) {
 							window.draw(lvl1.IW_getSprite(animcontrolller[6]));
 							animcontrolller[6]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.IW_getSprite(animcontrolller[6] - 1));
 							animcontrolller[6] = 53;
 						}
 					}
 					//Kick Animation
-					else if (lvl1.IW_Kick() == true)
-					{
+					else if (lvl1.IW_Kick() == true) {
 						music[5].play();
 						music[5].setVolume(100);
 						iskeyPressed = true;
-						if (animcontrolller[7] >= 62 && animcontrolller[7] <= 71)
-						{
+						if (animcontrolller[7] >= 62 && animcontrolller[7] <= 71) {
 							window.draw(lvl1.IW_getSprite(animcontrolller[7]));
 							animcontrolller[7]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.IW_getSprite(animcontrolller[7] - 1));
 							animcontrolller[7] = 62;
 						}
 					}
 					//combo Animation
-					else if (lvl1.IW_Combo() == true)
-					{
+					else if (lvl1.IW_Combo() == true) {
 						iskeyPressed = true;
-						if (IW_comboBreaker >= 2) 
+						if (animcontrolller[8] >= 72 && animcontrolller[8] <= 98)
 						{
-							if (animcontrolller[8] >= 72 && animcontrolller[8] <= 98)
-							{
-								window.draw(lvl1.IW_getSprite(animcontrolller[8]));
-								animcontrolller[8]++;
-							}
-							else
-							{
-								window.draw(lvl1.IW_getSprite(animcontrolller[8] - 1));
-								animcontrolller[8] = 72;
-							}
-							IW_comboBreaker++;
-						}
-					}
-					//Block Animation
-					else if (lvl1.IW_Block() == true)
-					{
-						iskeyPressed = true;
-						if (animcontrolller[9] >= 99 && animcontrolller[9] < 105)
-						{
-							window.draw(lvl1.IW_getSprite(animcontrolller[9]));
-							animcontrolller[9]++;
+							window.draw(lvl1.IW_getSprite(animcontrolller[8]));
+							animcontrolller[8]++;
 						}
 						else
 						{
+							window.draw(lvl1.IW_getSprite(animcontrolller[8] - 1));
+							animcontrolller[8] = 72;
+						}
+					}
+					//Block Animation
+					else if (lvl1.IW_Block() == true) {
+						iskeyPressed = true;
+						if (animcontrolller[9] >= 99 && animcontrolller[9] < 105) {
+							window.draw(lvl1.IW_getSprite(animcontrolller[9]));
+							animcontrolller[9]++;
+						}
+						else {
 							window.draw(lvl1.IW_getSprite(animcontrolller[9] - 1));
 							animcontrolller[9] = 99;
 						}
 					}
 					//Dead Animation
-					else if (lvl1.IW_Dead() == true)
-					{
+					else if (lvl1.IW_Dead() == true) {
 						iskeyPressed = true;
-						if (animcontrolller[10] >= 106 && animcontrolller[10] < 115)
-						{
+						if (animcontrolller[10] >= 106 && animcontrolller[10] < 115) {
 							window.draw(lvl1.IW_getSprite(animcontrolller[10]));
 							animcontrolller[10]++;
 							Sleep(100);
 						}
 						else
-						{
 							window.draw(lvl1.IW_getSprite(animcontrolller[10]));
-						}
 					}
 					else
-					{
 						iskeyPressed = false;
-					}
 					//Ryo
 					//Idle Animation
-					if (iskeyPressed2 == false)
-					{
+					if (iskeyPressed2 == false) {
 						lvl1.RW_Idle(iskeyPressed2);
-						if (animcontrolller2[1] >= 4 && animcontrolller2[1] <= 7)
-						{
+						if (animcontrolller2[1] >= 4 && animcontrolller2[1] <= 7) {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[1]));
 							animcontrolller2[1]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[1] - 1));
 							animcontrolller2[1] = 4;
 						}
 					}
 					//Duck Animation
-					if (lvl1.RW_Duck() == true)
-					{
+					if (lvl1.RW_Duck() == true) {
 						iskeyPressed2 = true;
-						if (animcontrolller2[2] >= 9 && animcontrolller2[2] <10)
-						{
+						if (animcontrolller2[2] >= 9 && animcontrolller2[2] <10) {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[2]));
 							animcontrolller2[2]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[2] - 1));
 							animcontrolller2[2] = 9;
 						}
 					}
 					//Walk Front Animation
-					else if (lvl1.RW_WalkFront() == true)
-					{
+					else if (lvl1.RW_WalkFront() == true) {
 						iskeyPressed2 = true;
-						if (animcontrolller2[3] >= 10 && animcontrolller2[3] < 16)
-						{
+						if (animcontrolller2[3] >= 10 && animcontrolller2[3] < 16) {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[3]));
 							animcontrolller2[3]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[3] - 1));
 							animcontrolller2[3] = 10;
 						}
 					}
 					//Walk Back Animation
-					else if (lvl1.RW_WalkBack() == true)
-					{
+					else if (lvl1.RW_WalkBack() == true) {
 						iskeyPressed2 = true;
-						if (animcontrolller2[4] >= 16 && animcontrolller2[4] <= 20)
-						{
+						if (animcontrolller2[4] >= 16 && animcontrolller2[4] <= 20) {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[4]));
 							animcontrolller2[4]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[4] - 1));
 							animcontrolller2[4] = 16;
 						}
 					}
 					//Jump Animation
-					else if (lvl1.RW_Jump() == true)
-					{
+					else if (lvl1.RW_Jump() == true) {
 						iskeyPressed2 = true;
-						if (animcontrolller2[5] >= 21 && animcontrolller2[5] <= 23)
-						{
+						if (animcontrolller2[5] >= 21 && animcontrolller2[5] <= 23) {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[5]));
 							animcontrolller2[5]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[5] - 1));
 							animcontrolller2[5] = 21;
 						}
 					}
 					//Punch Animation
-					else if (lvl1.RW_Punch() == true)
-					{
+					else if (lvl1.RW_Punch() == true) {
 						music[6].play();
 						music[6].setVolume(100);
 						iskeyPressed2 = true;
-						if (animcontrolller2[6] >= 25 && animcontrolller2[6] <= 33)
-						{
+						if (animcontrolller2[6] >= 25 && animcontrolller2[6] <= 33) {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[6]));
 							animcontrolller2[6]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[6] - 1));
 							animcontrolller2[6] = 25;
 						}
 						
 					}
 					//Kick Animation
-					else if (lvl1.RW_Kick() == true)
-					{
+					else if (lvl1.RW_Kick() == true) {
 						music[5].play();
 						music[5].setVolume(100);
 						iskeyPressed2 = true;
-						if (animcontrolller2[7] >= 34 && animcontrolller2[7] <= 41)
-						{
+						if (animcontrolller2[7] >= 34 && animcontrolller2[7] <= 41) {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[7]));
 							animcontrolller2[7]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[7] - 1));
 							animcontrolller2[7] = 34;
 						}
 						
 					}
 					//Combo Animation
-					else if (lvl1.RW_Combo() == true)
-					{
+					else if (lvl1.RW_Combo() == true) {
 						iskeyPressed2 = true;
-						if (RW_comboBreaker <= 2) 
-						{
-							if (animcontrolller2[8] >= 42 && animcontrolller2[8] <= 51)
-							{
-								window.draw(lvl1.RW_getSprite(animcontrolller2[8]));
-								animcontrolller2[8]++;
-							}
-							else
-							{
-								window.draw(lvl1.RW_getSprite(animcontrolller2[8] - 1));
-								animcontrolller2[8] = 42;
-							}
-							RW_comboBreaker++;
+						if (animcontrolller2[8] >= 42 && animcontrolller2[8] <= 51) {
+							window.draw(lvl1.RW_getSprite(animcontrolller2[8]));
+							animcontrolller2[8]++;
+						}
+						else {
+							window.draw(lvl1.RW_getSprite(animcontrolller2[8] - 1));
+							animcontrolller2[8] = 42;
 						}
 					}
 					//Block Animation
-					else if (lvl1.RW_Block() == true)
-					{
+					else if (lvl1.RW_Block() == true) {
 						iskeyPressed2 = true;
-						if (animcontrolller2[9] >= 52 && animcontrolller2[9] < 55)
-						{
+						if (animcontrolller2[9] >= 52 && animcontrolller2[9] < 55) {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[9]));
 							animcontrolller2[9]++;
 						}
-						else
-						{
+						else {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[9] - 1));
 							animcontrolller2[9] = 52;
 						}
 					}
 					//Dead Animation
-					else if (lvl1.RW_Dead() == true)
-					{
+					else if (lvl1.RW_Dead() == true) {
 						iskeyPressed2 = true;
-						if (animcontrolller2[10] >= 55 && animcontrolller2[10] < 58)
-						{
+						if (animcontrolller2[10] >= 55 && animcontrolller2[10] < 58) {
 							window.draw(lvl1.RW_getSprite(animcontrolller2[10]));
 							animcontrolller2[10]++;
 							Sleep(70);
 						}
 						else
-						{
 							window.draw(lvl1.RW_getSprite(animcontrolller2[10]));
-						}
 					}
-					else
-					{
+					else {
 						iskeyPressed2 = false;
 						f = false;
 					}
 				}
-				else
-				{
+				else {
 					lvl1.draw();
-					if (f == false)
-					{
+					if (!f) {
 						music[3].setVolume(20);
 						music[4].play();
 						music[4].setVolume(100);
 					}
-					if (lvl1.IW_getHealth() <= 0)
-					{
-
+					if (lvl1.IW_getHealth() <= 0) {
 						window.draw(lvl1.gettxt(7));
 						window.draw(lvl1.RW_getSprite(6));
 						window.draw(lvl1.IW_getSprite(115));
 					}
-					else
-					{
+					else {
 						window.draw(lvl1.gettxt(6));
 						window.draw(lvl1.IW_getSprite(3));
 						window.draw(lvl1.RW_getSprite(58));
@@ -1737,9 +1604,8 @@ int main()
 				}
 			}
 		}
-
-		window.display();
-		Sleep(50);
+		window.display();	// display it on screen
+		Sleep(50);			// with some delay
 	}
 	return 0;
 }
