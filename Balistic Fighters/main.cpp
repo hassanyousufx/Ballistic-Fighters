@@ -1,3 +1,17 @@
+/*
+* Ballistic Fighters - https://github.com/hassanyf/Ballistic-Fighters
+* 
+* Version - 1.0.0
+* Licensed under HSY
+*
+* A simple street fighter type game created in C++. This is an Object Oriented Programming (OOP) Project 
+* created by my team. This is an open-source and can be downloaded from GitHub
+* 
+* This project was created in Microsoft Visual Studio 2013 with SFML (2.3.2) 32-bit.
+*
+* Copyright (c) 2016 - Muhammad Haseeb, Omer Bashir, Nabeel Hussain, Hassan Yousuf
+*/
+
 // standard SFML libs
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -1178,7 +1192,6 @@ public:
 	
 	}
 };
-
 int main() {
 	RenderWindow window(VideoMode(800, 640), "Balistics Fighter", Style::Fullscreen);	// render a window with 800x640 and set it to full screen
 	window.setFramerateLimit(60);														// set frames per second i.e 60
