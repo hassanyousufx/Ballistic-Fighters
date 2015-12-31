@@ -2,9 +2,9 @@
 * Ballistic Fighters - https://github.com/hassanyf/Ballistic-Fighters
 * 
 * Version - 1.0.0
-* Licensed under HSY
+* Licensed under HSY & HSB
 *
-* A simple street fighter type game created in C++. This is an Object Oriented Programming (OOP) Project 
+* A simple street fighter+King of fighters type game created in C++. This is an Object Oriented Programming (OOP) Project 
 * created by my team. This is an open-source and can be downloaded from GitHub
 * 
 * This project was created in Microsoft Visual Studio 2013 with SFML (2.3.2) 32-bit.
@@ -21,7 +21,7 @@
 #include <iostream>
 #include <string>
 #include <Windows.h>
-#include <ctime>
+
 
 using namespace std;
 using namespace sf;
@@ -259,23 +259,23 @@ public:
 		tx[0].setPosition(300.0f, 50.0f);					// set position
 		tx[0].setCharacterSize(172);						
 		//setting
-		tx[1].setString("Arrow Keys to Move Character");
-		tx[1].setPosition(300.0f, 250.0f);					// set position
+		tx[1].setString("Player 1: Arrow Keys to Move Character");
+		tx[1].setPosition(250.0f, 250.0f);					// set position
 		//setting
-		tx[2].setString("Use A to Punch");
-		tx[2].setPosition(300.0f, 300.f);					// set position
+		tx[2].setString("Player 1: Use A to Punch,S To Kick,D To Combo,F To Block");
+		tx[2].setPosition(250.0f, 300.f);					// set position
 		//setting
-		tx[3].setString("Use S To Kick");
-		tx[3].setPosition(300.0f, 350.0f);					// set position
+		tx[3].setString("Plyer 2: Use Use V to Punch,B To Kick,N To Combo,M To Block ");
+		tx[3].setPosition(250.0f, 350.0f);					// set position
 		//setting
-		tx[4].setString("Use D To Combo : Note it will reduce your health 20% too");
-		tx[4].setPosition(300.0f, 400.0f);					// set position
+		tx[4].setString("Player 2:Use J To move Forward,L to move Backward");
+		tx[4].setPosition(250.0f, 400.0f);					// set position
 		//setting
-		tx[5].setString("Use F To Block");
-		tx[5].setPosition(300.0f, 450.0f);					// set position
+		tx[5].setString("Plater 2: Use I to Jump , K to Sit");
+		tx[5].setPosition(250.0f, 450.0f);					// set position
 		//setting
 		tx[6].setString("Back to Main Menu");
-		tx[6].setPosition(300.0f, 550.0f);					// set position
+		tx[6].setPosition(250.0f, 550.0f);					// set position
 
 		sf::IntRect rect2(tx[6].getPosition().x + 5, tx[6].getPosition().y + 5, tx[6].getGlobalBounds().width + 5, tx[6].getGlobalBounds().height + 5);
 		// If we hover on back, change color
@@ -1212,7 +1212,9 @@ int main() {
 	music[5].openFromFile("Assests/sound/Kick.ogg");									// set sounds in subscripts
 	music[6].openFromFile("Assests/sound/Punch.ogg");									// set sounds in subscripts
 	music[7].openFromFile("Assests/sound/Start.ogg");									// set sounds in subscripts
-	
+	music[3].play();
+	music[3].setLoop(true);
+	music[3].setVolume(0);
 	while (window.isOpen()) {
 		if (music[2].getStatus() == SoundSource::Stopped) {								// check if music is stopped
 			music[0].play();															// if so, play next
@@ -1264,6 +1266,7 @@ int main() {
 				changeLevel = instructions.back();				// if user clicks back, then return to main menu
 				if (changeLevel == true)
 					flag = 0;
+				music[3].setVolume(0);
 			}
 
 			if (flag == 2) {									//user pressed play Game
@@ -1335,7 +1338,7 @@ int main() {
 				window.draw(lvl1.gettxt(i));
 			
 			if (t1.asSeconds() > 2.0f) {
-				music[3].setVolume(70);
+				music[3].setVolume(100);
 				if (lvl1.RW_getHealth() > 0 && lvl1.IW_getHealth() > 0) {
 					lvl1.Game(animcontrolller[6], animcontrolller[7], animcontrolller[8], animcontrolller2[6], animcontrolller2[7], animcontrolller2[8]);
 					//Idle Animation
@@ -1597,21 +1600,19 @@ int main() {
 					}
 				}
 				else {
-					lvl1.draw();
+					lvl1.draw();											//draw lvl scene
 					if (!f) {
-						music[3].setVolume(20);
-						music[4].play();
+						music[3].setVolume(20);								//Reduce Crowd Sounds
+						music[4].play();									//Play Ending Music
 						music[4].setVolume(100);
 					}
-					if (lvl1.IW_getHealth() <= 0) {
-						window.draw(lvl1.gettxt(7));
+					if (lvl1.IW_getHealth() <= 0) {							//Check for iori health
+						window.draw(lvl1.gettxt(7));						//Draw Player 2 Wins
 						window.draw(lvl1.RW_getSprite(6));
-						window.draw(lvl1.IW_getSprite(115));
 					}
 					else {
-						window.draw(lvl1.gettxt(6));
+						window.draw(lvl1.gettxt(6));						//Draw Player 1 Wins
 						window.draw(lvl1.IW_getSprite(3));
-						window.draw(lvl1.RW_getSprite(58));
 					}
 					f = true;
 				}

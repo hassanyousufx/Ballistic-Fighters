@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Balistic Fighters", "Balistic Fighters\Balistic Fighters.vcxproj", "{0408F356-E6DE-4081-B705-0EEE79F7302B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "newprojekct", "newprojekct\newprojekct.vcxproj", "{734A3226-7AB0-4C30-A1C9-9F48488ED5EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{0408F356-E6DE-4081-B705-0EEE79F7302B}.Debug|Win32.Build.0 = Debug|Win32
 		{0408F356-E6DE-4081-B705-0EEE79F7302B}.Release|Win32.ActiveCfg = Release|Win32
 		{0408F356-E6DE-4081-B705-0EEE79F7302B}.Release|Win32.Build.0 = Release|Win32
+		{734A3226-7AB0-4C30-A1C9-9F48488ED5EC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{734A3226-7AB0-4C30-A1C9-9F48488ED5EC}.Debug|Win32.Build.0 = Debug|Win32
+		{734A3226-7AB0-4C30-A1C9-9F48488ED5EC}.Release|Win32.ActiveCfg = Release|Win32
+		{734A3226-7AB0-4C30-A1C9-9F48488ED5EC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
