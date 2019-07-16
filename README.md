@@ -5,9 +5,9 @@ A simple street fighter type game created in C++. This is an Object Oriented Pro
 
 This project was created in Microsoft Visual Studio 2013 with SFML (2.3.2) 32-bit. The team that designed this awesome game:
 
+  - Nabeel Hussain
   - Muhammad Haseeb
   - Omer Bashir
-  - Nabeel Hussain
   - Hassan Yousuf
 
 ### Installation
